@@ -1,0 +1,33 @@
+.header{
+    background-color: #440e0e;
+    color: whitesmoke;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.2rem;
+
+    .nav-right{
+        font-size: 1.5rem;
+        padding: 1rem;
+        cursor: pointer;
+    }
+
+
+    .nav-left {
+        display: flex;
+        justify-content: space-between;
+        padding: 0;
+        list-style: none;
+        
+        li {
+            cursor: pointer;
+            padding: 1rem;
+            
+            &:hover {
+                background-color: #866767;
+            }
+        }
+    }
+}
