@@ -10,7 +10,7 @@ namespace SBL.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Pag";
+            ViewBag.Title = "Home Page";
 
             return View();
         }
