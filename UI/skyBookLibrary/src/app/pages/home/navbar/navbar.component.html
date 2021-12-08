@@ -1,10 +1,22 @@
-<header class="header">
-    <nav class="nav-right">
+<header class="header" >
+    <nav class="nav-left" tabindex="1">
         Sky book Library
     </nav>
 
-    <ul class="nav-left">
-        <li>Register</li>
-        <li>Login</li>
+    <ul class="nav-right">
+        <li tabindex="1">Register</li>
+        <li tabindex="1">Login</li>
     </ul>
+
+    <div (click)='toggleDropDownMenu()' class="collapsable-menu-icon-div">
+        <i class="fa fa-bars fa-lg"></i>
+    </div>
+
 </header>
+
+<div *ngIf="dropdownMenutoggle" class="drop-down-menu">
+    <ul>
+        <li tabindex="1">Register</li>
+        <li tabindex="1">Login</li>
+    </ul>
+</div>
