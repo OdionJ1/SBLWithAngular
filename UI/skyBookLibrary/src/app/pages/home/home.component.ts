@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { homepageData, IFeature } from "src/app/data/homepage/homepage-data";
 
 @Component({
     templateUrl: './home.component.html',
@@ -6,5 +7,5 @@ import { Component } from "@angular/core";
 })
 
 export class HomeComponent{
-    
+    public features: IFeature[] = homepageData
 }

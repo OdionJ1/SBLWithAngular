@@ -10,5 +10,17 @@
                 Collaborate and personalise Your Book Experience with SBLibrary
             </p>
         </div>
+
+        <div class="feature-row">
+            <div class="feature-info" *ngFor="let feature of features">
+                <h2>
+                    {{feature.title}}
+                </h2>
+                <p>
+                    {{feature.summary}}
+                </p>
+                <img alt="sad face" [src]="feature.image" >
+            </div>
+        </div>
     </div>
 </ng-container>
