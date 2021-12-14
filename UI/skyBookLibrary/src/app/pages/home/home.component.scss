@@ -1,0 +1,50 @@
+
+.body-container {
+    margin-top: 3.5rem;
+
+    .info-text-div {
+        background-color: #eeeeee;
+        padding: 3rem 3.75rem;
+        border-radius: 0.5rem;
+        width: 70%;
+        margin: auto;
+
+        * {
+            width: 80%;
+        }
+    
+        h1 {
+            font-weight: 500;
+            font-size: 3.93rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.2rem;
+        }
+    
+        p {
+            font-weight: 200;
+            margin-top: 0.5rem;
+            font-size: 1.31rem;
+        }
+    }
+}
+
+
+@media screen and (max-width: 56rem){
+    .body-container {
+        
+        .info-text-div {
+            
+            h1 {
+                font-size: 3rem;
+                font-weight: 400;
+            }
+
+            p {
+                font-weight: 200;
+                margin-top: 0.5rem;
+                font-size: 1.15rem;
+            }
+        }
+        
+    }
+}

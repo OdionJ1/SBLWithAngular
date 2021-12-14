@@ -9,10 +9,13 @@ import { Component } from "@angular/core";
 export class NavBarComponent {
 
     dropdownMenutoggle: boolean = false;
-
+    dropdownList: boolean = false
 
 
     toggleDropDownMenu(){
         this.dropdownMenutoggle = !this.dropdownMenutoggle
+        setTimeout(() => {
+            this.dropdownList = !this.dropdownList
+        }, 200)
     }
 }
