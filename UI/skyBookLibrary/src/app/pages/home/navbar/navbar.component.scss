@@ -1,3 +1,8 @@
+@mixin onfocus {
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+
 .header-container {
     position: fixed;
     right: 0;
@@ -26,8 +31,7 @@
             height: 100%;
     
             &:focus{
-                outline: 5px auto -webkit-focus-ring-color;
-                outline-offset: -2px;
+                @include onfocus;
             }
         }
     
@@ -46,6 +50,10 @@
                 
                 &:hover {
                     background-color: #866767;
+                }
+
+                &:focus{
+                    @include onfocus;
                 }
             }
         }
@@ -84,6 +92,11 @@
     
                 &:hover{
                     background-color: #866767;
+                }
+
+                &:focus{
+                    outline: 5px auto -webkit-focus-ring-color;
+                    outline-offset: -2px;
                 }
             }
         }
