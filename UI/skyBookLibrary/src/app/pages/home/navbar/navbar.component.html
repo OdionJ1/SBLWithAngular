@@ -5,7 +5,7 @@
         </nav>
     
         <ul class="nav-right">
-            <li tabindex="1">Register</li>
+            <li (click)="openRegisterModal()" tabindex="1">Register</li>
             <li tabindex="1">Login</li>
         </ul>
     
@@ -17,8 +17,13 @@
     
     <div [style.height]="dropdownMenutoggle? '6rem' : '0rem'" class="drop-down-menu">
         <ul *ngIf="dropdownList">
-            <li tabindex="1">Register</li>
+            <li (click)="openRegisterModal()" tabindex="1">Register</li>
             <li tabindex="1">Login</li>
         </ul>
     </div>
 </div>
+
+
+<app-modal (closeModal)="registerModalOpen = false" *ngIf="registerModalOpen">
+    <app-register-form></app-register-form>
+</app-modal>

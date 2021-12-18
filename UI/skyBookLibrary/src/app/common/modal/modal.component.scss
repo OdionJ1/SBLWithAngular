@@ -1,0 +1,52 @@
+// this holds the CSS display of the modal
+.mmodal {
+    // makes it hover above all elements
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    .mmodal-body {
+        background: #fff;
+        width: 50%;
+        margin: 1rem auto;
+        padding: 1.25rem;
+    }
+
+    .close-button {
+        width: max-content;
+        float: right;
+        margin-top: -5px;
+
+        button {
+            font-size: 2rem;
+            border: 0;
+            background-color: transparent;      
+
+            &:hover {
+                transition: background-color 0.5s;
+                background-color: #eeeeee;
+            }
+
+            &:focus {
+                background-color: #eeeeee;
+                border-width: 1px;
+            } 
+        }
+    }
+}
+
+
+// backdrop color
+.mmodal-background {
+    // should be below the .modal but above all other elements
+    z-index: 900;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    backdrop-filter: blur(4px);
+}

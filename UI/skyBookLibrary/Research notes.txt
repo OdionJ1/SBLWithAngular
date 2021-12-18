@@ -1,0 +1,3 @@
+font awesome: https://stackoverflow.com/questions/38796541/how-to-add-font-awesome-to-angular-2-cli-project
+
+Custom form control: https://blog.thoughtram.io/angular/2016/07/27/custom-form-controls-in-angular-2.html

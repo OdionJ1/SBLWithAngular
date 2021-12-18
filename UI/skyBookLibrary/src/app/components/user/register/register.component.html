@@ -1,0 +1,62 @@
+<ng-container>
+    <h1 class="title">Register</h1>
+    <hr />
+
+    <div class="body">
+        <form #loginForm="ngForm">
+            <div class="form-group">
+                <app-custom-input
+                inputId='firstName'
+                label='First Name'
+                inputType='text'
+                name='firstName'
+                [(ngModel)]="firstName"
+                [isRequired]="true"
+                >
+                </app-custom-input>
+
+                <app-custom-input
+                inputId='lastName'
+                label='Last Name'
+                inputType='text'
+                name='lastName'
+                [(ngModel)]="lastName"
+                [isRequired]="true"
+                >
+                </app-custom-input>
+
+                <app-custom-input
+                inputId='email'
+                label='Email'
+                inputType='email'
+                name='email'
+                [(ngModel)]="email"
+                [isRequired]="true"
+                >
+                </app-custom-input>
+
+                <app-custom-input
+                inputId='password'
+                label='Password'
+                inputType='password'
+                name='password'
+                [(ngModel)]="password"
+                [isRequired]="true"
+                [isPasswordInput]="true"
+                >
+                </app-custom-input>
+
+                <app-custom-input
+                id='confirmPassword'
+                label='Confirm Password'
+                inputType='password'
+                name='confirmPassword'
+                [(ngModel)]="confirmPassword"
+                [isRequired]="true"
+                [isPasswordInput]="true"
+                >
+                </app-custom-input>
+            </div>
+        </form>
+    </div>
+</ng-container>

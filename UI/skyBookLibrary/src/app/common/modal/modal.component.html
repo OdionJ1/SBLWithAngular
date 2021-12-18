@@ -1,0 +1,9 @@
+<div class="mmodal">
+    <div class="mmodal-body">
+        <div class="close-button">
+            <button (click)="closeModal.emit()" tabindex="1">&times;</button>
+        </div>
+        <ng-content></ng-content>
+    </div>
+</div>
+<div class="mmodal-background"></div>

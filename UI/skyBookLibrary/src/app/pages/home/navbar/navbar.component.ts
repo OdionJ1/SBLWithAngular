@@ -8,8 +8,9 @@ import { Component } from "@angular/core";
 
 export class NavBarComponent {
 
-    dropdownMenutoggle: boolean = false;
-    dropdownList: boolean = false
+    public registerModalOpen: boolean = true
+    public dropdownMenutoggle: boolean = false;
+    public dropdownList: boolean = false
 
 
     toggleDropDownMenu(){
@@ -17,5 +18,9 @@ export class NavBarComponent {
         setTimeout(() => {
             this.dropdownList = !this.dropdownList
         }, 200)
+    }
+
+    openRegisterModal(){
+        this.registerModalOpen = true
     }
 }

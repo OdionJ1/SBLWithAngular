@@ -1,0 +1,15 @@
+<div>
+    <label [for]="inputId">{{label}}: </label>
+    <Input 
+        [id]="inputId"
+        [type]="inputType"
+        (input)="onChange($event)"
+        [required]='isRequired'
+        (blur)='touched()'
+        [value]="inputValue"
+    />
+    <div tabindex="1" *ngIf="isPasswordInput">
+        <i class="fa fa-eye"></i>
+        <i class="fa fa-eye-slash"></i>
+    </div>
+</div>
