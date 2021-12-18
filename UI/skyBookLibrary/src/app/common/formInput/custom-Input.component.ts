@@ -33,12 +33,17 @@ export class CustomInputComponent implements ControlValueAccessor{
         return this._inputValue || ''
     }
 
-
     //See research notes for clarity
     propagateChange = (_: any) => {}
 
     public touched: () => void;
     
+
+    togglePassword(){
+        this.inputType = this.inputType === 'text'? 'password' : 'text'
+    }
+
+
 
     onChange(event: Event){
         const value: string = (<HTMLInputElement>event.target).value

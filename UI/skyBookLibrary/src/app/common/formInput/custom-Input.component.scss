@@ -1,0 +1,42 @@
+
+.custom-input-container {
+    margin: 1rem 1rem;
+
+    label {
+        color: #333333;
+        font-weight: 600;
+        font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+    }
+    
+    .input-container {
+        margin-top: 3px;
+
+        input {
+            height: 1.7rem;
+            padding: 0 8px;
+            width: 90%;
+            border-radius: 4px;
+            border: 1px solid #afadad;
+        }
+    }
+
+    button {
+        position: relative;
+        float: right;
+        right: 3.5rem;
+        bottom: 1.7rem;
+        font-size: 1.2rem;
+        border: 0;
+        background-color: transparent;      
+
+        &:hover {
+            transition: background-color 0.5s;
+            background-color: #eeeeee;
+        }
+
+        &:focus {
+            background-color: #eeeeee;
+            border-width: 1px;
+        } 
+    }
+}

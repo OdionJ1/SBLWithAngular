@@ -1,15 +1,15 @@
 <div class="header-container">
     <header class="header">
-        <nav [routerLink]="['/home']" class="nav-left" tabindex="1">
+        <nav [routerLink]="['/home']" class="nav-left" tabindex="0">
             Sky Book Library
         </nav>
     
         <ul class="nav-right">
-            <li (click)="openRegisterModal()" tabindex="1">Register</li>
-            <li tabindex="1">Login</li>
+            <li (click)="openRegisterModal()" (keydown.enter)="openRegisterModal()" tabindex="0">Register</li>
+            <li tabindex="0">Login</li>
         </ul>
     
-        <div tabindex="1" (keydown.enter)="toggleDropDownMenu()" (click)='toggleDropDownMenu()' class="collapsable-menu-icon-div">
+        <div tabindex="0" (keydown.enter)="toggleDropDownMenu()" (click)='toggleDropDownMenu()' class="collapsable-menu-icon-div">
             <i class="fa fa-bars fa-lg"></i>
         </div>
     
@@ -17,8 +17,8 @@
     
     <div [style.height]="dropdownMenutoggle? '6rem' : '0rem'" class="drop-down-menu">
         <ul *ngIf="dropdownList">
-            <li (click)="openRegisterModal()" tabindex="1">Register</li>
-            <li tabindex="1">Login</li>
+            <li (click)="openRegisterModal()" tabindex="0">Register</li>
+            <li tabindex="0">Login</li>
         </ul>
     </div>
 </div>
