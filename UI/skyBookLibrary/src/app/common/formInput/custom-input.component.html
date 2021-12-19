@@ -1,17 +1,18 @@
 <div class="custom-input-container">
-    <label [for]="inputId">{{label}}</label>
+    <label [for]="inputId">{{label}} <span *ngIf="required" class="asterisk">*</span></label>
     <div class="input-container">
         <Input 
             [id]="inputId"
             [type]="inputType"
             (input)="onChange($event)"
-            [required]='isRequired'
             (blur)='touched()'
-            [value]="inputValue"
+            [name]='name'
+            [value]="inputValue || null"
+            [required]="required"
         />
         <!-- <span></span> for error messages -->
     </div>
-    <button (click)='togglePassword()' [ngSwitch]="inputType" tabindex="0" *ngIf="isPasswordInput">
+    <button type="button" (click)='togglePassword()' [ngSwitch]="inputType" tabindex="0" *ngIf="isPasswordInput">
         <i *ngSwitchCase="'password'" class="fa fa-eye"></i>
         <i *ngSwitchCase="'text'" class="fa fa-eye-slash"></i>
     </button>

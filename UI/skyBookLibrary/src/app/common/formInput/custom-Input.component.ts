@@ -19,7 +19,8 @@ export class CustomInputComponent implements ControlValueAccessor{
     @Input() inputId: string;
     @Input() label: string;
     @Input() inputType: string;
-    @Input() isRequired: boolean = false;
+    @Input() name: string
+    @Input() required: boolean = false;
     @Input() isError: boolean = false;
     @Input() isPasswordInput: boolean = false
     private _inputValue: string;
@@ -30,7 +31,7 @@ export class CustomInputComponent implements ControlValueAccessor{
     }
 
     get inputValue (): string {
-        return this._inputValue || ''
+        return this._inputValue
     }
 
     //See research notes for clarity
@@ -42,7 +43,6 @@ export class CustomInputComponent implements ControlValueAccessor{
     togglePassword(){
         this.inputType = this.inputType === 'text'? 'password' : 'text'
     }
-
 
 
     onChange(event: Event){

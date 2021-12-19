@@ -11,7 +11,7 @@
     .mmodal-body {
         background: #fff;
         width: 40%;
-        margin: 1rem auto;
+        margin: 4rem auto;
         padding: 1.25rem;
     }
 
@@ -58,3 +58,12 @@
         width: 70%;
     }
 }
+
+
+@media screen and (max-height: 34rem){
+    .mmodal .mmodal-body {
+        height: 75%;
+        overflow-y: scroll;
+    }
+}
+

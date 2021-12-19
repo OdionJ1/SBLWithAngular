@@ -3,15 +3,19 @@
     <hr />
 
     <div class="body">
-        <form #registerForm="ngForm">
+        <form #registerForm="ngForm" (ngSubmit)="register(registerForm.value)">
+            <!-- <div class="form-group">
+                <input type="text" name="n" [(ngModel)]="firstName" [required]='true'>
+            </div> -->
             <div class="form-group">
                 <app-custom-input
                 inputId='firstName'
                 label='First Name'
                 inputType='text'
                 name='firstName'
+                inputName='firstName'
                 [(ngModel)]="firstName"
-                [isRequired]="true"
+                [required]="true"
                 >
                 </app-custom-input>
             </div>
@@ -23,7 +27,7 @@
                 inputType='text'
                 name='lastName'
                 [(ngModel)]="lastName"
-                [isRequired]="true"
+                [required]="true"
                 >
                 </app-custom-input>
             </div>
@@ -35,7 +39,7 @@
                 inputType='email'
                 name='email'
                 [(ngModel)]="email"
-                [isRequired]="true"
+                [required]="true"
                 >
                 </app-custom-input>
             </div>
@@ -47,7 +51,7 @@
                 inputType='password'
                 name='password'
                 [(ngModel)]="password"
-                [isRequired]="true"
+                [required]="true"
                 [isPasswordInput]="true"
                 >
                 </app-custom-input>
@@ -60,11 +64,13 @@
                 inputType='password'
                 name='confirmPassword'
                 [(ngModel)]="confirmPassword"
-                [isRequired]="true"
+                [required]="true"
                 [isPasswordInput]="true"
                 >
                 </app-custom-input>
             </div>
+
+            <button type="submit" [disabled]='registerForm.invalid'>Register</button>
         </form>
     </div>
 </ng-container>
