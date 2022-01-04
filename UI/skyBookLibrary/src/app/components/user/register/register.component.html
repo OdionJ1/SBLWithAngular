@@ -3,10 +3,7 @@
     <hr />
 
     <div class="body">
-        <form #registerForm="ngForm" (ngSubmit)="register(registerForm.value)">
-            <!-- <div class="form-group">
-                <input type="text" name="n" [(ngModel)]="firstName" [required]='true'>
-            </div> -->
+        <form #registerForm="ngForm" (ngSubmit)="register(registerForm.value, $event)">
             <div class="form-group">
                 <app-custom-input
                 inputId='firstName'
@@ -39,6 +36,8 @@
                 inputType='email'
                 name='email'
                 [(ngModel)]="email"
+                [hasError]="emailInvalid()"
+                errorMessage="Please enter a valid email address"
                 [required]="true"
                 >
                 </app-custom-input>
@@ -53,6 +52,8 @@
                 [(ngModel)]="password"
                 [required]="true"
                 [isPasswordInput]="true"
+                [hasError]="passwordInvalid()"
+                errorMessage="Password must contain a minimum of 8 characters"
                 >
                 </app-custom-input>
             </div>
@@ -66,11 +67,13 @@
                 [(ngModel)]="confirmPassword"
                 [required]="true"
                 [isPasswordInput]="true"
+                [hasError]="confirmPasswordInvalid()"
+                errorMessage="Confirm password must be the same as password"
                 >
                 </app-custom-input>
             </div>
 
-            <button type="submit" [disabled]='registerForm.invalid'>Register</button>
+            <button type="submit" [disabled]='registerForm.invalid || formInvalid()'>Register</button>
         </form>
     </div>
 </ng-container>

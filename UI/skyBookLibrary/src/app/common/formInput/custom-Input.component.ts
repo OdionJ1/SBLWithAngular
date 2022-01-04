@@ -21,12 +21,13 @@ export class CustomInputComponent implements ControlValueAccessor{
     @Input() inputType: string;
     @Input() name: string
     @Input() required: boolean = false;
-    @Input() isError: boolean = false;
+    @Input() hasError: boolean = false;
+    @Input() errorMessage: string;
     @Input() isPasswordInput: boolean = false
     private _inputValue: string;
 
     @Input() set inputValue(value: string){
-        this._inputValue = value.trim()
+        this._inputValue = value.trimStart()
         this.propagateChange(this._inputValue)
     }
 

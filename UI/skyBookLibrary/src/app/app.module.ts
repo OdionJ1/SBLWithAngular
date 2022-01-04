@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './common/shared.module';
 import { RegisterFormComponent } from './components/user/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
+import { HomeBodyComponent } from './pages/home/main/home-body.component';
 import { NavBarComponent } from './pages/home/navbar/navbar.component';
 import { appRoutes } from './routes';
 
@@ -14,6 +15,7 @@ import { appRoutes } from './routes';
   declarations: [
     AppComponent,
     HomeComponent,
+    HomeBodyComponent,
     NavBarComponent,
     RegisterFormComponent
   ],

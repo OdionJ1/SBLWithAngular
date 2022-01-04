@@ -2,27 +2,7 @@
     <app-home-nav></app-home-nav>
 
     <div class="body-container">
-        <div class="info-text-div">
-            <h1>
-                Sky Book Library
-            </h1>
-            <p>
-                Collaborate and personalise Your Book Experience with SBLibrary
-            </p>
-        </div>
-
-        <div class="feature-row">
-            <div class="feature-info" *ngFor="let feature of features">
-                <h2>
-                    {{feature.title}}
-                </h2>
-                <p>
-                    {{feature.summary}}
-                </p>
-                <img [alt]="feature.title + 'Image'" [src]="feature.image" >
-            </div>
-        </div>
-
+        <router-outlet></router-outlet>
         <hr />
     
         <footer>

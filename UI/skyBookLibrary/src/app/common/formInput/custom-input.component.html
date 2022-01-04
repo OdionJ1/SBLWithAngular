@@ -10,10 +10,12 @@
             [value]="inputValue || null"
             [required]="required"
         />
-        <!-- <span></span> for error messages -->
     </div>
     <button type="button" (click)='togglePassword()' [ngSwitch]="inputType" tabindex="0" *ngIf="isPasswordInput">
         <i *ngSwitchCase="'password'" class="fa fa-eye"></i>
         <i *ngSwitchCase="'text'" class="fa fa-eye-slash"></i>
     </button>
+    <div *ngIf="hasError" class="error-text">
+        <p>*{{errorMessage}}</p>
+    </div>
 </div>
