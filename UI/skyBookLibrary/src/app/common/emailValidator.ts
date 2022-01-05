@@ -7,7 +7,7 @@ export class EmailValidator {
         }
 
         if(email.indexOf("@") > 0 && email.indexOf(".") > 0){
-            return !this.hasMultiple('@', email)
+            return !this.hasMultiple('@', email) && (email.includes("com") || email.includes("co.uk") || email.includes("ac.uk"))
         } else {
             return false
         }

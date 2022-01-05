@@ -18,7 +18,6 @@ export class RegisterFormComponent {
 
     register(formInput: any, event: Event){
         event.preventDefault()
-        console.log(this.registerForm.invalid)
         console.log(formInput)
     }
 

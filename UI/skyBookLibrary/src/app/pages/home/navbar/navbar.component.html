@@ -6,7 +6,7 @@
     
         <ul class="nav-right">
             <li (click)="openRegisterModal()" (keydown.enter)="openRegisterModal()" tabindex="0">Register</li>
-            <li tabindex="0">Login</li>
+            <li routerLink="/home/login" tabindex="0">Login</li>
         </ul>
     
         <div tabindex="0" (keydown.enter)="toggleDropDownMenu()" (click)='toggleDropDownMenu()' class="collapsable-menu-icon-div">
@@ -18,7 +18,7 @@
     <div [style.height]="dropdownMenutoggle? '6rem' : '0rem'" class="drop-down-menu">
         <ul *ngIf="dropdownList">
             <li (click)="openRegisterModal()" tabindex="0">Register</li>
-            <li tabindex="0">Login</li>
+            <li routerLink="/home/login" tabindex="0">Login</li>
         </ul>
     </div>
 </div>

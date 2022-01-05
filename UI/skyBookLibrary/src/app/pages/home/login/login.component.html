@@ -1,0 +1,38 @@
+<div class="login-page">
+    <h1>
+        User Login
+    </h1>
+    <hr />
+
+    <div class="form-container">
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value, $event)">
+            <div class="form-group">
+                <app-custom-input
+                inputId='email'
+                label='Email'
+                inputType='email'
+                name='email'
+                [(ngModel)]="email"
+                [hasError]="emailInvalid()"
+                errorMessage="Please enter a valid email address"
+                [required]="true"
+                >
+                </app-custom-input>
+            </div>
+
+            <div class="form-group">
+                <app-custom-input
+                inputId='password'
+                label='Password'
+                inputType='password'
+                name='password'
+                [(ngModel)]="password"
+                [required]="true"
+                >
+                </app-custom-input>
+            </div>
+
+            <button type="submit" [disabled]='loginForm.invalid || emailInvalid()'>Login</button>
+        </form>
+    </div>
+</div>
