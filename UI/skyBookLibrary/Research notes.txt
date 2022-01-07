@@ -2,3 +2,6 @@ font awesome: https://stackoverflow.com/questions/38796541/how-to-add-font-aweso
 font-awesome react: https://stackoverflow.com/questions/23116591/how-to-include-a-font-awesome-icon-in-reacts-render
 
 Custom form control: https://blog.thoughtram.io/angular/2016/07/27/custom-form-controls-in-angular-2.html
+
+Stored procedure c#: https://stackoverflow.com/questions/21709305/how-to-directly-execute-sql-query-in-c/21709663
+https://stackoverflow.com/questions/16985502/sqldataadapter-filldatatable-not-filling-datatable
