@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace SBL.Data.Models.Domain
 {
-    public class User : VwUser
+    public class User
     {
-        public string Password { set; get; }
+        public string UserId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 }

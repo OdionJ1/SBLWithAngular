@@ -9,6 +9,6 @@ namespace SBL.Service.IService
 {
     public interface IUserService
     {
-        void CreateUser(User user);
+        RequestResult<bool> CreateUser(User user);
     }
 }

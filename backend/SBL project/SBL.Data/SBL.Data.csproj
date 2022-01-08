@@ -52,8 +52,8 @@
     <Compile Include="Models\Domain\Author.cs" />
     <Compile Include="Models\Domain\Book.cs" />
     <Compile Include="Models\Domain\Category.cs" />
+    <Compile Include="Models\Domain\RequestResult.cs" />
     <Compile Include="Models\Domain\User.cs" />
-    <Compile Include="Models\Domain\vwUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

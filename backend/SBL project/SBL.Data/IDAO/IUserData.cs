@@ -10,5 +10,6 @@ namespace SBL.Data.IDAO
     public interface IUserData
     {
         void CreateUser(User user);
+        bool UserExists(string email);
     }
 }

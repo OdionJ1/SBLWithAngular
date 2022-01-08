@@ -5,6 +5,7 @@ using SBL.Service.IService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,11 +19,15 @@ namespace SBL.Service.Service
         {
             userData = new UserData();
         }
-
-
-        public void CreateUser(User user)
+    
+        public RequestResult<bool> CreateUser(User user)
         {
+            if (userData.UserExists(user.Email))
+            {
+                return new RequestResult<bool>(HttpStatusCode.Conflict, false);
+            }
             userData.CreateUser(user);
+            return new RequestResult<bool>(HttpStatusCode.Created, true);
         }
 
     }

@@ -10,34 +10,37 @@ namespace SBL.Data.DAO
 {
     public class UserData : IUserData
     {
-        private string GETUSERSSP = "GetUsers";
+        private string CreateUserSP = "CreateUser";
+        private string GetUser = "GetUser";
 
         public void CreateUser(User user)
         {
-            try
+            IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
             {
-                IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
-                {
-                    new SqlParameter("@id", 2)
-                };
-                DataTable data = Helper.Execute(GETUSERSSP, paramList);
-                DataRow row = data.Rows[0];
-                User user1 = new User()
-                {
-                    UserId = (int)row["UserId"],
-                    FirstName = (string)row["FirstName"],
-                    LastName = (string)row["LastName"],
-                    Email = (string)row["LastName"],
-                    Password = (string)row["Password"]
-                };
+                new SqlParameter("@id", Guid.NewGuid().ToString()),
+                new SqlParameter("@firstName", user.FirstName),
+                new SqlParameter("@lastName", user.LastName),
+                new SqlParameter("@email", user.Email),
+                new SqlParameter("@password", user.Password)
+            };
+            Helper.Execute(CreateUserSP, paramList);
+        }
 
-                var user3 = user1;
-
-            }
-            catch (Exception error)
+        public bool UserExists(string email)
+        {
+            IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
             {
-                throw error;
+                new SqlParameter("@email", email)
+            };
+
+            DataTable data = Helper.Execute(GetUser, paramList);
+
+            if (data.Rows.Count > 0)
+            {
+                return true;
             }
+
+            return false;
         }
 
     }

@@ -1,14 +1,14 @@
 
 export class User implements IUser {
-    uid?: string
+    userId?: string
     firstName: string;
     lastName: string;
     email: string;
     password?: string;
 
     static create(user: User){
-        if(!user) return
         let u = new User()
+        if(!user) return u
         u = {...user}
 
         return u
@@ -17,7 +17,7 @@ export class User implements IUser {
 
 
 export interface IUser {
-    uid?: string
+    userId?: string
     firstName: string;
     lastName: string;
     email: string;

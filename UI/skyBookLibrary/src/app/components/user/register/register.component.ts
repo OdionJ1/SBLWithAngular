@@ -1,6 +1,8 @@
 import { Component, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { EmailValidator } from "src/app/common/emailValidator";
+import { User } from "src/app/data/models/user";
+import { UserService } from "../user.service";
 
 @Component({
     selector: 'app-register-form',
@@ -16,9 +18,15 @@ export class RegisterFormComponent {
     password: string
     confirmPassword: string
 
-    register(formInput: any, event: Event){
+    constructor(private userService: UserService){
+
+    }
+
+    async register (formInput: any, event: Event) : Promise<void> {
         event.preventDefault()
-        console.log(formInput)
+
+        let result = await this.userService.createUser(this.getUser(formInput))
+        console.log(result)
     }
 
     
@@ -48,4 +56,13 @@ export class RegisterFormComponent {
         return this.emailInvalid() || this.passwordInvalid() || this.confirmPasswordInvalid()
     }
 
+    getUser(formInput: any): User {
+        const u = new User()
+        u.firstName = formInput.firstName
+        u.lastName = formInput.lastName
+        u.email = formInput.email
+        u.password = formInput.password
+        
+        return u
+    }
 }

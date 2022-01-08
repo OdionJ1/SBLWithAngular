@@ -7,11 +7,12 @@ using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Web.Http;
-
+using System.Web.Http.Cors;
 
 namespace SBL.Controllers
 {
     [RoutePrefix("api/account")]
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class AccountController : ApiController
     {
         private IUserService userService;
@@ -24,16 +25,23 @@ namespace SBL.Controllers
 
         [HttpPost]
         [Route("register")]
-        public IHttpActionResult Register([FromBody]User user)
+        public HttpResponseMessage Register([FromBody]User user)
         {
             if (user != null)
             {
-                userService.CreateUser(user);
-                return Ok();
+                try
+                {
+                    RequestResult<bool> result = userService.CreateUser(user);
+                    return Request.CreateResponse(result.StatusCode, result.Data);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             } 
             else
             {
-                return StatusCode(HttpStatusCode.BadRequest);
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
 
         }
