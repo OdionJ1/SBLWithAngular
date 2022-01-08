@@ -14,7 +14,6 @@ export class EmailValidator {
     
     }
 
-
     private static hasMultiple = (value: string, searchString: string): boolean => {
         let resultArr: string[] = []
         let searchArr: string[] = searchString.split('')

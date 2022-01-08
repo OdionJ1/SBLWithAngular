@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
+import { CustomButtonComponent } from './customButton/custom-button.component';
 import { CustomInputComponent } from './formInput/custom-input.component';
 import { ModalComponent } from './modal/modal.component';
 
@@ -10,6 +10,7 @@ import { ModalComponent } from './modal/modal.component';
     declarations: [
       ModalComponent,
       CustomInputComponent,
+      CustomButtonComponent
     ],
     imports: [
       FormsModule,
@@ -18,6 +19,7 @@ import { ModalComponent } from './modal/modal.component';
     exports: [
       ModalComponent,
       CustomInputComponent,
+      CustomButtonComponent,
       FormsModule
     ],
     providers: []

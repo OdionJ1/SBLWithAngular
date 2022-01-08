@@ -72,8 +72,20 @@
                 >
                 </app-custom-input>
             </div>
+            
+            <div class="message-container">
+                <h5 *ngIf="hasError" class="error-message"><i class="fa fa-exclamation-circle"></i> {{errorMessage}}</h5>
+                <h5 *ngIf="success" class="success-message"><i class="fa fa-check-circle"></i> Account successfully created</h5>
+            </div>
 
-            <button type="submit" [disabled]='registerForm.invalid || formInvalid()'>Register</button>
+            <app-custom-button
+            class="button"
+            buttonText="Register"
+            [hasSpinner]="loading"
+            buttonType="submit" 
+            [isDisabled]='registerForm.invalid || formInvalid()'
+            >
+            </app-custom-button>
         </form>
     </div>
 </ng-container>

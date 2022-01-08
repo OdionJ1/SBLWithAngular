@@ -1,5 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { UserService } from "src/app/components/user/user.service";
 
 @Component({
     selector: 'app-home-nav',
@@ -7,14 +8,19 @@ import { Router } from "@angular/router";
     styleUrls: ['./navbar.component.scss']
 })
 
-export class NavBarComponent {
+export class NavBarComponent implements OnInit {
 
-    constructor(private router: Router){}
+    constructor(private userService: UserService){}
 
-    public registerModalOpen: boolean = false
+    public registerModalOpen: boolean = true
     public dropdownMenutoggle: boolean = false;
     public dropdownList: boolean = false
 
+    ngOnInit(): void {
+        this.userService.closeModal$.subscribe((value) => {
+            this.registerModalOpen = value
+        })
+    }
 
     toggleDropDownMenu(){
         this.dropdownMenutoggle = !this.dropdownMenutoggle

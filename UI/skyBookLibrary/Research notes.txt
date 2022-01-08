@@ -7,3 +7,5 @@ Stored procedure c#: https://stackoverflow.com/questions/21709305/how-to-directl
 https://stackoverflow.com/questions/16985502/sqldataadapter-filldatatable-not-filling-datatable
 
 Cors: https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api
+
+Behavioral Subject: https://www.dotnettricks.com/learn/angular/sharing-data-between-angular-components-methods

@@ -1,10 +1,12 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
 import { ConfigService } from "src/app/common/api/config.service";
 import { User } from "src/app/data/models/user";
 
 @Injectable()
 export class UserService {
+    public closeModal$ = new BehaviorSubject(false);
 
     constructor(
         private configService: ConfigService, 
@@ -21,4 +23,5 @@ export class UserService {
 
         return data
     }
+
 }

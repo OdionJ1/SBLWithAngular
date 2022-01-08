@@ -1,5 +1,6 @@
 import { Component, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
+import { Router } from "@angular/router";
 import { EmailValidator } from "src/app/common/emailValidator";
 import { User } from "src/app/data/models/user";
 import { UserService } from "../user.service";
@@ -17,16 +18,42 @@ export class RegisterFormComponent {
     email: string
     password: string
     confirmPassword: string
+    public loading: boolean = false
+    public hasError: boolean = false
+    public errorMessage: string
+    public success: boolean = false
 
-    constructor(private userService: UserService){
 
-    }
+    constructor(private userService: UserService, private router: Router){}
 
-    async register (formInput: any, event: Event) : Promise<void> {
+    async register(formInput: any, event: Event): Promise<void> {
         event.preventDefault()
+        
+        this.loading = true
+        try {
+            const response = await this.userService.createUser(this.getUser(formInput))
+            
+            if(response.status !== 201){
+                throw response
+            }
+            
+            this.loading = false
+            this.success = true
+            setTimeout(() => {
+                this.userService.closeModal$.next(false)
+                this.router.navigate(["/home/login"])
+            }, 3000)
 
-        let result = await this.userService.createUser(this.getUser(formInput))
-        console.log(result)
+        } catch (err: any){
+            this.success = false
+            this.loading = false
+            this.hasError = true
+            if(err.status === 409){
+                this.errorMessage = "Email address already registered"
+            } else {
+                this.errorMessage = "An error occured"
+            }
+        }
     }
 
     
