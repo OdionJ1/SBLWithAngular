@@ -11,7 +11,7 @@ namespace SBL.Data.DAO
     public class UserData : IUserData
     {
         private string CreateUserSP = "CreateUser";
-        private string GetUser = "GetUser";
+        private string GetUserSP = "GetUser";
 
         public void CreateUser(User user)
         {
@@ -33,7 +33,7 @@ namespace SBL.Data.DAO
                 new SqlParameter("@email", email)
             };
 
-            DataTable data = Helper.Execute(GetUser, paramList);
+            DataTable data = Helper.Execute(GetUserSP, paramList);
 
             if (data.Rows.Count > 0)
             {
@@ -41,6 +41,55 @@ namespace SBL.Data.DAO
             }
 
             return false;
+        }
+
+        public User GetUser(string email, string password)
+        {
+            IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
+            {
+                new SqlParameter("@email", email),
+                new SqlParameter("@password", password)
+            };
+
+            DataTable data = Helper.Execute(GetUserSP, paramList);
+            if (data.Rows.Count > 0)
+            {
+                DataRow row = data.Rows[0];
+                User user =  new User()
+                {
+                    UserId = (string)row["userId"],
+                    FirstName = (string)row["firstName"],
+                    LastName = (string)row["lastName"],
+                    Email = (string)row["lastName"]
+                };
+                return user;
+            }
+
+            return null;
+        }
+
+        public User GetUser(string userId)
+        {
+            IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
+            {
+                new SqlParameter("@id", userId),
+            };
+
+            DataTable data = Helper.Execute(GetUserSP, paramList);
+            if (data.Rows.Count > 0)
+            {
+                DataRow row = data.Rows[0];
+                User user = new User()
+                {
+                    UserId = (string)row["userId"],
+                    FirstName = (string)row["firstName"],
+                    LastName = (string)row["lastName"],
+                    Email = (string)row["lastName"]
+                };
+                return user;
+            }
+
+            return null;
         }
 
     }

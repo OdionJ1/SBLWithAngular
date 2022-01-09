@@ -18,6 +18,11 @@
                 margin-left: 1rem;
                 @include buttonStyles
             }
+
+            .error {
+                color: #f54545;
+                margin: 0.5rem 1rem;
+            }
         }
     }
 }

@@ -43,7 +43,52 @@ namespace SBL.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
-
         }
+
+
+        [HttpPost]
+        [Route("login")]
+        public HttpResponseMessage Login([FromBody]User user)
+        {
+            if (user.Email != null && user.Password != null)
+            {
+                try
+                {
+                    RequestResult<User> result = userService.AuthenticateUser(user.Email, user.Password);
+                    return Request.CreateResponse(result.StatusCode, result.Data);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public HttpResponseMessage GetUser(string id)
+        {
+            if (id != null)
+            {
+                try
+                {
+                    RequestResult<User> result = userService.GetUser(id);
+                    return Request.CreateResponse(result.StatusCode, result.Data);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
+
     }
 }

@@ -30,5 +30,31 @@ namespace SBL.Service.Service
             return new RequestResult<bool>(HttpStatusCode.Created, true);
         }
 
+        public RequestResult<User> AuthenticateUser(string email, string password)
+        {
+            User user = userData.GetUser(email, password);
+
+            if (user == null)
+            {
+                return new RequestResult<User>(HttpStatusCode.NotFound, user);
+            } else
+            {
+                return new RequestResult<User>(HttpStatusCode.Accepted, user);
+            }
+        }
+
+        public RequestResult<User> GetUser(string userId)
+        {
+            User user = userData.GetUser(userId);
+
+            if (user == null)
+            {
+                return new RequestResult<User>(HttpStatusCode.NotFound, user);
+            } else
+            {
+                return new RequestResult<User>(HttpStatusCode.OK, user);
+            }
+        }
+
     }
 }

@@ -32,15 +32,14 @@ export class RegisterFormComponent {
         this.loading = true
         try {
             const response = await this.userService.createUser(this.getUser(formInput))
-            
             if(response.status !== 201){
                 throw response
             }
             
             this.loading = false
             this.success = true
+            this.userService.closeModal$.next(false)
             setTimeout(() => {
-                this.userService.closeModal$.next(false)
                 this.router.navigate(["/home/login"])
             }, 3000)
 

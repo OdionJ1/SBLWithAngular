@@ -11,9 +11,10 @@ import { UserService } from './components/user/user.service';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/home/login/login.component';
 import { HomeBodyComponent } from './pages/home/main/home-body.component';
-import { NavBarComponent } from './pages/home/navbar/navbar.component';
+import { NavBarComponent } from './components/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http'
 import { appRoutes } from './routes';
+import { LibraryModule } from './pages/library/library.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { appRoutes } from './routes';
   ],
   imports: [
     SharedModule,
+    LibraryModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,

@@ -27,6 +27,7 @@ export class NavBarComponent implements OnInit {
         setTimeout(() => {
             this.dropdownList = !this.dropdownList
         }, 200)
+
     }
 
     openRegisterModal(){

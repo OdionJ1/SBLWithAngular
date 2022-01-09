@@ -11,5 +11,7 @@ namespace SBL.Data.IDAO
     {
         void CreateUser(User user);
         bool UserExists(string email);
+        User GetUser(string email, string password);
+        User GetUser(string userId);
     }
 }
