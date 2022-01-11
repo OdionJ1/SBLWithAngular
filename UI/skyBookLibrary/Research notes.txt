@@ -9,3 +9,5 @@ https://stackoverflow.com/questions/16985502/sqldataadapter-filldatatable-not-fi
 Cors: https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api
 
 Behavioral Subject: https://www.dotnettricks.com/learn/angular/sharing-data-between-angular-components-methods
+
+Enums: https://stackoverflow.com/questions/44045311/cannot-approach-typescript-enum-within-html

@@ -31,7 +31,7 @@ export class LoginComponent {
 
             this.userService.createSession(User.create(<User>response.body))
 
-            this.router.navigate(["./library"])
+            this.router.navigate(["./welcome"])
 
             this.hasError = false
             this.loading = false

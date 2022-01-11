@@ -1,24 +1,52 @@
 <div class="header-container">
-    <header class="header">
+    <header class="nav-bar">
         <nav [routerLink]="['/home']" class="nav-left" tabindex="0">
             Sky Book Library
         </nav>
+
+        <nav class="nav-mid" *ngIf="currentPage === PageType.library">
+            <li *ngFor="let link of libraryNavLinks" tabindex="0">{{link.value}}</li>
+        </nav>
     
-        <ul class="nav-right">
-            <li (click)="openRegisterModal()" (keydown.enter)="openRegisterModal()" tabindex="0">Register</li>
-            <li routerLink="/home/login" tabindex="0">Login</li>
+        <ul [ngSwitch]="currentPage" class="nav-right">
+            <ng-container *ngSwitchCase="PageType.home">
+                <li (click)="openRegisterModal()" (keydown.enter)="openRegisterModal()" tabindex="0">Register</li>
+                <li [routerLink]="['/home/login']" tabindex="0">Login</li>
+            </ng-container>
+            
+            <ng-container *ngSwitchCase="PageType.welcome">
+                <li [routerLink]="['/library']" tabindex="0">Library</li>
+                <li tabindex="0">Log out</li>
+            </ng-container>    
+
+            <ng-container *ngSwitchCase="PageType.library">
+                <li [routerLink]="['/library']" tabindex="0">Odion Asuelimen</li>
+                <li tabindex="0">Log out</li>
+            </ng-container>     
         </ul>
     
         <div tabindex="0" (keydown.enter)="toggleDropDownMenu()" (click)='toggleDropDownMenu()' class="collapsable-menu-icon-div">
             <i class="fa fa-bars fa-lg"></i>
         </div>
-    
     </header>
     
-    <div [style.height]="dropdownMenutoggle? '6rem' : '0rem'" class="drop-down-menu">
+    <div *ngIf="currentPage === PageType.home || currentPage === PageType.welcome" [style.height]="dropdownMenutoggle? '6rem' : '0rem'" class="drop-down-menu">
+        <ul [ngSwitch]="currentPage" *ngIf="dropdownList">
+            <ng-container *ngSwitchCase="PageType.home">
+                <li (click)="openRegisterModal()" tabindex="0">Register</li>
+                <li [routerLink]="['/home/login']" tabindex="0">Login</li>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="PageType.welcome">
+                <li [routerLink]="['/library']" tabindex="0">Library</li>
+                <li tabindex="0">Log out</li>
+            </ng-container>
+        </ul>
+    </div>
+
+    <div *ngIf="currentPage === PageType.library" [style.height]="dropdownMenutoggle? '15.5rem' : '0rem'" class="drop-down-menu">
         <ul *ngIf="dropdownList">
-            <li (click)="openRegisterModal()" tabindex="0">Register</li>
-            <li routerLink="/home/login" tabindex="0">Login</li>
+            <li *ngFor="let link of libraryNavLinks" tabindex="0">{{link.value}}</li>
         </ul>
     </div>
 </div>

@@ -1,11 +1,10 @@
 import { Component } from "@angular/core";
 import { Page } from "src/app/data/models/page";
 
-@Component({
-    templateUrl: './home.component.html'
-})
 
-export class HomeComponent{
-    year: number = new Date().getFullYear()
+@Component({
+    templateUrl: './welcome.component.html'
+})
+export class WelcomeComponent {
     public PageType = Page
 }

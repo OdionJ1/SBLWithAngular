@@ -1,3 +1,7 @@
-<h1>
-    Library Page
-</h1>
+<ng-container>
+    <app-nav-bar [currentPage]="PageType.library" [libraryNavLinks]="libraryNavLinks"></app-nav-bar>
+
+    <app-body-container>
+        Library Page
+    </app-body-container>
+</ng-container>

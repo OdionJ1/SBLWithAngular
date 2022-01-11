@@ -4,6 +4,7 @@ import { LoginComponent } from "./pages/home/login/login.component";
 import { HomeBodyComponent } from "./pages/home/main/home-body.component";
 import { LibraryComponent } from "./pages/library/library.component";
 import { PageNotFoundComponent } from "./pages/pageNotFound/page-not-found.component";
+import { WelcomeComponent } from "./pages/welcome/welcome.component";
 
 
 //Home page child routes:
@@ -15,6 +16,7 @@ const homeRoutes: Routes = [
 
 export const appRoutes: Routes = [
     { path: 'home', component: HomeComponent, children: homeRoutes },
+    { path: 'welcome', component: WelcomeComponent },
     { path: 'library', component: LibraryComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent}

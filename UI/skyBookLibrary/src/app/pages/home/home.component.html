@@ -1,13 +1,8 @@
 <ng-container>
-    <app-home-nav></app-home-nav>
+    <app-nav-bar [currentPage]="PageType.home"></app-nav-bar>
 
-    <div class="body-container">
+    <app-body-container>
         <router-outlet></router-outlet>
-        <hr />
-    
-        <footer>
-            © {{year}} - Sky Book Library
-        </footer>
-    </div>
+    </app-body-container>
 
 </ng-container>

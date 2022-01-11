@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+import { BodyContainer } from '../components/main/body-container.component';
+import { NavBarComponent } from '../components/navbar/navbar.component';
+import { RegisterFormComponent } from '../components/user/register/register.component';
+import { HomeBodyComponent } from '../pages/home/main/home-body.component';
 import { CustomButtonComponent } from './customButton/custom-button.component';
 import { CustomInputComponent } from './formInput/custom-input.component';
 import { ModalComponent } from './modal/modal.component';
@@ -10,14 +16,24 @@ import { ModalComponent } from './modal/modal.component';
     declarations: [
       ModalComponent,
       CustomInputComponent,
-      CustomButtonComponent
+      CustomButtonComponent,
+      BodyContainer,
+      HomeBodyComponent,
+      NavBarComponent,
+      RegisterFormComponent
     ],
     imports: [
       FormsModule,
-      CommonModule
+      CommonModule,
+      BrowserModule,
+      RouterModule,
     ],
     exports: [
+      NavBarComponent,
       ModalComponent,
+      RegisterFormComponent,
+      BodyContainer,
+      HomeBodyComponent,
       CustomInputComponent,
       CustomButtonComponent,
       FormsModule
