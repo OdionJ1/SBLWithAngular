@@ -1,7 +1,7 @@
-<ng-container>
+<ng-container *ngIf="user">
     <app-nav-bar [currentPage]="PageType.library" [libraryNavLinks]="libraryNavLinks"></app-nav-bar>
 
     <app-body-container>
-        Library Page
+        Library Page {{user.firstName + " " + user.lastName}}
     </app-body-container>
 </ng-container>

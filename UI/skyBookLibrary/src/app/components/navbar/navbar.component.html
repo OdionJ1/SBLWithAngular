@@ -1,6 +1,6 @@
 <div class="header-container">
     <header class="nav-bar">
-        <nav [routerLink]="['/home']" class="nav-left" tabindex="0">
+        <nav [routerLink]="sblMainNavRoute" class="nav-left" tabindex="0">
             Sky Book Library
         </nav>
 
@@ -16,12 +16,12 @@
             
             <ng-container *ngSwitchCase="PageType.welcome">
                 <li [routerLink]="['/library']" tabindex="0">Library</li>
-                <li tabindex="0">Log out</li>
+                <li (click)="logout()" tabindex="0">Log out</li>
             </ng-container>    
 
             <ng-container *ngSwitchCase="PageType.library">
                 <li [routerLink]="['/library']" tabindex="0">Odion Asuelimen</li>
-                <li tabindex="0">Log out</li>
+                <li (click)="logout()" tabindex="0">Log out</li>
             </ng-container>     
         </ul>
     
@@ -30,7 +30,7 @@
         </div>
     </header>
     
-    <div *ngIf="currentPage === PageType.home || currentPage === PageType.welcome" [style.height]="dropdownMenutoggle? '6rem' : '0rem'" class="drop-down-menu">
+    <div *ngIf="currentPage === PageType.home || currentPage === PageType.welcome" [style.height]="dropdownMenutoggle? '5.5rem' : '0rem'" class="drop-down-menu">
         <ul [ngSwitch]="currentPage" *ngIf="dropdownList">
             <ng-container *ngSwitchCase="PageType.home">
                 <li (click)="openRegisterModal()" tabindex="0">Register</li>
@@ -39,14 +39,15 @@
 
             <ng-container *ngSwitchCase="PageType.welcome">
                 <li [routerLink]="['/library']" tabindex="0">Library</li>
-                <li tabindex="0">Log out</li>
+                <li (click)="logout()" tabindex="0">Log out</li>
             </ng-container>
         </ul>
     </div>
 
-    <div *ngIf="currentPage === PageType.library" [style.height]="dropdownMenutoggle? '15.5rem' : '0rem'" class="drop-down-menu">
+    <div *ngIf="currentPage === PageType.library" [style.height]="dropdownMenutoggle? '18rem' : '0rem'" class="drop-down-menu">
         <ul *ngIf="dropdownList">
             <li *ngFor="let link of libraryNavLinks" tabindex="0">{{link.value}}</li>
+            <li (click)="logout()" tabindex="0">Log out</li>
         </ul>
     </div>
 </div>

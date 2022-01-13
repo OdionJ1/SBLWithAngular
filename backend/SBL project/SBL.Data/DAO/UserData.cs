@@ -60,7 +60,7 @@ namespace SBL.Data.DAO
                     UserId = (string)row["userId"],
                     FirstName = (string)row["firstName"],
                     LastName = (string)row["lastName"],
-                    Email = (string)row["lastName"]
+                    Email = (string)row["email"]
                 };
                 return user;
             }
@@ -84,7 +84,7 @@ namespace SBL.Data.DAO
                     UserId = (string)row["userId"],
                     FirstName = (string)row["firstName"],
                     LastName = (string)row["lastName"],
-                    Email = (string)row["lastName"]
+                    Email = (string)row["email"]
                 };
                 return user;
             }

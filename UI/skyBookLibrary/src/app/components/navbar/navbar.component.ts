@@ -17,14 +17,28 @@ export class NavBarComponent implements OnInit {
     public dropdownMenutoggle: boolean = false;
     public dropdownList: boolean = false
     PageType = Page
+    public sblMainNavRoute: string[] = []
 
     constructor(private userService: UserService){}
     
-
     ngOnInit(): void {
         this.userService.closeModal$.subscribe((value) => {
             this.registerModalOpen = value
         })
+
+        switch(this.currentPage){
+            case Page.home:
+                this.sblMainNavRoute = ["/home"]
+                break;
+            case Page.library:
+                this.sblMainNavRoute = ["/welcome"]
+                break;
+            case Page.welcome:
+                this.sblMainNavRoute = ["/welcome"]
+                break
+            default:
+                this.sblMainNavRoute = ['']
+        }
     }
 
     toggleDropDownMenu(){
@@ -37,5 +51,9 @@ export class NavBarComponent implements OnInit {
 
     openRegisterModal(){
         this.registerModalOpen = true
+    }
+
+    logout(){
+        this.userService.logout()
     }
 }

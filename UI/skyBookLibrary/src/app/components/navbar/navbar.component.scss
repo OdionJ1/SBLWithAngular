@@ -8,7 +8,7 @@
     right: 0;
     left: 0;
     top: 0;
-
+    
     .nav-bar {
         background-color: #440e0e;
         color: whitesmoke;
@@ -19,6 +19,11 @@
         align-items: center;
         padding: 0 5rem;
         height: 3.5rem;
+        overflow-x: scroll;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
         
         
         .nav-left {
@@ -47,6 +52,7 @@
                 padding: 0 1rem;
                 display: flex;
                 align-items: center;
+                min-width: max-content;
                 
                 &:hover {
                     background-color: #866767;
@@ -112,10 +118,11 @@
 
 
 
-@media screen and (max-width: 71rem){
+@media screen and (max-width: 48rem){
 
     .header-container .nav-bar {
         padding: 0 0.4rem;
+        
         .nav-right {
             display: none;
         }

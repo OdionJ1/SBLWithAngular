@@ -6,11 +6,13 @@ export class User implements IUser {
     email: string;
     password?: string;
 
-    static create(user: User){
+    static create(user: IUser){
+        if(!user) return user
         let u = new User()
-        if(!user) return u
-        u = {...user}
-
+        u.userId = user.userId
+        u.firstName = user.firstName
+        u.lastName = user.lastName
+        u.email = user.email
         return u
     }
 }

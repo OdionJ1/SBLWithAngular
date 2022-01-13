@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { AppComponent } from "src/app/app.component";
 import { SharedModule } from "src/app/common/shared.module";
@@ -11,7 +12,8 @@ import { LibraryComponent } from "./library.component";
         WelcomeComponent,
     ],
     imports: [
-        SharedModule
+        SharedModule,
+        CommonModule
     ],
     exports: [
         

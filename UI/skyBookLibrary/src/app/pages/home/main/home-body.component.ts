@@ -1,5 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { homepageData, IFeature } from "src/app/data/homepage/homepage-data";
+import { Page } from "src/app/data/models/page";
 
 @Component({
     selector: 'app-main',
@@ -8,5 +9,7 @@ import { homepageData, IFeature } from "src/app/data/homepage/homepage-data";
 })
 
 export class HomeBodyComponent {
+    @Input() currentPage: Page
     public features: IFeature[] = homepageData
+    public PageType = Page
 }

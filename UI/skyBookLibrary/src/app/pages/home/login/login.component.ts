@@ -21,7 +21,7 @@ export class LoginComponent {
 
     async login(formInput: any, event: Event): Promise<void> {
         event.preventDefault()
-
+        this.hasError = false
         this.loading = true
         try {
             const response = await this.userService.login(formInput.email, formInput.password)
@@ -29,11 +29,10 @@ export class LoginComponent {
                 throw response
             }
 
-            this.userService.createSession(User.create(<User>response.body))
+            this.userService.createSession(User.create(response.body))
 
             this.router.navigate(["./welcome"])
 
-            this.hasError = false
             this.loading = false
         } catch(err: any){
             this.loading = false

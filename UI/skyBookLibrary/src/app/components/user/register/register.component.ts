@@ -29,6 +29,7 @@ export class RegisterFormComponent {
     async register(formInput: any, event: Event): Promise<void> {
         event.preventDefault()
         
+        this.hasError = false
         this.loading = true
         try {
             const response = await this.userService.createUser(this.getUser(formInput))

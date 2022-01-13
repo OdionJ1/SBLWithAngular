@@ -1,8 +1,9 @@
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { BehaviorSubject } from "rxjs";
 import { ConfigService } from "src/app/common/api/config.service";
-import { User } from "src/app/data/models/user";
+import { IUser, User } from "src/app/data/models/user";
 
 @Injectable()
 export class UserService {
@@ -10,7 +11,8 @@ export class UserService {
 
     constructor(
         private configService: ConfigService, 
-        private http: HttpClient){}
+        private http: HttpClient,
+        private route: Router){}
 
     public async createUser(user: User): Promise<any> {
         const path: string = this.configService.getPath("account/register")
@@ -26,6 +28,16 @@ export class UserService {
 
     public createSession(user: User){
         localStorage.setItem("currentUser", JSON.stringify(user))
+    }
+
+    public getCurrentUser(): User {
+        let user: User = JSON.parse(<string>localStorage.getItem("currentUser"));
+        return user
+    }
+
+    public logout(): void {
+        localStorage.removeItem("currentUser")
+        this.route.navigate(['/home'])
     }
 
     public async login(email: string, password: string): Promise<any> {
@@ -45,17 +57,16 @@ export class UserService {
         return data
     }
 
-    public async getUser(id: string): Promise<User | null> {
+    public async getUser(id: string): Promise<any> {
         const path: string = this.configService.getPath(`account/${id}`)
 
         const data = await this.http.get(path, {
             observe: 'response'
         })
         .toPromise()
-        .then(response => User.create(<User>response.body))
         .catch((err: Error) => {
             console.log(err)
-            return null
+            return err
         })
 
         return data
