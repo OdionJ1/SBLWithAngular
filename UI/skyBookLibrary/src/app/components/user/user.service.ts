@@ -37,7 +37,7 @@ export class UserService {
 
     public logout(): void {
         localStorage.removeItem("currentUser")
-        this.route.navigate(['/home'])
+        this.route.navigate(['/home/login'])
     }
 
     public async login(email: string, password: string): Promise<any> {

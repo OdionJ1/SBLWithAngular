@@ -49,10 +49,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\BookData.cs" />
     <Compile Include="DAO\UserData.cs" />
+    <Compile Include="IDAO\IBookData.cs" />
     <Compile Include="IDAO\IUserData.cs" />
     <Compile Include="Models\DB\Helper.cs" />
     <Compile Include="Models\Domain\Author.cs" />
+    <Compile Include="Models\Domain\FullBook.cs" />
     <Compile Include="Models\Domain\Book.cs" />
     <Compile Include="Models\Domain\Category.cs" />
     <Compile Include="Models\Domain\RequestResult.cs" />

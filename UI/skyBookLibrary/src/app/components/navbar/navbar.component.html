@@ -15,12 +15,13 @@
             </ng-container>
             
             <ng-container *ngSwitchCase="PageType.welcome">
+                <li tabindex="0">{{"Hello " + currentUser.firstName}}</li>
                 <li [routerLink]="['/library']" tabindex="0">Library</li>
                 <li (click)="logout()" tabindex="0">Log out</li>
             </ng-container>    
 
             <ng-container *ngSwitchCase="PageType.library">
-                <li [routerLink]="['/library']" tabindex="0">Odion Asuelimen</li>
+                <li tabindex="0">{{"Hello " + currentUser.firstName}}</li>
                 <li (click)="logout()" tabindex="0">Log out</li>
             </ng-container>     
         </ul>

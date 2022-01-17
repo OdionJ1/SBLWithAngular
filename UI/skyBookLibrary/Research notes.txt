@@ -11,3 +11,5 @@ Cors: https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/enabling
 Behavioral Subject: https://www.dotnettricks.com/learn/angular/sharing-data-between-angular-components-methods
 
 Enums: https://stackoverflow.com/questions/44045311/cannot-approach-typescript-enum-within-html
+
+Books image: https://www.google.com/search?q=book+icon&tbm=isch&ved=2ahUKEwjGmr3e77j1AhUP_BoKHaWmAN8Q2-cCegQIABAA&oq=book+icon&gs_lcp=CgNpbWcQAzIHCAAQsQMQQzIECAAQQzIECAAQQzIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQ6BwgjEO8DECdQjApYjApgsgxoAHAAeACAAVKIAaMBkgEBMpgBAKABAaoBC2d3cy13aXotaW1nwAEB&sclient=img&ei=kGzlYcaSHI_4a6XNgvgN&bih=937&biw=1920&rlz=1C1CHBF_en-GBGB949GB949#imgrc=B4lUFKygF4DpvM

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { UserService } from "src/app/components/user/user.service";
 import { ILibraryNavLink } from "src/app/data/librarypage/librarypage-data";
 import { Page } from "src/app/data/models/page";
+import { User } from "src/app/data/models/user";
 
 @Component({
     selector: 'app-nav-bar',
@@ -18,6 +19,7 @@ export class NavBarComponent implements OnInit {
     public dropdownList: boolean = false
     PageType = Page
     public sblMainNavRoute: string[] = []
+    public currentUser: User
 
     constructor(private userService: UserService){}
     
@@ -32,9 +34,11 @@ export class NavBarComponent implements OnInit {
                 break;
             case Page.library:
                 this.sblMainNavRoute = ["/welcome"]
+                this.currentUser = this.userService.getCurrentUser()
                 break;
             case Page.welcome:
                 this.sblMainNavRoute = ["/welcome"]
+                this.currentUser = this.userService.getCurrentUser()
                 break
             default:
                 this.sblMainNavRoute = ['']

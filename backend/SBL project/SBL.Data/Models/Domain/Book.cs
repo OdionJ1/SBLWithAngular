@@ -9,12 +9,9 @@ namespace SBL.Data.Models.Domain
 {
     public class Book
     {
-        [Key]
         public int BookID { get; set; }
         public string Title { get; set; }
-        public DateTime DateUploaded { get; set; }
-        public User User { get; set; }
-        public virtual Author Author { get; set; }
-        public virtual Category Category { get; set; }
+        public decimal Rating { get; set; }
+
     }
 }

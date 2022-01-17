@@ -16,4 +16,3 @@ Values (
 	@email,
 	@password
 )
-

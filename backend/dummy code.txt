@@ -1,3 +1,6 @@
+insert into books(title, dateUploaded, rating, inReadingList, inFav, link, userId)
+values('Book', '2000-11-02', 5, 0, 0, 'www', '33d3c575-c9c3-4d32-9e88-1673dc94830e')
+
 DataRow row = data.Rows[0];
                 User user1 = new User()
                 {
