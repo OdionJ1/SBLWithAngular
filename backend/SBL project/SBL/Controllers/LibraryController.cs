@@ -29,9 +29,17 @@ namespace SBL.Controllers
         {
             if (userId != null)
             {
-                IEnumerable<Book> books = bookService.GetBookList(userId);
-                return Ok(books);
-            } else
+                try
+                {
+                    IEnumerable<Book> books = bookService.GetBookList(userId);
+                    return Ok(books);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            } 
+            else
             {
                 return StatusCode(HttpStatusCode.BadRequest);
             }

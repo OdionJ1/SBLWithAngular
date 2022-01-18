@@ -1,0 +1,24 @@
+<div class="books-page">
+    <h1>
+        Books
+    </h1>
+
+    <main class="main">
+        <div class="search">
+            <div class="searchType">
+                <p>Search By: </p>
+                <input id='title' name="searchType" type="radio" value="title" [(ngModel)]='searchType'>
+                <label for="title">Title</label>
+                <input id='author' name="searchType" type="radio" value="author" [(ngModel)]='searchType'>
+                <label for="author">Author</label>
+            </div>
+            
+            <input class="searchInput" placeholder="Search..." type="text" (ngModel)='searchValue'>
+        </div>
+
+
+        <div class="book-list">
+            
+        </div>
+    </main>
+</div>

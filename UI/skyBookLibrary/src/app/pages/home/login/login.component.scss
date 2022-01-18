@@ -1,12 +1,10 @@
 @import "../../../common//styles/button/button";
+@import "../../../common/styles/text/header";
 
 .login-page {
 
     h1 {
-        font-weight: 500;
-        font-size: 1.5rem;
-        margin-top: 4.5rem;
-        margin-bottom: 0.9rem;
+        @include h1Styles
     }
 
     .form-container{

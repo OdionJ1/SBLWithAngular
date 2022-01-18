@@ -2,6 +2,6 @@
     <app-nav-bar [currentPage]="PageType.library" [libraryNavLinks]="libraryNavLinks"></app-nav-bar>
 
     <app-body-container>
-        Library Page {{user.firstName + " " + user.lastName}}
+        <router-outlet></router-outlet>
     </app-body-container>
 </ng-container>

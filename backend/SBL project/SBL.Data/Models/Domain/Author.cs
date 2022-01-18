@@ -11,6 +11,5 @@ namespace SBL.Data.Models.Domain
     {
         public int AuthorId { get; set; }
         public string AuthorName { get; set; }
-        public User User { get; set; }
     }
 }

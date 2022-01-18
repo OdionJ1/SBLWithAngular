@@ -31,7 +31,7 @@ namespace SBL.Data.DAO
                 {
                     Book book = new Book()
                     {
-                        BookID = (int)row["bookId"],
+                        BookId = (int)row["bookId"],
                         Title = (string)row["title"],
                         Rating = (decimal)row["rating"]
                     };

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,8 +10,13 @@ namespace SBL.Data.Models.Domain
 {
     public class Book
     {
-        public int BookID { get; set; }
+        [JsonProperty("bookId")]
+        public int BookId { get; set; }
+
+        [JsonProperty("title")]
         public string Title { get; set; }
+
+        [JsonProperty("rating")]
         public decimal Rating { get; set; }
 
     }

@@ -16,7 +16,7 @@ export class LibraryPageGuard implements CanActivate {
         if(!!this.userService.getCurrentUser()){
             return true
         }
-        this.route.navigate(['/home'])
+        this.route.navigate(['/home/login'])
         return false
     }
 }

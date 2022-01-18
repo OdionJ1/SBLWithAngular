@@ -1,0 +1,55 @@
+@import "../../../common/styles/text/header";
+
+$border: 1px solid rgb(102, 101, 101);
+
+@mixin borderStyles {
+    border: none;
+    border-bottom: $border;
+}
+
+.books-page {
+
+    h1 {
+        @include h1Styles
+    }
+
+    .main {
+        margin-top: 2rem;
+
+        .search {
+            width: 20rem;
+    
+            .searchType {
+                display: flex;
+                width: 63%;
+                justify-content: space-between;
+                align-items: center;
+    
+                p {
+                    font-weight: bold;
+                }
+            }
+
+            .searchInput {
+                @include borderStyles;
+                padding-left: 0.5rem;
+                margin-top: 0.7rem;
+                height: 1.5rem;
+                width: 50%;
+                transition: width 0.5s;
+                outline: none;
+
+                &:focus {
+                    @include borderStyles;
+                    width: 100%;
+                    outline: $border;
+                }
+
+                &::placeholder{
+                    font-size: 0.9rem;
+                }
+            }
+        }
+    }
+
+}

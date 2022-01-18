@@ -11,6 +11,5 @@ namespace SBL.Data.Models.Domain
     {
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
-        public User User { get; set; }
     }
 }
