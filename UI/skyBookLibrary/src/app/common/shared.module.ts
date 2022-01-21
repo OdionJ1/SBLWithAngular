@@ -10,6 +10,7 @@ import { HomeBodyComponent } from '../pages/home/main/home-body.component';
 import { CustomButtonComponent } from './customButton/custom-button.component';
 import { CustomInputComponent } from './formInput/custom-input.component';
 import { ModalComponent } from './modal/modal.component';
+import { StarsComponent } from './stars/stars.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ModalComponent } from './modal/modal.component';
       BodyContainer,
       HomeBodyComponent,
       NavBarComponent,
-      RegisterFormComponent
+      RegisterFormComponent,
+      StarsComponent
     ],
     imports: [
       FormsModule,
@@ -33,6 +35,7 @@ import { ModalComponent } from './modal/modal.component';
       ModalComponent,
       RegisterFormComponent,
       BodyContainer,
+      StarsComponent,
       HomeBodyComponent,
       CustomInputComponent,
       CustomButtonComponent,

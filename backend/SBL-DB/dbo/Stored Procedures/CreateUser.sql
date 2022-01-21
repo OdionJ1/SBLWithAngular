@@ -9,10 +9,16 @@ insert into users(
 	email,
 	password
 )
-Values (
+values (
 	@id,
 	@firstName,
 	@lastName,
 	@email,
 	@password
 )
+
+insert into authors(authorName, userId)
+values('Default Author', @id)
+
+insert into categories(categoryName, userId)
+values('Default Category', @id)

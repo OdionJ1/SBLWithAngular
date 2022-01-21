@@ -14,6 +14,7 @@ namespace SBL.Data.DAO
     public class BookData : IBookData
     {
         private string GetBooksSP = "GetBooks";
+        private string GetBooksAuthors = "GetBooks_Authors";
 
         public IEnumerable<Book> GetBookList(string userId)
         {
@@ -35,11 +36,34 @@ namespace SBL.Data.DAO
                         Title = (string)row["title"],
                         Rating = (decimal)row["rating"]
                     };
+                    book.Authors = GetAuthors(book.BookId);
                     books.Add(book);
                 }
             }
-
             return books;
+        }
+
+        public IEnumerable<Author> GetAuthors(int bookId)
+        {
+            IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
+            {
+                new SqlParameter("bookId", bookId)
+            };
+
+            DataTable data = Helper.Execute(GetBooksAuthors, paramList);
+            IList<Author> authors = new List<Author>();
+
+            foreach (DataRow row in data.Rows)
+            {
+                Author author = new Author()
+                {
+                    AuthorId = (int)row["authorId"],
+                    AuthorName = (string)row["authorName"]
+                };
+                authors.Add(author);
+            }
+
+            return authors;
         }
     }
 }

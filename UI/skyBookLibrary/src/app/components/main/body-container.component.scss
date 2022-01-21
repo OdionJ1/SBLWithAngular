@@ -1,11 +1,12 @@
+@import "../../common/styles/styles";
+
+
 .body-container {
     margin: 3.5rem 8rem;
     color: #333333;
 
     hr {
-        border: 0;
-        margin: 1rem 0;
-        border-top: 1px solid #eeeeee;
+        @include lineStyles
     }
 
     footer{

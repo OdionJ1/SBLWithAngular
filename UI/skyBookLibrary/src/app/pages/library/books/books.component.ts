@@ -17,6 +17,5 @@ export class BookListComponent implements OnInit {
     async ngOnInit(){
         const user = this.userService.getCurrentUser()
         this.books = await this.bookService.getBooks(<string>user.userId)
-        console.log(this.books)
     }
 }

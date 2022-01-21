@@ -60,14 +60,20 @@
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
     <Folder Include="dbo\Stored Procedures\" />
-    <Folder Include="dbo\Stored Procedures\user" />
-    <Folder Include="dbo\Stored Procedures\library" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\users.sql" />
     <Build Include="dbo\Tables\books.sql" />
-    <Build Include="dbo\Stored Procedures\user\CreateUser.sql" />
-    <Build Include="dbo\Stored Procedures\user\GetUser.sql" />
-    <Build Include="dbo\Stored Procedures\library\GetBooks.sql" />
+    <Build Include="dbo\Tables\books_authors.sql" />
+    <Build Include="dbo\Tables\authors.sql" />
+    <Build Include="dbo\Tables\categories.sql" />
+    <Build Include="dbo\Tables\books_categories.sql" />
+    <Build Include="dbo\Stored Procedures\CreateUser.sql" />
+    <Build Include="dbo\Stored Procedures\GetUser.sql" />
+    <Build Include="dbo\Stored Procedures\GetBooks.sql" />
+    <Build Include="dbo\Stored Procedures\GetBooks_Authors.sql" />
+    <Build Include="dbo\Stored Procedures\GetBooks_Categories.sql" />
+    <Build Include="dbo\Stored Procedures\CreateAuthor.sql" />
+    <Build Include="dbo\Stored Procedures\CreateCategory.sql" />
   </ItemGroup>
 </Project>

@@ -12,9 +12,6 @@ namespace SBL.Data.Models.Domain
         [JsonProperty("dateUploaded")]
         public DateTime DateUploaded { get; set; }
 
-        [JsonProperty("authors")]
-        public IEnumerable<Author> Authors { get; set; }
-
         [JsonProperty("categories")]
         public IEnumerable<Category> Categories { get; set; }
 

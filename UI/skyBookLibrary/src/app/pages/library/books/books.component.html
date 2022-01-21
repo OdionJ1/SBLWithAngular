@@ -16,9 +16,8 @@
             <input class="searchInput" placeholder="Search..." type="text" (ngModel)='searchValue'>
         </div>
 
+        <hr />
 
-        <div class="book-list">
-            
-        </div>
+        <app-books-container [books]="books" ></app-books-container>
     </main>
 </div>

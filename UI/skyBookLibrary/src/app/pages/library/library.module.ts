@@ -4,7 +4,9 @@ import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { AppComponent } from "src/app/app.component";
 import { SharedModule } from "src/app/common/shared.module";
+import { BookComponent } from "src/app/components/book/book.component";
 import { BookService } from "src/app/components/book/book.service";
+import { BooksContainerComponent } from "src/app/components/books-container/books-container.component";
 import { WelcomeComponent } from "../welcome/welcome.component";
 import { BookListComponent } from "./books/books.component";
 import { LibraryComponent } from "./library.component";
@@ -14,7 +16,9 @@ import { LibraryComponent } from "./library.component";
     declarations: [
         LibraryComponent,
         WelcomeComponent,
-        BookListComponent
+        BookListComponent,
+        BookComponent,
+        BooksContainerComponent
     ],
     imports: [
         SharedModule,

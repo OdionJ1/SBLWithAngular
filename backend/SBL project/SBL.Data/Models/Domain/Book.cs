@@ -16,6 +16,9 @@ namespace SBL.Data.Models.Domain
         [JsonProperty("title")]
         public string Title { get; set; }
 
+        [JsonProperty("authors")]
+        public IEnumerable<Author> Authors { get; set; }
+
         [JsonProperty("rating")]
         public decimal Rating { get; set; }
 

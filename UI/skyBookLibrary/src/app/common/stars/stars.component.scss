@@ -1,0 +1,25 @@
+.stars-outer {
+    position: relative;
+    display: inline-block;
+    font-size: large; 
+
+    &::before {
+        content: "★★★★★";
+        font-weight: 900;
+        color: #ccc;
+    }
+
+    .stars-inner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        white-space: normal;
+        overflow: hidden;
+
+        &::before {
+            content: "★★★★★";
+            font-weight: 900;
+            color: gold;
+        }
+    }
+}

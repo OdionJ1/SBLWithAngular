@@ -1,0 +1,34 @@
+.book {
+
+    .img-container {
+        padding: 2.5rem;
+        background-color: whitesmoke;
+
+        .img {
+            width: 100%;
+        }
+    }
+
+    .title {
+        margin-top: 0.5rem;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        cursor: pointer;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &:hover{
+            text-decoration: underline;
+            font-style: italic;
+        }
+    }
+
+    .author {
+        font-size: small;
+        color: #7c7568;
+        font-family: cursive;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

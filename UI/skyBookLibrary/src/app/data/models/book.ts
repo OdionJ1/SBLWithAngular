@@ -18,6 +18,7 @@ export class Book implements IBook {
         b.bookId = book.bookId
         b.title = book.title
         b.rating = book.rating
+        b.authors = book.authors.map(author => Author.create(author))
         return b
     }
 
@@ -28,7 +29,6 @@ export class Book implements IBook {
         b.inFavouriteList = book.inFavouriteList
         b.inReadingList = book.inReadingList
         b.link = book.link
-        b.authors = book.authors.map(author => Author.create(author))
         b.categories = book.categories.map(category => Category.create(category))
         return b
     }
