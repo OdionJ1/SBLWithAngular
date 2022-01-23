@@ -12,6 +12,8 @@ export class BookDetailComponent implements OnInit {
     public book: Book
     public parameter: string
     public invalidId: boolean
+    public authors: string
+    public categories: string
 
     constructor(private bookService: BookService, private route: ActivatedRoute){}
 
@@ -22,6 +24,7 @@ export class BookDetailComponent implements OnInit {
         
         if(isNaN(id)){
             this.invalidId = true
+            return
         }
 
         try {
@@ -29,10 +32,16 @@ export class BookDetailComponent implements OnInit {
             
             if(response.status !== 200){
                 this.invalidId = true
+                return
             }
 
             this.book = Book.createFullBook(response.body)
-            console.log(this.book)
+            const bookAuthors = this.book.authors.map(author => author.authorName)
+            this.authors = bookAuthors.join(', ')
+
+            const bookCategories = this.book.categories.map(category => category.categoryName)
+            this.categories = bookCategories.join(', ')
+
         } catch (error) {
             this.invalidId = true
         }

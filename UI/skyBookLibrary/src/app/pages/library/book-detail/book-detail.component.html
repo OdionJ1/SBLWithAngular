@@ -1,5 +1,5 @@
 <div class="book-detail">
-    <h1>Book Detail</h1>
+    <h1 class="header">Book Detail</h1>
 
     <div class="error" *ngIf="invalidId">
         There is no book with id: <span class="param">{{parameter}}</span> 
@@ -8,12 +8,20 @@
     <hr />
 
     <main *ngIf="book">
-        <div class="img-read">
-            
+        <div class="img-read-button">
+            <img class="image" src="assets/images/book/book2.jpg" alt="Book-image" [title]="book.title">
+            <button class="read-button">Read</button>
         </div>
 
-        <div>
+        <div class="details">
+            <h1 class="title">{{book.title}} <i tabindex="0" class="fa fa-edit edit-icon" title="edit"></i></h1>
+            <p class="authors">by: {{authors}}</p>
+            <p class="categories">{{categories}}</p>
+            <app-stars class="rating" [rating]='book.rating'></app-stars>
 
+            <!-- <div>
+                <p>Add to reading</p>
+            </div> -->
         </div>
     </main>
 </div>
