@@ -5,6 +5,7 @@ using SBL.Service.IService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,6 +23,18 @@ namespace SBL.Service.Service
         public IEnumerable<Book> GetBookList(string userId)
         {
             return bookData.GetBookList(userId);
+        }
+
+        public RequestResult<FullBook> GetBook(int bookId)
+        {
+            FullBook book = bookData.GetBook(bookId);
+            if (book != null)
+            {
+                return new RequestResult<FullBook>(HttpStatusCode.OK, book);
+            } else
+            {
+                return new RequestResult<FullBook>(HttpStatusCode.NotFound, book);
+            }
         }
     }
 }

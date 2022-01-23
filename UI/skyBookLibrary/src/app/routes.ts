@@ -3,6 +3,7 @@ import { HomeComponent } from "./pages/home/home.component";
 import { HomePageGuard } from "./pages/home/home.guard";
 import { LoginComponent } from "./pages/home/login/login.component";
 import { HomeBodyComponent } from "./pages/home/main/home-body.component";
+import { BookDetailComponent } from "./pages/library/book-detail/book-detail.component";
 import { BookListComponent } from "./pages/library/books/books.component";
 import { LibraryComponent } from "./pages/library/library.component";
 import { LibraryPageGuard } from "./pages/library/library.guard";
@@ -20,7 +21,8 @@ const homeRoutes: Routes = [
 
 //Library page child routes:
 const libraryRoutes: Routes = [
-    { path: '', component: BookListComponent}
+    { path: '', component: BookListComponent},
+    { path: 'book/:id', component: BookDetailComponent },
 ]
 //
 

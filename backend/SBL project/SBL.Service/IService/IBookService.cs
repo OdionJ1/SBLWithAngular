@@ -10,5 +10,6 @@ namespace SBL.Service.IService
     public interface IBookService
     {
         IEnumerable<Book> GetBookList(string userId);
+        RequestResult<FullBook> GetBook(int bookId);
     }
 }

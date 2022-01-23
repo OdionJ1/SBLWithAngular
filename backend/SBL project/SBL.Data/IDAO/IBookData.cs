@@ -10,5 +10,6 @@ namespace SBL.Data.IDAO
     public interface IBookData
     {
         IEnumerable<Book> GetBookList(string userId);
+        FullBook GetBook(int bookId);
     }
 }

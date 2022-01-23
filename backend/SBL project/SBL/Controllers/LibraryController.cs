@@ -45,5 +45,27 @@ namespace SBL.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("book/{bookId}")]
+        public HttpResponseMessage GetBook(int bookId)
+        {
+            if (bookId > 0)
+            {
+                try
+                {
+                    RequestResult<FullBook> book = bookService.GetBook(bookId);
+                    return Request.CreateResponse(book.StatusCode, book.Data);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
+
     }
 }

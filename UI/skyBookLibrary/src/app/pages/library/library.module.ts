@@ -8,6 +8,7 @@ import { BookComponent } from "src/app/components/book/book.component";
 import { BookService } from "src/app/components/book/book.service";
 import { BooksContainerComponent } from "src/app/components/books-container/books-container.component";
 import { WelcomeComponent } from "../welcome/welcome.component";
+import { BookDetailComponent } from "./book-detail/book-detail.component";
 import { BookListComponent } from "./books/books.component";
 import { LibraryComponent } from "./library.component";
 
@@ -18,7 +19,8 @@ import { LibraryComponent } from "./library.component";
         WelcomeComponent,
         BookListComponent,
         BookComponent,
-        BooksContainerComponent
+        BooksContainerComponent,
+        BookDetailComponent
     ],
     imports: [
         SharedModule,

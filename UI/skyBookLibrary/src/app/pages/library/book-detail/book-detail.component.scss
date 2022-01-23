@@ -1,0 +1,24 @@
+@import '../../../common/styles/text/header';
+@import '../../../common//styles/styles';
+
+.book-detail {
+    
+    h1{
+        @include h1Styles
+    }
+
+    hr {
+        @include lineStyles
+    }
+
+    .error {
+        color: rgb(231, 93, 93);
+        font-weight: bold;
+        font-size: small;
+
+        .param {
+            font-style: italic;
+            font-size: large;
+        }
+    }
+}

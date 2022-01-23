@@ -23,4 +23,16 @@ export class BookService {
         
         return data
     }
+
+    public async getBook(bookId: number): Promise<any> {
+        const path: string = this.configService.getPath(`library/book/${bookId}`)
+
+        const data = await this.http.get(path, {
+            observe: 'response'
+        })
+        .toPromise()
+        .catch((err: Error) => err)
+
+        return data
+    }
 }

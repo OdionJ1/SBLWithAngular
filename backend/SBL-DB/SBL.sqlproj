@@ -75,5 +75,6 @@
     <Build Include="dbo\Stored Procedures\GetBooks_Categories.sql" />
     <Build Include="dbo\Stored Procedures\CreateAuthor.sql" />
     <Build Include="dbo\Stored Procedures\CreateCategory.sql" />
+    <Build Include="dbo\Stored Procedures\GetBookFull.sql" />
   </ItemGroup>
 </Project>

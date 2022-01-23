@@ -2,7 +2,7 @@
     <div class="img-container">
         <img class="img" src="assets/images/book/book.png" alt="book-image" srcset="">
     </div>
-    <p class="title">{{book.title}}</p>
+    <p [routerLink]="['/library/book', book.bookId]" class="title">{{book.title}}</p>
     <p class="author">{{authors}}</p>
     <app-stars [rating]='book.rating'></app-stars>
     <!-- <input type="file" (change)="selectedFile($event)" file-browser> -->
