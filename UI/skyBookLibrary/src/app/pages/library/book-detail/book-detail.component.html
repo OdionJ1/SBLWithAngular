@@ -19,9 +19,23 @@
             <p class="categories">{{categories}}</p>
             <app-stars class="rating" [rating]='book.rating'></app-stars>
 
-            <!-- <div>
-                <p>Add to reading</p>
-            </div> -->
+            <div class="actions">
+                <button class="read">
+                    <i class="fa fa-book"></i>
+                    Add to reading list
+                </button>
+    
+                <button class="fav">
+                    <i class="fa fa-heart"></i> 
+                    Add to favourite list
+                </button>
+    
+                <button class="delete">
+                    <i class="fa fa-trash"></i> 
+                    Delete book
+                </button>
+            </div>
         </div>
+        
     </main>
 </div>

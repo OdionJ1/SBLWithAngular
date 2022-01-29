@@ -2,11 +2,12 @@
 
 
 .body-container {
-    margin: 3.5rem 8rem;
+    margin: 1.5rem 8rem;
     color: #333333;
 
     hr {
-        @include lineStyles
+        @include lineStyles;
+        margin-top: 3rem;
     }
 
     footer{
@@ -16,6 +17,6 @@
 
 @media screen and (max-width: 77rem){
     .body-container {
-        margin: 3.5rem 3rem;
+        margin: 1.5rem 3rem;
     }
 }

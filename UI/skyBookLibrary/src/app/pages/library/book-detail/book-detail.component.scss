@@ -2,6 +2,26 @@
 @import '../../../common/styles/styles';
 @import '../../../common/styles/button/button';
 
+@mixin actionButtonStyles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    color: #3b3e44;
+
+    &:disabled{
+        color: gray;
+        pointer-events: none;
+    }
+    
+    i{
+        font-size: 1.4rem;
+    }
+}
+
 .book-detail {
     
     .header{
@@ -26,11 +46,11 @@
     main {
         display: flex;
         margin: 0 auto;
-        width: 60%;
+        width: 70%;
         gap: 1rem;
 
         .img-read-button {
-            width: 45%;
+            width: 35%;
             min-width: 20rem;
 
             .image {
@@ -45,7 +65,8 @@
         }
 
         .details {
-            width: 55%;
+            position: relative;
+            width: 65%;
             min-width: fit-content;
 
             .title {
@@ -80,8 +101,55 @@
             .rating {
                 cursor: pointer;
             }
+
+
+            .actions{
+                margin-top: 1rem;
+                display: flex;
+                gap: 1rem;
+
+                .read{
+                    @include actionButtonStyles;
+                    &:hover{
+                        font-size: 0.87rem;
+                        font-style: italic;
+                        color: #286090
+                    }
+
+                    &:active{
+                        color: #030f49
+                    }
+                }
+
+                .fav{
+                    @include actionButtonStyles;
+                    &:hover{
+                        font-size: 0.87rem;
+                        font-style: italic;
+                        color: #e47575;
+                    }
+
+                    &:active{
+                        color: #572d2d
+                    }
+                    
+                }
+
+                .delete{
+                    @include actionButtonStyles;
+                    color: red;
+
+                    &:active{
+                        color: #740303;  
+                    }
+                }
+            }
         }
+
+
+        
     }
+
 }
 
 
