@@ -17,6 +17,8 @@ namespace SBL.Data.DAO
         private string GetBooksAuthorsSP = "GetBooks_Authors";
         private string GetBooksCategoriesSP = "GetBooks_Categories";
         private string GetBookSP = "GetBookFull";
+        private string UpdateBookSP = "UpdateBook";
+        private string TitleExistsSP = "TitleExists";
 
         public IEnumerable<Book> GetBookList(string userId)
         {
@@ -79,6 +81,41 @@ namespace SBL.Data.DAO
             return null;
 
         }
+
+        public void UpdateBook(FullBook book)
+        {
+            IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
+            {
+                new SqlParameter("bookId", book.BookId),
+                new SqlParameter("title", book.Title),
+                new SqlParameter("dateUploaded", book.DateUploaded),
+                new SqlParameter("rating", book.Rating),
+                new SqlParameter("inReadingList", book.InReadingList),
+                new SqlParameter("inFav", book.InFavouriteList),
+                new SqlParameter("link", book.Link)
+            };
+
+            Helper.Execute(UpdateBookSP, paramList);
+        }
+
+        public bool TitleExists(string title, string userId, int? bookId)
+        {
+            IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
+            {
+                new SqlParameter("title", title),
+                new SqlParameter("userId", userId),
+                new SqlParameter("bookId", bookId)
+            };
+
+            DataTable data = Helper.Execute(TitleExistsSP, paramList);
+            if (data.Rows.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        
 
         private IEnumerable<Author> GetAuthorsForBook(int bookId)
         {

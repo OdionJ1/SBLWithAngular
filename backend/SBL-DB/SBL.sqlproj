@@ -62,12 +62,14 @@
     <Folder Include="dbo\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\users.sql" />
     <Build Include="dbo\Tables\books.sql" />
+    <Build Include="dbo\Tables\users.sql" />
     <Build Include="dbo\Tables\books_authors.sql" />
     <Build Include="dbo\Tables\authors.sql" />
     <Build Include="dbo\Tables\categories.sql" />
     <Build Include="dbo\Tables\books_categories.sql" />
+    <Build Include="dbo\Stored Procedures\GetBookFull.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateBook.sql" />
     <Build Include="dbo\Stored Procedures\CreateUser.sql" />
     <Build Include="dbo\Stored Procedures\GetUser.sql" />
     <Build Include="dbo\Stored Procedures\GetBooks.sql" />
@@ -75,6 +77,6 @@
     <Build Include="dbo\Stored Procedures\GetBooks_Categories.sql" />
     <Build Include="dbo\Stored Procedures\CreateAuthor.sql" />
     <Build Include="dbo\Stored Procedures\CreateCategory.sql" />
-    <Build Include="dbo\Stored Procedures\GetBookFull.sql" />
+    <Build Include="dbo\Stored Procedures\TitleExists.sql" />
   </ItemGroup>
 </Project>

@@ -5,6 +5,7 @@
 @mixin actionButtonStyles {
     display: flex;
     flex-direction: column;
+    gap: 3px;
     align-items: center;
     width: fit-content;
     cursor: pointer;
@@ -108,8 +109,9 @@
                 display: flex;
                 gap: 1rem;
 
-                .read{
+                .read {
                     @include actionButtonStyles;
+
                     &:hover{
                         font-size: 0.87rem;
                         font-style: italic;
@@ -123,6 +125,7 @@
 
                 .fav{
                     @include actionButtonStyles;
+
                     &:hover{
                         font-size: 0.87rem;
                         font-style: italic;
@@ -141,6 +144,10 @@
 
                     &:active{
                         color: #740303;  
+                    }
+
+                    &:hover{
+                        font-size: 0.87rem;
                     }
                 }
             }

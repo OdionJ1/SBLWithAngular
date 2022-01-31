@@ -67,5 +67,26 @@ namespace SBL.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("book/update/{userId}")]
+        public HttpResponseMessage UpdateBook([FromBody]FullBook book, string userId)
+        {
+            if (book != null && userId != null)
+            {
+                try
+                {
+                    RequestResult<bool> result = bookService.UpdateBook(book, userId);
+                    return Request.CreateResponse(result.StatusCode, result.Data);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
     }
 }

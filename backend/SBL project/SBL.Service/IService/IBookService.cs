@@ -11,5 +11,6 @@ namespace SBL.Service.IService
     {
         IEnumerable<Book> GetBookList(string userId);
         RequestResult<FullBook> GetBook(int bookId);
+        RequestResult<bool> UpdateBook(FullBook book, string userId);
     }
 }

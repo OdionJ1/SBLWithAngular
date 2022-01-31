@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { BookService } from "src/app/components/book/book.service";
 import { Book } from "src/app/data/models/book";
+import { Page } from 'src/app/data/models/page';
 
 
 @Component({
@@ -14,6 +15,8 @@ export class BookDetailComponent implements OnInit {
     public invalidId: boolean
     public authors: string
     public categories: string
+    public inFavList: boolean
+    public inReadList: boolean
 
     constructor(private bookService: BookService, private route: ActivatedRoute){}
 
@@ -42,8 +45,24 @@ export class BookDetailComponent implements OnInit {
             const bookCategories = this.book.categories.map(category => category.categoryName)
             this.categories = bookCategories.join(', ')
 
+            this.inFavList = this.book.inFavouriteList;
+            this.inReadList = this.book.inReadingList;
+
+
         } catch (error) {
             this.invalidId = true
         }
+    }
+
+    public async addToFavouriteList(){
+        this.book.inFavouriteList = true
+        await this.bookService.updateBook(this.book)
+        await this.ngOnInit()
+    }
+
+    public async addToReadingList(){
+        this.book.inReadingList = true
+        await this.bookService.updateBook(this.book)
+        await this.ngOnInit()
     }
 }

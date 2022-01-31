@@ -20,14 +20,14 @@
             <app-stars class="rating" [rating]='book.rating'></app-stars>
 
             <div class="actions">
-                <button class="read">
+                <button (click)="addToReadingList()" [disabled]="inReadList" class="read">
                     <i class="fa fa-book"></i>
-                    Add to reading list
+                    {{inReadList? 'Added' : 'Add' }} to reading list
                 </button>
     
-                <button class="fav">
+                <button (click)="addToFavouriteList()" [disabled]='inFavList' class="fav">
                     <i class="fa fa-heart"></i> 
-                    Add to favourite list
+                    {{inFavList? 'Added' : 'Add' }} to favourite list
                 </button>
     
                 <button class="delete">

@@ -36,5 +36,15 @@ namespace SBL.Service.Service
                 return new RequestResult<FullBook>(HttpStatusCode.NotFound, book);
             }
         }
+
+        public RequestResult<bool> UpdateBook(FullBook book, string userId)
+        {
+            if (bookData.TitleExists(book.Title, userId, book.BookId))
+            {
+                return new RequestResult<bool>(HttpStatusCode.Conflict, false);
+            }
+            bookData.UpdateBook(book);
+            return new RequestResult<bool>(HttpStatusCode.OK, true);
+        }
     }
 }
