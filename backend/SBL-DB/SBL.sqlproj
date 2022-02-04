@@ -78,5 +78,7 @@
     <Build Include="dbo\Stored Procedures\CreateAuthor.sql" />
     <Build Include="dbo\Stored Procedures\CreateCategory.sql" />
     <Build Include="dbo\Stored Procedures\TitleExists.sql" />
+    <Build Include="dbo\Stored Procedures\GetFavouriteBooks.sql" />
+    <Build Include="dbo\Stored Procedures\GetReadingList.sql" />
   </ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnChanges, OnInit } from "@angular/core";
 
 
 @Component({
@@ -6,11 +6,12 @@ import { Component, Input, OnInit } from "@angular/core";
     templateUrl: './stars.component.html',
     styleUrls: ['./stars.component.scss']
 })
-export class StarsComponent implements OnInit {
-    @Input() rating: number;
+export class StarsComponent implements OnChanges{
+    @Input() size: string = 'large'
+    @Input() rating: number | string;
     cropWidth: number;
 
-    ngOnInit(): void {
-        this.cropWidth = (this.rating / 5) * 100
+    ngOnChanges(): void {
+        this.cropWidth = (Number(this.rating) / 5) * 100
     }
 }

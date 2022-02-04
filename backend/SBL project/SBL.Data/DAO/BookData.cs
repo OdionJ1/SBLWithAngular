@@ -19,33 +19,22 @@ namespace SBL.Data.DAO
         private string GetBookSP = "GetBookFull";
         private string UpdateBookSP = "UpdateBook";
         private string TitleExistsSP = "TitleExists";
+        private string GetFavouriteBooksSP = "GetFavouriteBooks";
+        private string GetReadingListSP = "GetReadingList";
 
         public IEnumerable<Book> GetBookList(string userId)
         {
-            IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
-            {
-                new SqlParameter("userId", userId)
-            };
+            return GetBooks(GetBooksSP, userId);
+        }
 
-            DataTable data = Helper.Execute(GetBooksSP, paramList);
+        public IEnumerable<Book> GetFavouriteBooks(string userId)
+        {
+            return GetBooks(GetFavouriteBooksSP, userId);
+        }
 
-            IList<Book> books = new List<Book>();
-            if (data.Rows.Count > 0)
-            {
-                foreach (DataRow row in data.Rows)
-                {
-                    Book book = new Book()
-                    {
-                        BookId = (int)row["bookId"],
-                        Title = (string)row["title"],
-                        Rating = (decimal)row["rating"]
-                    };
-                    book.Authors = GetAuthorsForBook(book.BookId);
-                    books.Add(book);
-                }
-            }
-
-            return books;
+        public IEnumerable<Book> GetReadingList(string userId)
+        {
+            return GetBooks(GetReadingListSP, userId);
         }
 
         public FullBook GetBook(int bookId)
@@ -114,9 +103,7 @@ namespace SBL.Data.DAO
             }
             return false;
         }
-
         
-
         private IEnumerable<Author> GetAuthorsForBook(int bookId)
         {
             IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
@@ -163,6 +150,34 @@ namespace SBL.Data.DAO
             }
 
             return categories;
+        }
+
+        private IEnumerable<Book> GetBooks(string SP, string userId)
+        {
+            IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
+            {
+                new SqlParameter("userId", userId)
+            };
+
+            DataTable data = Helper.Execute(SP, paramList);
+
+            IList<Book> books = new List<Book>();
+            if (data.Rows.Count > 0)
+            {
+                foreach (DataRow row in data.Rows)
+                {
+                    Book book = new Book()
+                    {
+                        BookId = (int)row["bookId"],
+                        Title = (string)row["title"],
+                        Rating = (decimal)row["rating"]
+                    };
+                    book.Authors = GetAuthorsForBook(book.BookId);
+                    books.Add(book);
+                }
+            }
+
+            return books;
         }
     }
 }

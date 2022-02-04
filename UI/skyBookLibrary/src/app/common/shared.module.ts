@@ -22,7 +22,7 @@ import { StarsComponent } from './stars/stars.component';
       HomeBodyComponent,
       NavBarComponent,
       RegisterFormComponent,
-      StarsComponent
+      StarsComponent,
     ],
     imports: [
       FormsModule,

@@ -1,0 +1,33 @@
+<ng-container>
+    <h1 class="title">{{'Rate: ' + bookTitle}}</h1>
+    <hr />
+
+    <div class="body">
+        <form #editRatingForm="ngForm" (ngSubmit)="rateBook(editRatingForm.value, $event)">
+            <div class="app-stars">
+                <app-stars size='x-large' [rating]="ratingValue"></app-stars>
+            </div>
+            <div class="form-group">
+                <app-custom-input
+                inputId='rate'
+                label="Rate"
+                inputType='number'
+                name='rating'
+                inputName='rating'
+                [(ngModel)]="ratingValue"
+                [required]="true"
+                >
+                </app-custom-input>
+            </div>
+
+            <app-custom-button
+            class="button"
+            buttonText="Rate"
+            [hasSpinner]="loading"
+            buttonType="submit" 
+            [isDisabled]='editRatingForm.invalid || formInvalid()'
+            >
+            </app-custom-button>
+        </form>
+    </div>
+</ng-container>

@@ -13,5 +13,7 @@ namespace SBL.Data.IDAO
         FullBook GetBook(int bookId);
         void UpdateBook(FullBook book);
         bool TitleExists(string title, string userId, int? bookId);
+        IEnumerable<Book> GetFavouriteBooks(string userId);
+        IEnumerable<Book> GetReadingList(string userId);
     }
 }
