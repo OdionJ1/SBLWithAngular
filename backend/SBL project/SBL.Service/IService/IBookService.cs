@@ -12,5 +12,9 @@ namespace SBL.Service.IService
         IEnumerable<Book> GetBookList(string userId);
         RequestResult<FullBook> GetBook(int bookId);
         RequestResult<bool> UpdateBook(FullBook book, string userId);
+        IEnumerable<Book> GetFavouriteBooks(string userId);
+        IEnumerable<Book> GetReadingList(string userId);
+        void RemoveFromFavourites(int bookId);
+        void RemoveFromReadingList(int bookId);
     }
 }

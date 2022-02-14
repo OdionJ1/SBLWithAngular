@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from "@angular/router";
 import { UserService } from "src/app/components/user/user.service";
 import { ILibraryNavLink } from "src/app/data/librarypage/librarypage-data";
 import { Page } from "src/app/data/models/page";
@@ -20,8 +21,9 @@ export class NavBarComponent implements OnInit {
     PageType = Page
     public sblMainNavRoute: string[] = []
     public currentUser: User
+    public currentPath: string
 
-    constructor(private userService: UserService){}
+    constructor(private userService: UserService, private router: Router){}
     
     ngOnInit(): void {
         this.userService.closeModal$.subscribe((value) => {
@@ -29,20 +31,28 @@ export class NavBarComponent implements OnInit {
         })
 
         switch(this.currentPage){
-            case Page.home:
+            case this.PageType.home:
                 this.sblMainNavRoute = ["/home"]
                 break;
-            case Page.library:
+            case this.PageType.library:
                 this.sblMainNavRoute = ["/welcome"]
                 this.currentUser = this.userService.getCurrentUser()
                 break;
-            case Page.welcome:
+            case this.PageType.welcome:
                 this.sblMainNavRoute = ["/welcome"]
                 this.currentUser = this.userService.getCurrentUser()
                 break
             default:
                 this.sblMainNavRoute = ['']
         }
+
+        this.currentPath = this.router.url
+
+        this.router.events.subscribe((event) => {
+            if(event instanceof NavigationStart){
+                this.currentPath = event.url
+            }
+        })
     }
 
     toggleDropDownMenu(){

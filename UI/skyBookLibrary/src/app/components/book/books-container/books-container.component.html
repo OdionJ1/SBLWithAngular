@@ -1,0 +1,5 @@
+<div class="book-list">
+    <app-book (removeFromList)="removeFromList($event)" [currentPage]="currentPage" class='book' [book]='book' *ngFor="let book of books"
+    >
+    </app-book>
+</div>

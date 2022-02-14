@@ -1,3 +1,4 @@
+@import '../../common/styles/button/button';
 .book {
 
     .img-container {
@@ -30,5 +31,20 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+
+    .button-container{
+        margin-top: 0.5rem;
+        
+        button{
+            cursor: pointer;
+            color: red;
+            padding: 0.2rem 0.5rem;
+
+
+            &:hover{
+                font-style: italic;
+            }
+        }
     }
 }

@@ -1,0 +1,13 @@
+<div class="reading-list-page">
+    <h1>
+        Reading List <i class="fa fa-book"></i>
+    </h1>
+
+    <div class="main">
+        <app-books-container (removeFromReadingList)="removeFromReadingList($event)" [currentPage]="PageType.readingList" [books]="books"></app-books-container>
+        <div *ngIf="noBooks">
+            No books
+        </div>
+    </div>
+
+</div>

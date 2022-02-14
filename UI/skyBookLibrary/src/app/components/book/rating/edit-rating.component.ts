@@ -25,8 +25,7 @@ export class EditRatingComponent implements OnInit {
         this.ratingValue = this.rating.toString()
     }
 
-
-    public formInvalid(): boolean {
+    public invalidNumber(): boolean {
         return Number(this.ratingValue) < 1 || Number(this.ratingValue) > 5
     }
 

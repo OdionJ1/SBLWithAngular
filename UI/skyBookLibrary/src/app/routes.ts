@@ -1,4 +1,6 @@
 import { Routes } from "@angular/router";
+import { FavouritesComponent } from "./components/book/favourites/favourites.component";
+import { ReadingListComponent } from "./components/book/reading-list/reading-list.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { HomePageGuard } from "./pages/home/home.guard";
 import { LoginComponent } from "./pages/home/login/login.component";
@@ -23,6 +25,8 @@ const homeRoutes: Routes = [
 const libraryRoutes: Routes = [
     { path: '', component: BookListComponent},
     { path: 'book/:id', component: BookDetailComponent },
+    { path: 'favourites', component: FavouritesComponent},
+    { path: 'readinglist', component: ReadingListComponent}
 ]
 //
 

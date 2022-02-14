@@ -1,0 +1,14 @@
+<div class="favourites-page">
+    <h1>
+        Your Favourites <i class="fa fa-heart"></i>
+    </h1>
+
+    <hr />
+
+    <div class="main">
+        <app-books-container (removeFromFavourites)="removeFromFavourites($event)" [currentPage]="PageType.favourites" [books]="books"></app-books-container>
+        <div *ngIf="noBooks">
+            No books
+        </div>
+    </div>
+</div>

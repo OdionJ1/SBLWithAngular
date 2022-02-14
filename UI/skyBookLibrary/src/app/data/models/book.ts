@@ -2,7 +2,7 @@ import { Author, IAuthor } from "./author";
 import { Category, ICategory } from "./category";
 
 export class Book implements IBook {
-    bookId: string;
+    bookId: number;
     title: string;
     rating: number;
     dateUploaded: Date
@@ -36,7 +36,7 @@ export class Book implements IBook {
 
 
 export interface IBook {
-    bookId: string
+    bookId: number
     title: string
     rating: number
     dateUploaded: Date,

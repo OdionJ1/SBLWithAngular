@@ -5,7 +5,7 @@
         </nav>
 
         <nav class="nav-mid" *ngIf="currentPage === PageType.library">
-            <li [routerLink]="link.route" *ngFor="let link of libraryNavLinks" tabindex="0">{{link.value}}</li>
+            <li [class.isActive]="currentPath === link.route" [routerLink]=link.route *ngFor="let link of libraryNavLinks" tabindex="0">{{link.value}}</li>
         </nav>
     
         <ul [ngSwitch]="currentPage" class="nav-right">
@@ -47,7 +47,7 @@
 
     <div *ngIf="currentPage === PageType.library" [style.height]="dropdownMenutoggle? '18rem' : '0rem'" class="drop-down-menu">
         <ul *ngIf="dropdownList">
-            <li [routerLink]="link.route" *ngFor="let link of libraryNavLinks" tabindex="0">{{link.value}}</li>
+            <li [class.isActive]="currentPath === link.route" [routerLink]=link.route *ngFor="let link of libraryNavLinks" tabindex="0">{{link.value}}</li>
             <li (click)="logout()" tabindex="0">Log out</li>
         </ul>
     </div>

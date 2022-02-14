@@ -51,4 +51,42 @@ export class BookService {
 
         return data
     }
+
+    public async getFavouriteBooks(): Promise<Book[]>{
+        const user: User = this.userService.getCurrentUser()
+        const path: string = this.configService.getPath(`library/favourites/${user.userId}`)
+
+        const data = await this.http.get<Book[]>(path)
+        .toPromise()
+        .then(response => response.map(book => Book.create(<IBook>book)))
+
+        return data
+    }
+
+    public async getReadingList(): Promise<Book[]>{
+        const user: User = this.userService.getCurrentUser()
+        const path: string = this.configService.getPath(`library/readinglist/${user.userId}`)
+
+        const data = await this.http.get<Book[]>(path)
+        .toPromise()
+        .then(response => response.map(book => Book.create(<IBook>book)))
+
+        return data
+    }
+
+    public async removeFromReadingList(bookId: number): Promise<void>{
+        const path: string = this.configService.getPath(`library/readinglist/remove/${bookId}`)
+        
+        await this.http.put(path, null)
+        .toPromise()
+        .then(res => console.log(res))
+    }
+
+    public async removeFromFavourites(bookId: number): Promise<void>{
+        const path: string = this.configService.getPath(`library/favourites/remove/${bookId}`)
+        
+        await this.http.put(path, null)
+        .toPromise()
+        .then(res => console.log(res))
+    }
 }

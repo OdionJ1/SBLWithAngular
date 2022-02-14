@@ -10,7 +10,7 @@ export class UserService {
     public closeModal$ = new BehaviorSubject(false);
 
     constructor(
-        private configService: ConfigService, 
+        private configService: ConfigService,
         private http: HttpClient,
         private route: Router){}
 

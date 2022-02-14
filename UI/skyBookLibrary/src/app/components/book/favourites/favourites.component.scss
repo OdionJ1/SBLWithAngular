@@ -1,0 +1,21 @@
+@import '../../../common/styles/text/header';
+@import '../../../common/styles/styles';
+
+.favourites-page {
+
+    h1{
+        @include h1Styles;
+
+        i{
+            color: #e47575
+        }
+    }
+
+    hr{
+        @include lineStyles
+    }
+
+    .main {
+        margin-top: 2rem;
+    }
+}

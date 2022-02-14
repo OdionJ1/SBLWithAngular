@@ -16,6 +16,8 @@
                 inputName='rating'
                 [(ngModel)]="ratingValue"
                 [required]="true"
+                [hasError]="invalidNumber()"
+                errorMessage="Please enter a valid number"
                 >
                 </app-custom-input>
             </div>
@@ -25,7 +27,7 @@
             buttonText="Rate"
             [hasSpinner]="loading"
             buttonType="submit" 
-            [isDisabled]='editRatingForm.invalid || formInvalid()'
+            [isDisabled]='editRatingForm.invalid || invalidNumber()'
             >
             </app-custom-button>
         </form>

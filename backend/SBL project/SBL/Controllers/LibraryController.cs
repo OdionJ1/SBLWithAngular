@@ -38,7 +38,7 @@ namespace SBL.Controllers
                 {
                     throw ex;
                 }
-            } 
+            }
             else
             {
                 return StatusCode(HttpStatusCode.BadRequest);
@@ -69,7 +69,7 @@ namespace SBL.Controllers
 
         [HttpPut]
         [Route("book/update/{userId}")]
-        public HttpResponseMessage UpdateBook([FromBody]FullBook book, string userId)
+        public HttpResponseMessage UpdateBook([FromBody] FullBook book, string userId)
         {
             if (book != null && userId != null)
             {
@@ -86,6 +86,94 @@ namespace SBL.Controllers
             else
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
+
+        [HttpGet]
+        [Route("favourites/{userId}")]
+        public IHttpActionResult GetFavouriteBooks(string userId)
+        {
+            if (userId != null)
+            {
+                try
+                {
+                    IEnumerable<Book> results = bookService.GetFavouriteBooks(userId);
+                    return Ok(results);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                return StatusCode(HttpStatusCode.BadRequest);
+            }
+        }
+
+        [HttpGet]
+        [Route("readinglist/{userId}")]
+        public IHttpActionResult GetReadingList(string userId)
+        {
+            if (userId != null)
+            {
+                try
+                {
+                    IEnumerable<Book> results = bookService.GetReadingList(userId);
+                    return Ok(results);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                return StatusCode(HttpStatusCode.BadRequest);
+            }
+        }
+
+        [HttpPut]
+        [Route("favourites/remove/{bookId}")]
+        public IHttpActionResult RemoveFromFavourites(int bookId)
+        {
+            if (bookId > 0)
+            {
+                try
+                {
+                    bookService.RemoveFromFavourites(bookId);
+                    return Ok();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                return StatusCode(HttpStatusCode.BadRequest);
+            }
+        }
+
+        [HttpPut]
+        [Route("readinglist/remove/{bookId}")]
+        public IHttpActionResult RemoveFromReadingList(int bookId)
+        {
+            if (bookId > 0)
+            {
+                try
+                {
+                    bookService.RemoveFromReadingList(bookId);
+                    return Ok();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                return StatusCode(HttpStatusCode.BadRequest);
             }
         }
     }

@@ -1,0 +1,21 @@
+@import '../../../common/styles/styles';
+@import '../../../common/styles/text/header';
+
+.reading-list-page {
+
+    h1{
+        @include h1Styles;
+
+        i{
+            color: #286090
+        }
+    }
+
+    hr{
+        @include lineStyles
+    }
+
+    .main {
+        margin-top: 2rem;
+    }
+}

@@ -46,5 +46,29 @@ namespace SBL.Service.Service
             bookData.UpdateBook(book);
             return new RequestResult<bool>(HttpStatusCode.OK, true);
         }
+
+        public IEnumerable<Book> GetFavouriteBooks(string userId)
+        {
+            return bookData.GetFavouriteBooks(userId);
+        }
+
+        public IEnumerable<Book> GetReadingList(string userId)
+        {
+            return bookData.GetReadingList(userId);
+        }
+
+        public void RemoveFromFavourites(int bookId)
+        {
+            FullBook book = bookData.GetBook(bookId);
+            book.InFavouriteList = false;
+            bookData.UpdateBook(book);
+        }
+
+        public void RemoveFromReadingList(int bookId)
+        {
+            FullBook book = bookData.GetBook(bookId);
+            book.InReadingList = false;
+            bookData.UpdateBook(book);
+        }
     }
 }
