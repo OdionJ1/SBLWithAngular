@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
-import { FavouritesComponent } from "./components/book/favourites/favourites.component";
-import { ReadingListComponent } from "./components/book/reading-list/reading-list.component";
+import { FavouritesComponent } from "./pages/library/favourites/favourites.component";
+import { ReadingListComponent } from "./pages/library/reading-list/reading-list.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { HomePageGuard } from "./pages/home/home.guard";
 import { LoginComponent } from "./pages/home/login/login.component";
