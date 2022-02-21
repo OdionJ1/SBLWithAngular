@@ -10,8 +10,38 @@ $border: 1px solid rgb(102, 101, 101);
 
 .books-page {
 
-    h1 {
-        @include h1Styles
+    .header {
+        display: flex;
+        justify-content: space-between;
+
+        .upload {
+            color: #337ab7;
+            font-weight: bold;
+            font-family: cursive;
+            cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+                font-style: italic;
+            }
+
+            &:active {
+                color: #204d74;
+            }
+
+            &:focus {
+                text-decoration: underline;
+                outline: none;
+            }
+        }
+
+        h1 {
+            @include h1Styles
+        }
+    }
+
+    .upload{
+        float: right;
     }
 
     .main {

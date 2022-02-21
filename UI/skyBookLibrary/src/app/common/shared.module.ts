@@ -7,8 +7,8 @@ import { BodyContainer } from '../components/main/body-container.component';
 import { NavBarComponent } from '../components/navbar/navbar.component';
 import { RegisterFormComponent } from '../components/user/register/register.component';
 import { HomeBodyComponent } from '../pages/home/main/home-body.component';
-import { CustomButtonComponent } from './customButton/custom-button.component';
-import { CustomInputComponent } from './formInput/custom-input.component';
+import { CustomButtonComponent } from './custom-button/custom-button.component';
+import { CustomInputComponent } from './form-input/custom-input.component';
 import { ModalComponent } from './modal/modal.component';
 import { StarsComponent } from './stars/stars.component';
 

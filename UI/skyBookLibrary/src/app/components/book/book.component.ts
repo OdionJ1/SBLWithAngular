@@ -14,7 +14,6 @@ export class BookComponent implements OnInit {
     public PageType = Page
     public showRemoveButton: boolean = false
     public authors: string
-    public file: FileList
 
     ngOnInit(): void {
         const bookAuthors = this.book.authors.map(author => author.authorName)
@@ -28,10 +27,4 @@ export class BookComponent implements OnInit {
     public remove(){
         this.removeFromList.emit(this.book.bookId)
     }
-
-
-    // selectedFile(event: any){
-    //     this.file = event.target.files;
-    //     console.log(this.file)
-    // }
 }

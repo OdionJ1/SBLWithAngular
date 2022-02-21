@@ -5,6 +5,7 @@ import { ConfigService } from "src/app/common/api/config.service";
 import { Book, IBook } from "src/app/data/models/book";
 import { User } from "src/app/data/models/user";
 import { UserService } from "../user/user.service";
+import { downloadFileFromFirebase, uploadFileToFirebase } from "./firebase.util";
 
 
 @Injectable()
@@ -88,5 +89,17 @@ export class BookService {
         await this.http.put(path, null)
         .toPromise()
         .then(res => console.log(res))
+    }
+
+    public uploadBook(file: FileList): boolean {
+        const user: User = this.userService.getCurrentUser()
+        uploadFileToFirebase(file, <string>user.userId)
+
+        return false
+    }
+
+    public readBook = (): boolean => {
+        downloadFileFromFirebase()
+        return true
     }
 }
