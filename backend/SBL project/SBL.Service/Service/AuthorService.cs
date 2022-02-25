@@ -26,10 +26,8 @@ namespace SBL.Service.Service
             {
                 return new RequestResult<bool>(HttpStatusCode.Conflict, false);
             }
-            else
-            {
-                return new RequestResult<bool>(HttpStatusCode.OK, true);
-            }
+            authorData.CreateAuthor(author, userId);
+            return new RequestResult<bool>(HttpStatusCode.OK, true);
         }
 
         public IEnumerable<Author> GetAuthors(int userId)

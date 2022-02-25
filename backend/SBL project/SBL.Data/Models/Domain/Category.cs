@@ -11,7 +11,7 @@ namespace SBL.Data.Models.Domain
     public class Category
     {
         [JsonProperty("categoryId")]
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
 
         [JsonProperty("categoryName")]
         public string CategoryName { get; set; }

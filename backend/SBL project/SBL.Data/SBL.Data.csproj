@@ -50,10 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAO\BookData.cs" />
+    <Compile Include="DAO\CategoryData.cs" />
     <Compile Include="IDAO\IAuthorData.cs" />
     <Compile Include="DAO\UserData.cs" />
     <Compile Include="DAO\AuthorData.cs" />
     <Compile Include="IDAO\IBookData.cs" />
+    <Compile Include="IDAO\ICategoryData.cs" />
     <Compile Include="IDAO\IUserData.cs" />
     <Compile Include="Models\DB\Helper.cs" />
     <Compile Include="Models\Domain\Author.cs" />
