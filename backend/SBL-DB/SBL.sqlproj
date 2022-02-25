@@ -80,5 +80,7 @@
     <Build Include="dbo\Stored Procedures\TitleExists.sql" />
     <Build Include="dbo\Stored Procedures\GetFavouriteBooks.sql" />
     <Build Include="dbo\Stored Procedures\GetReadingList.sql" />
+    <Build Include="dbo\Stored Procedures\GetCategories.sql" />
+    <Build Include="dbo\Stored Procedures\GetAuthors.sql" />
   </ItemGroup>
 </Project>

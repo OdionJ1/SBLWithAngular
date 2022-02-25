@@ -1,0 +1,30 @@
+.popover {
+    position: absolute;
+    min-width: 20rem;
+    z-index: 400;
+    margin-top: 0.3rem;
+    border-radius: 0.35rem;
+    height: fit-content;
+    background-color: #fff;
+    
+    .arrow{
+        position: absolute;
+        width: 10px;
+        transform: rotate(45deg);
+        background-color: #fff;
+        border-left: 1px solid #c4d0dd;
+        border-top: 1px solid #c4d0dd;
+        content: '';
+        height: 8px;
+        left: 45%;
+        z-index: 9;
+    }
+
+    .popover-body {
+        background-color: #fff;
+        margin-top: 0.2rem;
+        border-radius: 0.35rem;
+        padding: 0.5rem 0rem;
+        border: 1px solid grey;
+    }
+}

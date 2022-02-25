@@ -45,7 +45,6 @@ export class CustomInputComponent implements ControlValueAccessor{
         this.inputType = this.inputType === 'text'? 'password' : 'text'
     }
 
-
     onChange(event: Event){
         const value: string = (<HTMLInputElement>event.target).value
         this.inputValue = value

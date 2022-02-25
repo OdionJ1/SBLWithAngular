@@ -8,6 +8,7 @@ import { NavBarComponent } from '../components/navbar/navbar.component';
 import { RegisterFormComponent } from '../components/user/register/register.component';
 import { HomeBodyComponent } from '../pages/home/main/home-body.component';
 import { CustomButtonComponent } from './custom-button/custom-button.component';
+import { CustomPopOverComponent } from './custom-popover/custom-popover.component';
 import { CustomInputComponent } from './form-input/custom-input.component';
 import { ModalComponent } from './modal/modal.component';
 import { StarsComponent } from './stars/stars.component';
@@ -20,6 +21,7 @@ import { StarsComponent } from './stars/stars.component';
       CustomButtonComponent,
       BodyContainer,
       HomeBodyComponent,
+      CustomPopOverComponent,
       NavBarComponent,
       RegisterFormComponent,
       StarsComponent,
@@ -34,6 +36,7 @@ import { StarsComponent } from './stars/stars.component';
       NavBarComponent,
       ModalComponent,
       RegisterFormComponent,
+      CustomPopOverComponent,
       BodyContainer,
       StarsComponent,
       HomeBodyComponent,

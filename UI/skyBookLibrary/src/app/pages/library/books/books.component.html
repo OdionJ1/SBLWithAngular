@@ -4,7 +4,7 @@
             Books
         </h1>
         
-        <p tabindex="0" [routerLink]="['/library/uploadbook']" class="upload">
+        <p (click)="uploadbookModal = true" tabindex="0" class="upload">
             Upload Book
         </p>
     </div>
@@ -28,3 +28,7 @@
         <app-books-container [books]="books" ></app-books-container>
     </main>
 </div>
+
+<app-modal (closeModal)="uploadbookModal = false" *ngIf="uploadbookModal">
+    <app-upload-book></app-upload-book>
+</app-modal>

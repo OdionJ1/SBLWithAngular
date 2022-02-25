@@ -11,6 +11,7 @@ export class BookListComponent implements OnInit {
     public searchType: string = "title"
     public searchValue: string
     public books: Book[]
+    public uploadbookModal: boolean = true
 
     constructor(private bookService: BookService, private userService: UserService){}
 

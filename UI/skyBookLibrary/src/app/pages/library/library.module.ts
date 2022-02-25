@@ -14,7 +14,7 @@ import { WelcomeComponent } from "../welcome/welcome.component";
 import { BookDetailComponent } from "./book-detail/book-detail.component";
 import { BookListComponent } from "./books/books.component";
 import { LibraryComponent } from "./library.component";
-import { UploadBookComponent } from "./upload-book/upload-book.component";
+import { UploadBookComponent } from "../../components/book/upload-book/upload-book.component";
 
 
 @NgModule({

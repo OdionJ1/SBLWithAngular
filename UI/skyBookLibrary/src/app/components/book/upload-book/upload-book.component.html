@@ -1,0 +1,52 @@
+<div class="upload-book-page">
+    <h1 class="modal-header">Upload book</h1>
+
+    <hr />
+
+    <div class="main">
+        <form #bookForm action="">
+            <div class="form-group">
+                <app-custom-input
+                inputId='title'
+                label='Title'
+                inputType='text'
+                name='title'
+                inputName='title'
+                [(ngModel)]="title"
+                [required]="true"
+                >
+                </app-custom-input>
+            </div>
+
+            <div class="form-group select-container">
+                <label class="select-label" for="author-select">Author(s) <span class="asterisk">*</span></label>
+                <select id="author-select" (keydown)="openAuthorPopover = true" (click)="openAuthorPopover = true" (keydown)="preventKeyDown($event)" (mousedown)="preventMouseDown($event)">
+                    <option value=""></option>
+                </select>
+                <app-custom-popover *ngIf="openAuthorPopover" (closePopOver)="openAuthorPopover = false">
+                    <div>
+                        Todo Authors
+                    </div>
+                </app-custom-popover>
+            </div>
+
+            <div class="form-group select-container">
+                <label class="select-label" for="category-select">Category(s) <span class="asterisk">*</span></label>
+                <select id="category-select" (keydown)="openCategoryPopover = true" (click)="openCategoryPopover = true" (keydown)="preventKeyDown($event)" (mousedown)="preventMouseDown($event)">
+                    <option value=""></option>
+                </select>
+                <app-custom-popover *ngIf="openCategoryPopover" (closePopOver)="openCategoryPopover = false">
+                    <div>
+                        Todo Categories
+                    </div>
+                </app-custom-popover>
+            </div>
+            
+        <div class="form-group">
+            <input type="file" (change)="selectedFile($event)" name="" id="">
+        </div>
+        </form>
+    </div>
+
+    
+</div>

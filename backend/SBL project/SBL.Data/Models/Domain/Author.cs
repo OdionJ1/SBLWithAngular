@@ -11,7 +11,7 @@ namespace SBL.Data.Models.Domain
     public class Author
     {
         [JsonProperty("authorId")]
-        public int AuthorId { get; set; }
+        public int? AuthorId { get; set; }
 
         [JsonProperty("authorName")]
         public string AuthorName { get; set; }

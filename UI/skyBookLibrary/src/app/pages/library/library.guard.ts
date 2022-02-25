@@ -12,7 +12,6 @@ export class LibraryPageGuard implements CanActivate {
     constructor(private route: Router, private userService: UserService){}
     
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-
         if(!!this.userService.getCurrentUser()){
             return true
         }
