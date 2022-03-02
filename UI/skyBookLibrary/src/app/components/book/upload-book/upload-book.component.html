@@ -33,12 +33,10 @@
             <div class="form-group select-container">
                 <label class="select-label" for="category-select">Category(s) <span class="asterisk">*</span></label>
                 <select id="category-select" (keydown)="openCategoryPopover = true" (click)="openCategoryPopover = true" (keydown)="preventKeyDown($event)" (mousedown)="preventMouseDown($event)">
-                    <option value=""></option>
+                    <option value="">{{ selectedCategoriesStr }}</option>
                 </select>
                 <app-custom-popover *ngIf="openCategoryPopover" (closePopOver)="openCategoryPopover = false">
-                    <div>
-                        Todo Categories
-                    </div>
+                    <app-category-popover [prevSelectedCategories]="selectedCategories" (propagateSelectedCategory)="setSelectedCategory($event)" ></app-category-popover>
                 </app-custom-popover>
             </div>
             

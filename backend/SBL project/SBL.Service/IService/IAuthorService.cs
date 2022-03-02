@@ -9,7 +9,7 @@ namespace SBL.Service.IService
 {
     public interface IAuthorService
     {
-        RequestResult<bool> CreateAuthor(Author author, int userId);
-        IEnumerable<Author> GetAuthors(int userId);
+        RequestResult<bool> CreateAuthor(Author author, string userId);
+        IEnumerable<Author> GetAuthors(string userId);
     }
 }

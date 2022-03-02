@@ -20,7 +20,7 @@ namespace SBL.Service.Service
             authorData = new AuthorData();
         }
 
-        public RequestResult<bool> CreateAuthor(Author author, int userId)
+        public RequestResult<bool> CreateAuthor(Author author, string userId)
         {
             if (authorData.NameExists(author, userId))
             {
@@ -30,7 +30,7 @@ namespace SBL.Service.Service
             return new RequestResult<bool>(HttpStatusCode.OK, true);
         }
 
-        public IEnumerable<Author> GetAuthors(int userId)
+        public IEnumerable<Author> GetAuthors(string userId)
         {
             return authorData.GetAuthors(userId);
         }

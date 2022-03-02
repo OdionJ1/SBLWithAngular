@@ -16,7 +16,6 @@ export class BookService {
         private http: HttpClient,
         private userService: UserService,
         private route: Router){}
-
     
     public async getBooks(userId: string): Promise<Book[]>{
         const path: string = this.configService.getPath(`library/${userId}`)

@@ -1,0 +1,19 @@
+<div class="categories-container">
+
+    <div class="add-category-container">
+        <form #createCategoryForm="ngForm" (submit)="submitForm(createCategoryForm.value, $event)">
+            <div class="input-container form-group">
+                <input (ngModel)="categoryName" name="categoryName" type="text" [required]="true">
+                <p *ngIf="hasError" class="error-message">Category already exists</p>
+            </div>
+            <button type="submit" [disabled]="createCategoryForm.invalid || loading">Add <i *ngIf="loading" class="fa fa-spinner fa-pulse"></i></button>
+        </form>
+    </div>
+    
+    <div class="category-list">
+        <div *ngFor="let category of categories" class="category">
+            <input (ngModelChange)="selectCategory(category.categoryId)" [id]="category.id" [ngModel]="category.checked" type="checkbox" [name]="category.categoryName">
+            <label [for]="category.id">{{ category.categoryName }}</label>
+        </div>
+    </div>
+</div>

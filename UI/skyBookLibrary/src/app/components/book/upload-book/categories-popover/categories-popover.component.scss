@@ -1,0 +1,45 @@
+@import '../../../../common/styles/button/button';
+
+.categories-container{
+    font-size: 0.875rem;
+
+    .add-category-container{
+
+        form {
+            
+            .input-container{
+                
+                input {
+                    height: 1.5rem;
+                    padding: 0 8px;
+                    width: 90%;
+                    border-radius: 4px;
+                    border: 1px solid #afadad;
+                }
+
+                .error-message{
+                    color: #f54545;
+                    font-size: 0.7rem;
+                }
+            }
+
+            button {
+                @include buttonStyles();
+                margin-top: 0.5rem;
+                padding: 0.2rem 0.5rem
+            }
+        }
+    }
+
+    .category-list{
+        margin-left: 1rem;
+        margin-top: 1rem;
+        width: 70%;
+
+        .category{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.25rem;
+        }
+    }
+}

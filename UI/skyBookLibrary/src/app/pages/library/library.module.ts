@@ -15,6 +15,8 @@ import { BookDetailComponent } from "./book-detail/book-detail.component";
 import { BookListComponent } from "./books/books.component";
 import { LibraryComponent } from "./library.component";
 import { UploadBookComponent } from "../../components/book/upload-book/upload-book.component";
+import { CategoryPopoverComponent } from "src/app/components/book/upload-book/categories-popover/categories-popover.component";
+import { CategoryService } from "src/app/components/book/upload-book/categories-popover/categories.service";
 
 
 @NgModule({
@@ -25,6 +27,7 @@ import { UploadBookComponent } from "../../components/book/upload-book/upload-bo
         FavouritesComponent,
         ReadingListComponent,
         UploadBookComponent,
+        CategoryPopoverComponent,
         BookComponent,
         BooksContainerComponent,
         BookDetailComponent,
@@ -39,7 +42,7 @@ import { UploadBookComponent } from "../../components/book/upload-book/upload-bo
     exports: [
         
     ],
-    providers: [BookService],
+    providers: [BookService, CategoryService],
     bootstrap: [AppComponent]
 })
 export class LibraryModule {}

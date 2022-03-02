@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { BookService } from "src/app/components/book/book.service";
+import { Category } from "src/app/data/models/category";
 
 @Component({
     selector: 'app-upload-book',
@@ -9,6 +10,8 @@ import { BookService } from "src/app/components/book/book.service";
 export class UploadBookComponent{
     public openAuthorPopover: boolean = false
     public openCategoryPopover: boolean = false
+    public selectedCategories: Category[] = []
+    public selectedCategoriesStr: string
     public file: FileList
     public title: string
 
@@ -21,6 +24,11 @@ export class UploadBookComponent{
 
     log() {
         this.bookService.readBook()
+    }
+
+    public setSelectedCategory(categories: Category[]){
+        this.selectedCategories = categories
+        this.selectedCategoriesStr = this.selectedCategories.map(category => category.categoryName).join(', ')
     }
 
     preventKeyDown(event: any){

@@ -17,7 +17,7 @@ namespace SBL.Data.DAO
         private string GetCategorySP = "GetCategories";
         private string CategoryNameExistsSP = "CategoryNameExists";
 
-        public void CreateCategory(Category category, int userId)
+        public void CreateCategory(Category category, string userId)
         {
             IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
             {
@@ -28,7 +28,7 @@ namespace SBL.Data.DAO
             Helper.Execute(CreateCategorySP, paramList);
         }
 
-        public IEnumerable<Category> GetCategories(int userId)
+        public IEnumerable<Category> GetCategories(string userId)
         {
             IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
             {
@@ -53,7 +53,7 @@ namespace SBL.Data.DAO
             return categories;
         }
 
-        public bool NameExists(Category category, int userId)
+        public bool NameExists(Category category, string userId)
         {
             IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
             {

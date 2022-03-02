@@ -18,7 +18,7 @@ namespace SBL.Data.IDAO
         private string AuthorNameExists = "AuthorNameExists";
 
 
-        public void CreateAuthor(Author author, int userId)
+        public void CreateAuthor(Author author, string userId)
         {
             IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
             {
@@ -29,7 +29,7 @@ namespace SBL.Data.IDAO
             Helper.Execute(CreateAuthorSP, paramList);
         }
 
-        public IEnumerable<Author> GetAuthors(int userId)
+        public IEnumerable<Author> GetAuthors(string userId)
         {
             IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
             {
@@ -52,7 +52,7 @@ namespace SBL.Data.IDAO
             return authors;
         }
 
-        public bool NameExists(Author author, int userId)
+        public bool NameExists(Author author, string userId)
         {
             IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
             {

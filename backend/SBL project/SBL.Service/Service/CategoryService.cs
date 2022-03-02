@@ -20,12 +20,12 @@ namespace SBL.Service.Service
             categoryData = new CategoryData();
         }
 
-        public IEnumerable<Category> GetCategories(int userId)
+        public IEnumerable<Category> GetCategories(string userId)
         {
             return categoryData.GetCategories(userId);
         }
 
-        public RequestResult<bool> CreateCategory(Category category, int userId)
+        public RequestResult<bool> CreateCategory(Category category, string userId)
         {
             if (categoryData.NameExists(category, userId))
             {

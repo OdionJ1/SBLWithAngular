@@ -16,12 +16,15 @@ namespace SBL.Controllers
     public class LibraryController : ApiController
     {
         private IBookService bookService;
+        private ICategoryService categoryService;
+        private IAuthorService authorService;
 
         public LibraryController()
         {
             bookService = new BookService();
+            categoryService = new CategoryService();
+            authorService = new AuthorService();
         }
-
 
         [HttpGet]
         [Route("{userId}")]
@@ -176,5 +179,101 @@ namespace SBL.Controllers
                 return StatusCode(HttpStatusCode.BadRequest);
             }
         }
+
+        //Categories
+        [HttpPost]
+        [Route("createcategory/{userId}")]
+        public HttpResponseMessage CreateCategory([FromBody]Category category, string userId)
+        {
+            if (category.CategoryName != null && userId != null)
+            {
+                try
+                {
+                    RequestResult<bool> result = categoryService.CreateCategory(category, userId);
+                    return Request.CreateResponse(result.StatusCode, result.Data);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
+
+        [HttpGet]
+        [Route("getcategories/{userId}")]
+        public IHttpActionResult GetCategories(string userId)
+        {
+            if (userId != null)
+            {
+                try
+                {
+                    IEnumerable<Category> categories = categoryService.GetCategories(userId);
+                    return Ok(categories);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                return StatusCode(HttpStatusCode.BadRequest);
+            }
+        }
+        //
+
+
+
+        //Authors
+        [HttpPost]
+        [Route("createauthor/{userId}")]
+        public HttpResponseMessage CreateAuthor([FromBody]Author author, string userId)
+        {
+            if (author.AuthorName != null && userId != null)
+            {
+                try
+                {
+                    RequestResult<bool> result = authorService.CreateAuthor(author, userId);
+                    return Request.CreateResponse(result.StatusCode, result.Data);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
+
+        [HttpPost]
+        [Route("getauthors/{userId}")]
+        public IHttpActionResult GetAuthors(string userId)
+        {
+            if (userId != null)
+            {
+                try
+                {
+                    IEnumerable<Author> authors = authorService.GetAuthors(userId);
+                    return Ok(authors);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+            else
+            {
+                return StatusCode(HttpStatusCode.BadRequest);
+            }
+        }
+
+
     }
 }

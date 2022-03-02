@@ -9,8 +9,8 @@ namespace SBL.Data.IDAO
 {
     public interface ICategoryData
     {
-        void CreateCategory(Category category, int userId);
-        IEnumerable<Category> GetCategories(int userId);
-        bool NameExists(Category category, int userId);
+        void CreateCategory(Category category, string userId);
+        IEnumerable<Category> GetCategories(string userId);
+        bool NameExists(Category category, string userId);
     }
 }

@@ -1,6 +1,6 @@
 .popover {
     position: absolute;
-    min-width: 20rem;
+    min-width: 15rem;
     z-index: 400;
     margin-top: 0.3rem;
     border-radius: 0.35rem;
@@ -24,7 +24,9 @@
         background-color: #fff;
         margin-top: 0.2rem;
         border-radius: 0.35rem;
-        padding: 0.5rem 0rem;
+        padding: 0.5rem 0.5rem;
         border: 1px solid grey;
+        max-height: 10rem;
+        overflow: auto;
     }
 }

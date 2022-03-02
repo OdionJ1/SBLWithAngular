@@ -9,8 +9,8 @@ export class Category implements ICategory {
         c.categoryId = category.categoryId
         c.categoryName = category.categoryName
         return c
-
     }
+    
 }
 
 

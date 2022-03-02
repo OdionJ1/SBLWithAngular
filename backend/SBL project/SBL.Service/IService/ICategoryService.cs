@@ -9,7 +9,7 @@ namespace SBL.Service.IService
 {
     public interface ICategoryService
     {
-        RequestResult<bool> CreateCategory(Category category, int userId);
-        IEnumerable<Category> GetCategories(int userId);
+        RequestResult<bool> CreateCategory(Category category, string userId);
+        IEnumerable<Category> GetCategories(string userId);
     }
 }

@@ -9,8 +9,8 @@ namespace SBL.Data.DAO
 {
     public interface IAuthorData
     {
-        IEnumerable<Author> GetAuthors(int userId);
-        void CreateAuthor(Author author, int userId);
-        bool NameExists(Author author, int userId);
+        IEnumerable<Author> GetAuthors(string userId);
+        void CreateAuthor(Author author, string userId);
+        bool NameExists(Author author, string userId);
     }
 }
