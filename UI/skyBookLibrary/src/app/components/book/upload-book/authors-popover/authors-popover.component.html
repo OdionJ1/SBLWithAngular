@@ -1,0 +1,19 @@
+<div class="authors-container">
+
+    <div class="add-author-container">
+        <form #createAuthorForm="ngForm" (submit)="submitForm(createAuthorForm.value, $event)">
+            <div class="input-container form-group">
+                <input [(ngModel)]="authorName" name="authorName" type="text" [required]="true">
+                <p *ngIf="hasError" class="error-message">Author already exists</p>
+            </div>
+            <button type="submit" [disabled]="createAuthorForm.invalid || loading">Add <i *ngIf="loading" class="fa fa-spinner fa-pulse"></i></button>
+        </form>
+    </div>
+    
+    <div class="author-list">
+        <div *ngFor="let author of authors" class="author">
+            <input (ngModelChange)="selectAuthor(author.authorId)" [id]="author.authorId" [ngModel]="author.checked" type="checkbox" [name]="author.authorName">
+            <label [for]="author.authorId">{{ author.authorName }}</label>
+        </div>
+    </div>
+</div>

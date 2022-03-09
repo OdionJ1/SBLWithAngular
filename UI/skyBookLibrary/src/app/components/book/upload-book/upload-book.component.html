@@ -21,12 +21,10 @@
             <div class="form-group select-container">
                 <label class="select-label" for="author-select">Author(s) <span class="asterisk">*</span></label>
                 <select id="author-select" (keydown)="openAuthorPopover = true" (click)="openAuthorPopover = true" (keydown)="preventKeyDown($event)" (mousedown)="preventMouseDown($event)">
-                    <option value=""></option>
+                    <option value="">{{ selectedAuthorsStr }}</option>
                 </select>
                 <app-custom-popover *ngIf="openAuthorPopover" (closePopOver)="openAuthorPopover = false">
-                    <div>
-                        Todo Authors
-                    </div>
+                    <app-author-popover [prevSelectedAuthors]="selectedAuthors" (propagateSelectedAuthors)="setSelectedAuthors($event)" ></app-author-popover>
                 </app-custom-popover>
             </div>
 
@@ -36,13 +34,25 @@
                     <option value="">{{ selectedCategoriesStr }}</option>
                 </select>
                 <app-custom-popover *ngIf="openCategoryPopover" (closePopOver)="openCategoryPopover = false">
-                    <app-category-popover [prevSelectedCategories]="selectedCategories" (propagateSelectedCategory)="setSelectedCategory($event)" ></app-category-popover>
+                    <app-category-popover [prevSelectedCategories]="selectedCategories" (propagateSelectedCategory)="setSelectedCategories($event)" ></app-category-popover>
                 </app-custom-popover>
             </div>
             
-        <div class="form-group">
-            <input type="file" (change)="selectedFile($event)" name="" id="">
-        </div>
+            <div class="form-group file-input-container">
+                <label for="book-file">select file <span class="asterisk">*</span></label>
+                <input type="file" (change)="selectedFile($event)" value="file" name="" id="book-file">
+                <div *ngIf="fileInvalid" class="error-text">
+                    <p>*Only pdf, epub and txt files are allowed</p>
+                </div>
+            </div>
+
+            <div class="form-group file-input-container">
+                <label for="book-file">select cover image <span class="asterisk">*</span></label>
+                <input type="file" (change)="selectedCoverImage($event)" value="file" name="" id="book-file">
+                <div *ngIf="coverImageInvalid" class="error-text">
+                    <p>*Only png, jpg and jpeg images are allowed</p>
+                </div>
+            </div>
         </form>
     </div>
 

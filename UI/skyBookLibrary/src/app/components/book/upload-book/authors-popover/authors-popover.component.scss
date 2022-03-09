@@ -1,9 +1,9 @@
 @import '../../../../common/styles/button/button';
 
-.categories-container{
+.authors-container{
     font-size: 0.875rem;
 
-    .add-category-container{
+    .add-author-container{
 
         form {
             
@@ -31,18 +31,23 @@
         }
     }
 
-    .category-list{
+    .author-list{
         margin-left: 1rem;
         margin-top: 1rem;
         width: 70%;
 
-        .category{
+        .author{
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 0.25rem;
 
+            input{
+                cursor: pointer;
+            }
+            
             label{
+                cursor: pointer;
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             }
         }

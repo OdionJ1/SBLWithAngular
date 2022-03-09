@@ -12,12 +12,13 @@ export class CategoryService {
     constructor(
         private configService: ConfigService, 
         private http: HttpClient,
-        private userService: UserService){}
-    
+        private userService: UserService
+    ){}
+
     
     public async getCategories(): Promise<Category[]>{
         const user: User = this.userService.getCurrentUser()
-        const path = this.configService.getPath(`library/getcategories/${user.userId}`)
+        const path: string = this.configService.getPath(`library/getcategories/${user.userId}`)
 
         const data = await this.http.get<Category[]>(path)
         .toPromise()
@@ -28,7 +29,7 @@ export class CategoryService {
 
     public async createCategory(category: Category): Promise<any>{
         const user: User = this.userService.getCurrentUser()
-        const path = this.configService.getPath(`library/createcategory/${user.userId}`)
+        const path: string = this.configService.getPath(`library/createcategory/${user.userId}`)
 
         const data = await this.http.post(path, category, {
             observe: 'response'

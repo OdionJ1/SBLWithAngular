@@ -251,7 +251,7 @@ namespace SBL.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("getauthors/{userId}")]
         public IHttpActionResult GetAuthors(string userId)
         {

@@ -1,6 +1,11 @@
 import { Component, EventEmitter, OnInit, Output, Input } from "@angular/core";
 import { Category } from "src/app/data/models/category";
-import { CategoryService } from "./categories.service";
+import { CategoryService } from "./category.service";
+
+
+class CategoryWithChecked extends Category {
+    public checked: boolean
+}
 
 @Component({
     selector: 'app-category-popover',
@@ -11,7 +16,7 @@ export class CategoryPopoverComponent implements OnInit{
     @Input() prevSelectedCategories: Category[]
     @Output() propagateSelectedCategory: EventEmitter<Category[]> = new EventEmitter<Category[]>()
     public userCategories: Category[]
-    public categories: any;
+    public categories: CategoryWithChecked[];
     public loading: boolean = false
     public hasError: boolean = false
     public categoryName: string
@@ -24,8 +29,8 @@ export class CategoryPopoverComponent implements OnInit{
         this.categories = this.addCheckedProp(this.userCategories)
     }
 
-    selectCategory (id: number){
-        this.categories.forEach((category: any) => {
+    selectCategory (id?: number){
+        this.categories.forEach(category => {
             if(category.categoryId === id){
                 category.checked = !category.checked
             }
@@ -48,6 +53,7 @@ export class CategoryPopoverComponent implements OnInit{
                 throw response
             }
 
+            this.categoryName = ''
             await this.ngOnInit()
             this.loading = false
 
@@ -59,28 +65,23 @@ export class CategoryPopoverComponent implements OnInit{
         }
     }
 
-    private addCheckedProp (categories: Category[]){
-        const categoryWithChecked = categories.map(category => {
+    private addCheckedProp (categories: Category[]): CategoryWithChecked[] {
+        const categoriesWithChecked: CategoryWithChecked[] = categories.map(category => {
             return {...category,
                     checked: this.prevSelectedCategories.some(cat => cat.categoryId === category.categoryId)      
             }})
 
-        return categoryWithChecked
+        return categoriesWithChecked
     }
 
-    private removeCheckedProp(categories: any): Category[]{
-        let cat: Category[] = []
-
-        categories.forEach((category: any) => {
+    private removeCheckedProp(categories: CategoryWithChecked[]): Category[] {
+        const cat: Category[] = []
+        categories.forEach(category => {
             if(category.checked){
-                const c = new Category()
-                c.categoryId = category.categoryId
-                c.categoryName = category.categoryName
-    
-                cat.push(c)
+                cat.push(Category.create(category))
             }
         })
 
-        return cat;
+        return cat
     }
 }
