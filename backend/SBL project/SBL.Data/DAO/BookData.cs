@@ -58,7 +58,7 @@ namespace SBL.Data.DAO
                     DateUploaded = (DateTime)row["dateUploaded"],
                     InReadingList = (bool)row["inReadingList"],
                     InFavouriteList = (bool)row["inFav"],
-                    Link = (string)row["link"]
+                    FileLink = (string)row["fileLink"]
                 };
 
                 book.Authors = GetAuthorsForBook(bookId);
@@ -81,7 +81,8 @@ namespace SBL.Data.DAO
                 new SqlParameter("rating", book.Rating),
                 new SqlParameter("inReadingList", book.InReadingList),
                 new SqlParameter("inFav", book.InFavouriteList),
-                new SqlParameter("link", book.Link)
+                new SqlParameter("fileLink", book.FileLink),
+                new SqlParameter("coverLink", book.CoverLink)
             };
 
             Helper.Execute(UpdateBookSP, paramList);
@@ -170,7 +171,8 @@ namespace SBL.Data.DAO
                     {
                         BookId = (int)row["bookId"],
                         Title = (string)row["title"],
-                        Rating = (decimal)row["rating"]
+                        Rating = (decimal)row["rating"],
+                        CoverLink = row["coverLink"] is DBNull? null : (string)row["coverLink"]
                     };
                     book.Authors = GetAuthorsForBook(book.BookId);
                     books.Add(book);

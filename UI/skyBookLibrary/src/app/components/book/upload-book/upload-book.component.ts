@@ -16,9 +16,10 @@ export class UploadBookComponent{
     public selectedCategoriesStr: string
     public selectedAuthors: Author[] = []
     public selectedAuthorsStr: string
-    public file: FileList
+    public bookFile: FileList
     public coverImage: FileList
-    public title: string
+    public loading: boolean = false
+    public title: string = ''
     public fileInvalid: boolean
     public coverImageInvalid: boolean
 
@@ -28,10 +29,15 @@ export class UploadBookComponent{
         this.fileInvalid = false
 
         if(FileValidator.isValidEbook(event.target.files)){
-            this.file = event.target.files
+            this.bookFile = event.target.files
         } else {
             this.fileInvalid = true
         }
+    }
+
+    public submit(event: Event){
+        event.preventDefault()
+        
     }
 
     selectedCoverImage(event: any){
@@ -52,6 +58,10 @@ export class UploadBookComponent{
     public setSelectedAuthors(authors: Author[]){
         this.selectedAuthors = authors
         this.selectedAuthorsStr = this.selectedAuthors.map(author => author.authorName).join(', ')
+    }
+
+    public formInvalid(): boolean{
+        return !this.title || !this.selectedAuthors.length || !this.selectedCategories.length || !this.bookFile
     }
 
     preventKeyDown(event: any){

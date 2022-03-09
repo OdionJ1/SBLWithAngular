@@ -9,8 +9,7 @@
     }
 
     .main {
-        width: 90%;
-
+        
         form {
             
             .form-group {
@@ -21,9 +20,9 @@
                     select{
                         margin-top: 3px;
                         height: 1.7rem;
-                        padding: 0 8px;
                         width: 93%;
-                        border-radius: 4px;
+                        background-color: transparent;
+                        border-radius: 0.25rem;
                         border: 1px solid #afadad;
                     }
                 }
@@ -66,6 +65,10 @@
                         font-size: small;
                     }
                 }
+            }
+
+            .button {
+                margin: 0 1rem;
             }
         }
     }

@@ -21,7 +21,7 @@ namespace SBL.Data.Models.Domain
         [JsonProperty("inFavouriteList")]
         public bool InFavouriteList { get; set; }
 
-        [JsonProperty("link")]
-        public string Link { get; set; }
+        [JsonProperty("fileLink")]
+        public string FileLink { get; set; }
     }
 }

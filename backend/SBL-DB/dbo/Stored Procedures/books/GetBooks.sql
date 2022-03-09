@@ -2,4 +2,4 @@
 	@userId varchar(100)
 AS
 
-select bookId, title, rating from books where userId = @userId
+select bookId, title, rating, coverLink from books where userId = @userId

@@ -60,27 +60,33 @@
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
     <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="dbo\Stored Procedures\author" />
+    <Folder Include="dbo\Stored Procedures\books" />
+    <Folder Include="dbo\Stored Procedures\category" />
+    <Folder Include="dbo\Stored Procedures\users" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\books.sql" />
     <Build Include="dbo\Tables\users.sql" />
+    <Build Include="dbo\Tables\books.sql" />
     <Build Include="dbo\Tables\books_authors.sql" />
     <Build Include="dbo\Tables\authors.sql" />
     <Build Include="dbo\Tables\categories.sql" />
     <Build Include="dbo\Tables\books_categories.sql" />
-    <Build Include="dbo\Stored Procedures\GetBookFull.sql" />
-    <Build Include="dbo\Stored Procedures\UpdateBook.sql" />
-    <Build Include="dbo\Stored Procedures\CreateUser.sql" />
-    <Build Include="dbo\Stored Procedures\GetUser.sql" />
-    <Build Include="dbo\Stored Procedures\GetBooks.sql" />
-    <Build Include="dbo\Stored Procedures\GetBooks_Authors.sql" />
-    <Build Include="dbo\Stored Procedures\GetBooks_Categories.sql" />
-    <Build Include="dbo\Stored Procedures\CreateAuthor.sql" />
-    <Build Include="dbo\Stored Procedures\CreateCategory.sql" />
-    <Build Include="dbo\Stored Procedures\TitleExists.sql" />
-    <Build Include="dbo\Stored Procedures\GetFavouriteBooks.sql" />
-    <Build Include="dbo\Stored Procedures\GetReadingList.sql" />
-    <Build Include="dbo\Stored Procedures\GetCategories.sql" />
-    <Build Include="dbo\Stored Procedures\GetAuthors.sql" />
+    <Build Include="dbo\Stored Procedures\author\AuthorNameExists.sql" />
+    <Build Include="dbo\Stored Procedures\author\CreateAuthor.sql" />
+    <Build Include="dbo\Stored Procedures\author\GetAuthors.sql" />
+    <Build Include="dbo\Stored Procedures\books\GetBookFull.sql" />
+    <Build Include="dbo\Stored Procedures\books\GetBooks.sql" />
+    <Build Include="dbo\Stored Procedures\books\GetBooks_Authors.sql" />
+    <Build Include="dbo\Stored Procedures\books\GetBooks_Categories.sql" />
+    <Build Include="dbo\Stored Procedures\books\GetFavouriteBooks.sql" />
+    <Build Include="dbo\Stored Procedures\books\GetReadingList.sql" />
+    <Build Include="dbo\Stored Procedures\books\TitleExists.sql" />
+    <Build Include="dbo\Stored Procedures\books\UpdateBook.sql" />
+    <Build Include="dbo\Stored Procedures\category\CategoryNameExists.sql" />
+    <Build Include="dbo\Stored Procedures\category\CreateCategory.sql" />
+    <Build Include="dbo\Stored Procedures\category\GetCategories.sql" />
+    <Build Include="dbo\Stored Procedures\users\CreateUser.sql" />
+    <Build Include="dbo\Stored Procedures\users\GetUser.sql" />
   </ItemGroup>
 </Project>

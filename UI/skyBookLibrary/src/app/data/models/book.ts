@@ -10,7 +10,8 @@ export class Book implements IBook {
     categories: ICategory[]
     inReadingList: boolean
     inFavouriteList: boolean
-    link: string
+    fileLink: string
+    coverLink: string
 
     static create(book: IBook){
         if(!book) return book
@@ -18,6 +19,7 @@ export class Book implements IBook {
         b.bookId = book.bookId
         b.title = book.title
         b.rating = book.rating
+        b.coverLink = book.coverLink
         b.authors = book.authors.map(author => Author.create(author))
         return b
     }
@@ -25,10 +27,9 @@ export class Book implements IBook {
     static createFullBook(book: IBook){
         let b = this.create(book)
         b.dateUploaded = book.dateUploaded
-        b.link = book.link
+        b.fileLink = book.fileLink
         b.inFavouriteList = book.inFavouriteList
         b.inReadingList = book.inReadingList
-        b.link = book.link
         b.categories = book.categories.map(category => Category.create(category))
         return b
     }
@@ -44,5 +45,6 @@ export interface IBook {
     categories: ICategory[]
     inReadingList: boolean,
     inFavouriteList: boolean,
-    link: string
+    fileLink: string
+    coverLink: string
 }

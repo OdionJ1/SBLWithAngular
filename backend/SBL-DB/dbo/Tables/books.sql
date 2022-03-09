@@ -5,7 +5,8 @@
     [rating]        DECIMAL (4, 1) NOT NULL,
     [inReadingList] BIT            NOT NULL,
     [inFav]         BIT            NOT NULL,
-    [link]          VARCHAR (200)  NOT NULL,
+    [fileLink]      VARCHAR (MAX)  NOT NULL,
+    [coverLink]     VARCHAR (MAX)  NULL,
     [userId]        VARCHAR (100)  NOT NULL,
     CONSTRAINT [PK_books] PRIMARY KEY CLUSTERED ([bookId] ASC),
     CONSTRAINT [FK_books_users] FOREIGN KEY ([userId]) REFERENCES [dbo].[users] ([userId]) ON DELETE CASCADE ON UPDATE CASCADE

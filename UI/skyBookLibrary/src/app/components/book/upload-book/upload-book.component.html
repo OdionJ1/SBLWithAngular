@@ -4,7 +4,7 @@
     <hr />
 
     <div class="main">
-        <form #bookForm action="">
+        <form #bookForm (ngSubmit)="submit($event)">
             <div class="form-group">
                 <app-custom-input
                 inputId='title'
@@ -40,19 +40,27 @@
             
             <div class="form-group file-input-container">
                 <label for="book-file">select file <span class="asterisk">*</span></label>
-                <input type="file" (change)="selectedFile($event)" value="file" name="" id="book-file">
+                <input type="file" (change)="selectedFile($event)" value="file" name="" id="book-file" required>
                 <div *ngIf="fileInvalid" class="error-text">
                     <p>*Only pdf, epub and txt files are allowed</p>
                 </div>
             </div>
 
             <div class="form-group file-input-container">
-                <label for="book-file">select cover image <span class="asterisk">*</span></label>
+                <label for="book-file">select cover image</label>
                 <input type="file" (change)="selectedCoverImage($event)" value="file" name="" id="book-file">
                 <div *ngIf="coverImageInvalid" class="error-text">
                     <p>*Only png, jpg and jpeg images are allowed</p>
                 </div>
             </div>
+
+            <app-custom-button 
+            class="button" 
+            buttonText="Upload" 
+            buttonType="submit"
+            [hasSpinner]="loading"
+            [isDisabled]="formInvalid()"
+            ></app-custom-button>
         </form>
     </div>
 

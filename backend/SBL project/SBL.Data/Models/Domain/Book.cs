@@ -22,5 +22,8 @@ namespace SBL.Data.Models.Domain
         [JsonProperty("rating")]
         public decimal Rating { get; set; }
 
+        [JsonProperty("coverLink")]
+        public string CoverLink { get; set; }
+
     }
 }
