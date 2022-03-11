@@ -20,10 +20,10 @@ namespace SBL.Data.Models.Domain
         public IEnumerable<Author> Authors { get; set; }
 
         [JsonProperty("rating")]
-        public decimal Rating { get; set; }
+        public int Rating { get; set; }
 
-        [JsonProperty("coverLink")]
-        public string CoverLink { get; set; }
+        [JsonProperty("coverImageLink")]
+        public string CoverImageLink { get; set; }
 
     }
 }

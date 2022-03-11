@@ -3,6 +3,7 @@ import { FileValidator } from "src/app/common/fileValidator";
 import { BookService } from "src/app/components/book/book.service";
 import { Author } from "src/app/data/models/author";
 import { Category } from "src/app/data/models/category";
+import { downloadFileFromFirebase } from "../firebase.util";
 
 @Component({
     selector: 'app-upload-book',
@@ -30,6 +31,8 @@ export class UploadBookComponent{
 
         if(FileValidator.isValidEbook(event.target.files)){
             this.bookFile = event.target.files
+            console.log(this.bookFile)
+            this.bookService.uploadBook(this.bookFile)
         } else {
             this.fileInvalid = true
         }
@@ -70,5 +73,9 @@ export class UploadBookComponent{
 
     preventMouseDown(event: any){
         event.preventDefault()
+    }
+
+    download(){
+        downloadFileFromFirebase()
     }
 }

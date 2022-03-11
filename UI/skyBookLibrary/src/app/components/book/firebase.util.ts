@@ -1,5 +1,5 @@
 import firebase from 'firebase/compat/app';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { getStorage, ref, uploadBytes, getDownloadURL, UploadResult } from 'firebase/storage';
 
 const config = {
     apiKey: "AIzaSyAQJCIB12p0T98aQOYobRRnck-g6xh2blk",
@@ -18,8 +18,10 @@ const storage = getStorage(firebaseApp)
 export const uploadFileToFirebase = (file: FileList, id: string): boolean => {
     const storageRef = ref(storage, `/${id}/${file[0].name}`)
 
-    uploadBytes(storageRef, file[0]).then(snapshot => {
-        console.log(snapshot)
+
+    uploadBytes(storageRef, file[0]).then((snapshot: UploadResult) => {
+        console.log(snapshot.ref.fullPath)
+
         return true
     }).catch(err => {
         console.log(err)
@@ -31,7 +33,8 @@ export const uploadFileToFirebase = (file: FileList, id: string): boolean => {
 
 
 export const downloadFileFromFirebase = () => {
-    const path: string = "33d3c575-c9c3-4d32-9e88-1673dc94830e/02. The City of Mirrors - Justin Cronin.epub"
+    const path: string = "33d3c575-c9c3-4d32-9e88-1673dc94830e/Odion Asuelimen.pdf"
+
     getDownloadURL(ref(storage, path)).then(url => {
         console.log(url)
     })

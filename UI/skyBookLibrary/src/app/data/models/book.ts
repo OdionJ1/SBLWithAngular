@@ -11,7 +11,7 @@ export class Book implements IBook {
     inReadingList: boolean
     inFavouriteList: boolean
     fileLink: string
-    coverLink: string
+    coverImageLink: string
 
     static create(book: IBook){
         if(!book) return book
@@ -19,7 +19,7 @@ export class Book implements IBook {
         b.bookId = book.bookId
         b.title = book.title
         b.rating = book.rating
-        b.coverLink = book.coverLink
+        b.coverImageLink = book.coverImageLink
         b.authors = book.authors.map(author => Author.create(author))
         return b
     }
@@ -46,5 +46,5 @@ export interface IBook {
     inReadingList: boolean,
     inFavouriteList: boolean,
     fileLink: string
-    coverLink: string
+    coverImageLink: string
 }

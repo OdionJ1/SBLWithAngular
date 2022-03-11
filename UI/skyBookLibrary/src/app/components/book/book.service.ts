@@ -90,7 +90,7 @@ export class BookService {
         .then(res => console.log(res))
     }
 
-    public uploadBook(file: FileList): boolean {
+    public async uploadBook(file: FileList): Promise<any> {
         const user: User = this.userService.getCurrentUser()
         uploadFileToFirebase(file, <string>user.userId)
 

@@ -14,6 +14,9 @@ namespace SBL.Data.DAO
     public class BookData : IBookData
     {
         private string GetBooksSP = "GetBooks";
+        private string CreateBookSP = "CreateBook";
+        private string CreateBook_Author = "CreateBook_Author";
+        private string CreateBook_Category = "CreateBook_Category";
         private string GetBooksAuthorsSP = "GetBooks_Authors";
         private string GetBooksCategoriesSP = "GetBooks_Categories";
         private string GetBookSP = "GetBookFull";
@@ -21,6 +24,41 @@ namespace SBL.Data.DAO
         private string TitleExistsSP = "TitleExists";
         private string GetFavouriteBooksSP = "GetFavouriteBooks";
         private string GetReadingListSP = "GetReadingList";
+
+        public void UploadBook(FullBook book, string userId)
+        {
+            IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
+            {
+                new SqlParameter("title", book.Title),
+                new SqlParameter("fileLink", book.FileLink),
+                new SqlParameter("coverImageLink", book.CoverImageLink),
+                new SqlParameter("userId", userId)
+            };
+
+            Helper.Execute(CreateBookSP, paramList);
+        }
+
+        public void CreateBookCategory(int bookId, int categoryId)
+        {
+            IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
+            {
+                new SqlParameter("bookId", bookId),
+                new SqlParameter("categoryId", categoryId)
+            };
+
+            Helper.Execute(CreateBook_Category, paramList);
+        }
+
+        public void CreateBookAuthor(int bookId, int authorId)
+        {
+            IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
+            {
+                new SqlParameter("bookId", bookId),
+                new SqlParameter("authorId", authorId)
+            };
+
+            Helper.Execute(CreateBook_Author, paramList);
+        }
 
         public IEnumerable<Book> GetBookList(string userId)
         {
@@ -54,11 +92,12 @@ namespace SBL.Data.DAO
                 {
                     BookId = (int)row["bookId"],
                     Title = (string)row["title"],
-                    Rating = (decimal)row["rating"],
+                    Rating = (int)row["rating"],
                     DateUploaded = (DateTime)row["dateUploaded"],
                     InReadingList = (bool)row["inReadingList"],
                     InFavouriteList = (bool)row["inFav"],
-                    FileLink = (string)row["fileLink"]
+                    FileLink = (string)row["fileLink"],
+                    CoverImageLink = row["coverImageLink"] is DBNull? null : (string)row["coverImageLink"]
                 };
 
                 book.Authors = GetAuthorsForBook(bookId);
@@ -82,7 +121,7 @@ namespace SBL.Data.DAO
                 new SqlParameter("inReadingList", book.InReadingList),
                 new SqlParameter("inFav", book.InFavouriteList),
                 new SqlParameter("fileLink", book.FileLink),
-                new SqlParameter("coverLink", book.CoverLink)
+                new SqlParameter("coverLink", book.CoverImageLink)
             };
 
             Helper.Execute(UpdateBookSP, paramList);
@@ -171,8 +210,8 @@ namespace SBL.Data.DAO
                     {
                         BookId = (int)row["bookId"],
                         Title = (string)row["title"],
-                        Rating = (decimal)row["rating"],
-                        CoverLink = row["coverLink"] is DBNull? null : (string)row["coverLink"]
+                        Rating = (int)row["rating"],
+                        CoverImageLink = row["coverImageLink"] is DBNull? null : (string)row["coverImageLink"]
                     };
                     book.Authors = GetAuthorsForBook(book.BookId);
                     books.Add(book);

@@ -40,11 +40,8 @@ export class BookDetailComponent implements OnInit {
             }
 
             this.book = Book.createFullBook(response.body)
-            const bookAuthors = this.book.authors.map(author => author.authorName)
-            this.authors = bookAuthors.join(', ')
-
-            const bookCategories = this.book.categories.map(category => category.categoryName)
-            this.categories = bookCategories.join(', ')
+            this.authors = this.book.authors.map(author => author.authorName).join(', ')
+            this.categories = this.book.categories.map(category => category.categoryName).join(', ')
 
             this.inFavList = this.book.inFavouriteList;
             this.inReadList = this.book.inReadingList;

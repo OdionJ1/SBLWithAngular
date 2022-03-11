@@ -48,7 +48,7 @@
 
             <div class="form-group file-input-container">
                 <label for="book-file">select cover image</label>
-                <input type="file" (change)="selectedCoverImage($event)" value="file" name="" id="book-file">
+                <input type="file" (change)="selectedCoverImage($event)" value="file" name="" id="cover-image">
                 <div *ngIf="coverImageInvalid" class="error-text">
                     <p>*Only png, jpg and jpeg images are allowed</p>
                 </div>
@@ -61,6 +61,8 @@
             [hasSpinner]="loading"
             [isDisabled]="formInvalid()"
             ></app-custom-button>
+
+            <button (click)="download()">Click me</button>
         </form>
     </div>
 

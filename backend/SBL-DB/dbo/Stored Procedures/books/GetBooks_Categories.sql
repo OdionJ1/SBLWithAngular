@@ -9,7 +9,7 @@ on books_categories.categoryId = categories.categoryId
 where books_categories.bookId = @bookId
 
 else 
-select books.bookId, title, rating from books_categories
+select books.bookId, title, rating, coverImageLink from books_categories
 join books
 on books_categories.bookId = books.bookId
 where books_categories.categoryId = @categoryId

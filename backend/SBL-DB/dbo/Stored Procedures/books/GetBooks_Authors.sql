@@ -9,7 +9,7 @@ on books_authors.authorId = authors.authorId
 where books_authors.bookId = @bookId
 
 else 
-select books.bookId, title, rating from books_authors
+select books.bookId, title, rating, coverImageLink from books_authors
 join books
 on books_authors.bookId = books.bookId
 where books_authors.authorId = @authorId

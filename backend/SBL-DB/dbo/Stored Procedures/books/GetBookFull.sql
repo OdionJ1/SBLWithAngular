@@ -2,6 +2,6 @@
 	@bookId int
 AS
 
-select bookId, title, dateUploaded, rating, inReadingList, inFav, fileLink, coverLink 
+select bookId, title, dateUploaded, rating, inReadingList, inFav, fileLink, coverImageLink 
 from books 
 where bookId = @bookId
