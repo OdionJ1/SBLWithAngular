@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { BookService } from "src/app/components/book/book.service";
+import { downloadFileFromFirebase } from "src/app/components/book/firebase.util";
 import { Book } from "src/app/data/models/book";
 import { Page } from 'src/app/data/models/page';
 
@@ -35,8 +36,7 @@ export class BookDetailComponent implements OnInit {
             const response = await this.bookService.getBook(id)
             
             if(response.status !== 200){
-                this.invalidId = true
-                return
+                throw response
             }
 
             this.book = Book.createFullBook(response.body)
@@ -45,6 +45,13 @@ export class BookDetailComponent implements OnInit {
 
             this.inFavList = this.book.inFavouriteList;
             this.inReadList = this.book.inReadingList;
+
+            if(this.book.coverImageLink){
+                const url: string = await downloadFileFromFirebase(this.book.coverImageLink)
+                const img = <HTMLElement>document.getElementById(`detailImg${this.book.bookId}`)
+
+                img.setAttribute('src', url)
+            }
 
 
         } catch (error) {

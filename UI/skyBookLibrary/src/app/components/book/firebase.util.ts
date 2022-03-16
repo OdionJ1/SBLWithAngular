@@ -1,5 +1,6 @@
 import firebase from 'firebase/compat/app';
 import { getStorage, ref, uploadBytes, getDownloadURL, UploadResult } from 'firebase/storage';
+import { Book } from 'src/app/data/models/book';
 
 const config = {
     apiKey: "AIzaSyAQJCIB12p0T98aQOYobRRnck-g6xh2blk",
@@ -15,33 +16,22 @@ const firebaseApp = firebase.initializeApp(config)
 const storage = getStorage(firebaseApp)
 
 
-export const uploadFileToFirebase = (file: FileList, id: string): boolean => {
-    const storageRef = ref(storage, `/${id}/${file[0].name}`)
-
-
-    uploadBytes(storageRef, file[0]).then((snapshot: UploadResult) => {
-        console.log(snapshot.ref.fullPath)
-
-        return true
-    }).catch(err => {
-        console.log(err)
-        return false
+export const uploadFileToFirebase = async (file: FileList, userId: string, bookId: number): Promise<string> => {
+    const storageRef = ref(storage, `/${userId}/${bookId}/${file[0].name}`)
+    let fileUrl: string = await uploadBytes(storageRef, file[0]).then((snapshot: UploadResult) => {
+        return snapshot.ref.fullPath
     })
 
-    return false
+    return fileUrl
 }
 
 
-export const downloadFileFromFirebase = () => {
-    const path: string = "33d3c575-c9c3-4d32-9e88-1673dc94830e/Odion Asuelimen.pdf"
+export const downloadFileFromFirebase = async (path: string) => {
+    // const path: string = "33d3c575-c9c3-4d32-9e88-1673dc94830e/Odion Asuelimen.pdf"
 
-    getDownloadURL(ref(storage, path)).then(url => {
-        console.log(url)
+    const url: string = await getDownloadURL(ref(storage, path)).then(url => {
+        return url
     })
+
+    return url
 }
-
-
-
-
-
-//33d3c575-c9c3-4d32-9e88-1673dc94830e/Database Design - 2nd Project (1).pdf"

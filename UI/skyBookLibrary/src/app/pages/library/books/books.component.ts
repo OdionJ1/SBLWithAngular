@@ -11,12 +11,16 @@ export class BookListComponent implements OnInit {
     public searchType: string = "title"
     public searchValue: string
     public books: Book[]
-    public uploadbookModal: boolean = true
+    public uploadbookModal: boolean = false
 
     constructor(private bookService: BookService, private userService: UserService){}
 
     async ngOnInit(){
-        const user = this.userService.getCurrentUser()
-        this.books = await this.bookService.getBooks(<string>user.userId)
+        this.books = await this.bookService.getBooks()
+    }
+
+    async closeUploadModal(): Promise<void>{
+        this.uploadbookModal = false
+        await this.ngOnInit()
     }
 }

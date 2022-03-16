@@ -1,7 +1,8 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 import { FileValidator } from "src/app/common/fileValidator";
 import { BookService } from "src/app/components/book/book.service";
 import { Author } from "src/app/data/models/author";
+import { Book } from "src/app/data/models/book";
 import { Category } from "src/app/data/models/category";
 import { downloadFileFromFirebase } from "../firebase.util";
 
@@ -11,6 +12,7 @@ import { downloadFileFromFirebase } from "../firebase.util";
     styleUrls: ['./upload-book.component.scss']
 })
 export class UploadBookComponent{
+    @Output() uploadCompleted: EventEmitter<any> = new EventEmitter()
     public openAuthorPopover: boolean = false
     public openCategoryPopover: boolean = false
     public selectedCategories: Category[] = []
@@ -21,6 +23,7 @@ export class UploadBookComponent{
     public coverImage: FileList
     public loading: boolean = false
     public title: string = ''
+    public titleExists: boolean = false
     public fileInvalid: boolean
     public coverImageInvalid: boolean
 
@@ -31,15 +34,34 @@ export class UploadBookComponent{
 
         if(FileValidator.isValidEbook(event.target.files)){
             this.bookFile = event.target.files
-            console.log(this.bookFile)
-            this.bookService.uploadBook(this.bookFile)
         } else {
             this.fileInvalid = true
         }
     }
 
-    public submit(event: Event){
+    public async submit(event: Event): Promise<void>{
         event.preventDefault()
+
+        try {
+            this.loading = true
+            this.titleExists = false
+
+            const response = await this.bookService.uploadBook(this.bookFile, this.coverImage, this.getBook())
+            
+            if(response.status !== 200){
+                throw response
+            }
+            this.loading = false
+            this.uploadCompleted.emit()
+            
+        } catch (error: any) {
+            this.loading = false
+            if(error.status === 409){
+                this.titleExists = true
+            } else {
+                console.log(error)
+            }
+        }
         
     }
 
@@ -64,7 +86,7 @@ export class UploadBookComponent{
     }
 
     public formInvalid(): boolean{
-        return !this.title || !this.selectedAuthors.length || !this.selectedCategories.length || !this.bookFile
+        return !this.title || !this.selectedAuthors.length || !this.selectedCategories.length || !this.bookFile || this.fileInvalid || this.coverImageInvalid
     }
 
     preventKeyDown(event: any){
@@ -75,7 +97,11 @@ export class UploadBookComponent{
         event.preventDefault()
     }
 
-    download(){
-        downloadFileFromFirebase()
+    getBook(): Book {
+        let book = new Book;
+        book.title = this.title
+        book.authors = this.selectedAuthors
+        book.categories = this.selectedCategories
+        return book
     }
 }

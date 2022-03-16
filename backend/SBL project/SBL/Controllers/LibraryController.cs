@@ -48,6 +48,28 @@ namespace SBL.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("uploadbook/{userId}")]
+        public HttpResponseMessage UploadBook([FromBody]FullBook book, string userId)
+        {
+            if (userId != null && book != null)
+            {
+                try
+                {
+                    RequestResult<FullBook> result = bookService.UploadBook(book, userId);
+                    return Request.CreateResponse(result.StatusCode, result.Data);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            } 
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
+
         [HttpGet]
         [Route("book/{bookId}")]
         public HttpResponseMessage GetBook(int bookId)

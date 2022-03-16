@@ -19,6 +19,16 @@ namespace SBL.Service.Service
         {
             bookData = new BookData();
         }
+        public RequestResult<FullBook> UploadBook(FullBook book, string userId)
+        {
+            if (bookData.TitleExists(book.Title, userId))
+            {
+                return new RequestResult<FullBook>(HttpStatusCode.Conflict, null);
+            }
+            FullBook newBook = bookData.UploadBook(book, userId);
+
+            return new RequestResult<FullBook>(HttpStatusCode.Created, newBook);
+        }
 
         public IEnumerable<Book> GetBookList(string userId)
         {

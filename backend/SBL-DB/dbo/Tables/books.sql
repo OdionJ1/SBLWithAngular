@@ -5,7 +5,7 @@
     [rating]         INT           NOT NULL,
     [inReadingList]  BIT           NOT NULL,
     [inFav]          BIT           NOT NULL,
-    [fileLink]       VARCHAR (MAX) NOT NULL,
+    [fileLink]       VARCHAR (MAX) NULL,
     [coverImageLink] VARCHAR (MAX) NULL,
     [userId]         VARCHAR (100) NOT NULL,
     CONSTRAINT [PK_books] PRIMARY KEY CLUSTERED ([bookId] ASC),

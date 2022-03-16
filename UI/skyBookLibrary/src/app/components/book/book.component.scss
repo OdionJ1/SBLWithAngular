@@ -2,8 +2,17 @@
 .book {
 
     .img-container {
-        padding: 2.5rem;
+        padding: 2.5rem 2.5rem;
         background-color: whitesmoke;
+        max-height: 10rem;
+
+        &.book-img-container{
+            padding: 1.5rem 2.5rem;
+
+            img{
+                width: 100%;
+            }
+        }
 
         .img {
             width: 100%;

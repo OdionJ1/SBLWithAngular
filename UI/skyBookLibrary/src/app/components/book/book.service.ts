@@ -17,8 +17,9 @@ export class BookService {
         private userService: UserService,
         private route: Router){}
     
-    public async getBooks(userId: string): Promise<Book[]>{
-        const path: string = this.configService.getPath(`library/${userId}`)
+    public async getBooks(): Promise<Book[]>{
+        const user: User = this.userService.getCurrentUser()
+        const path: string = this.configService.getPath(`library/${user.userId}`)
 
         const data = await this.http.get<Book[]>(path)
         .toPromise()
@@ -90,15 +91,27 @@ export class BookService {
         .then(res => console.log(res))
     }
 
-    public async uploadBook(file: FileList): Promise<any> {
+    public async uploadBook(bookFile: FileList, coverImage: FileList, book: Book): Promise<any> {
         const user: User = this.userService.getCurrentUser()
-        uploadFileToFirebase(file, <string>user.userId)
+        const path: string = this.configService.getPath(`library/uploadbook/${user.userId}`)
+        
+        const data = await this.http.post(path, book, {
+            observe: 'response'
+        }).toPromise()
+        .then(async (response) => {
+            if(response.status === 201){
+                const newBook: Book = Book.createFullBook(<IBook>response.body)
+                newBook.fileLink = await uploadFileToFirebase(bookFile, <string>user.userId, newBook.bookId)
+                if(coverImage){
+                    newBook.coverImageLink = await uploadFileToFirebase(coverImage, <string>user.userId, newBook.bookId)
+                }
+                return this.updateBook(newBook)
+            } else {
+                return response
+            }
+        })
+        .catch((err: Error) => err)
 
-        return false
-    }
-
-    public readBook = (): boolean => {
-        downloadFileFromFirebase()
-        return true
+        return data
     }
 }

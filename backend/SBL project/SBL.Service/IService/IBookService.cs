@@ -16,5 +16,6 @@ namespace SBL.Service.IService
         IEnumerable<Book> GetReadingList(string userId);
         void RemoveFromFavourites(int bookId);
         void RemoveFromReadingList(int bookId);
+        RequestResult<FullBook> UploadBook(FullBook book, string userId);
     }
 }

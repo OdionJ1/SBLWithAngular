@@ -64,15 +64,14 @@
     <Folder Include="dbo\Stored Procedures\books" />
     <Folder Include="dbo\Stored Procedures\category" />
     <Folder Include="dbo\Stored Procedures\users" />
-    <Folder Include="Snapshots" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\users.sql" />
     <Build Include="dbo\Tables\books_authors.sql" />
     <Build Include="dbo\Tables\books.sql" />
-    <Build Include="dbo\Tables\authors.sql" />
     <Build Include="dbo\Tables\categories.sql" />
     <Build Include="dbo\Tables\books_categories.sql" />
+    <Build Include="dbo\Tables\authors.sql" />
     <Build Include="dbo\Stored Procedures\author\AuthorNameExists.sql" />
     <Build Include="dbo\Stored Procedures\author\CreateAuthor.sql" />
     <Build Include="dbo\Stored Procedures\author\GetAuthors.sql" />
@@ -92,8 +91,5 @@
     <Build Include="dbo\Stored Procedures\category\GetCategories.sql" />
     <Build Include="dbo\Stored Procedures\users\CreateUser.sql" />
     <Build Include="dbo\Stored Procedures\users\GetUser.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Snapshots\SBL_20220311_08-18-04.dacpac" />
   </ItemGroup>
 </Project>

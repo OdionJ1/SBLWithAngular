@@ -25,17 +25,40 @@ namespace SBL.Data.DAO
         private string GetFavouriteBooksSP = "GetFavouriteBooks";
         private string GetReadingListSP = "GetReadingList";
 
-        public void UploadBook(FullBook book, string userId)
+        public FullBook UploadBook(FullBook book, string userId)
         {
             IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
             {
                 new SqlParameter("title", book.Title),
-                new SqlParameter("fileLink", book.FileLink),
-                new SqlParameter("coverImageLink", book.CoverImageLink),
                 new SqlParameter("userId", userId)
             };
 
-            Helper.Execute(CreateBookSP, paramList);
+            DataRow row = Helper.Execute(CreateBookSP, paramList).Rows[0];
+
+            FullBook newBook = new FullBook()
+            {
+                BookId = (int)row["bookId"],
+                Title = (string)row["title"],
+                Rating = (int)row["rating"],
+                DateUploaded = (DateTime)row["dateUploaded"],
+                InReadingList = (bool)row["inReadingList"],
+                InFavouriteList = (bool)row["inFav"],
+            };
+
+            foreach (Category category in book.Categories)
+            {
+                CreateBookCategory(newBook.BookId, (int)category.CategoryId);
+            }
+
+            foreach (Author author in book.Authors)
+            {
+                CreateBookAuthor(newBook.BookId, (int)author.AuthorId);
+            }
+
+            newBook.Authors = GetAuthorsForBook(newBook.BookId);
+            newBook.Categories = GetCategoriesForBook(newBook.BookId);
+
+            return newBook;
         }
 
         public void CreateBookCategory(int bookId, int categoryId)
@@ -96,7 +119,7 @@ namespace SBL.Data.DAO
                     DateUploaded = (DateTime)row["dateUploaded"],
                     InReadingList = (bool)row["inReadingList"],
                     InFavouriteList = (bool)row["inFav"],
-                    FileLink = (string)row["fileLink"],
+                    FileLink = row["fileLink"] is DBNull ? null : (string)row["fileLink"],
                     CoverImageLink = row["coverImageLink"] is DBNull? null : (string)row["coverImageLink"]
                 };
 
@@ -116,12 +139,11 @@ namespace SBL.Data.DAO
             {
                 new SqlParameter("bookId", book.BookId),
                 new SqlParameter("title", book.Title),
-                new SqlParameter("dateUploaded", book.DateUploaded),
                 new SqlParameter("rating", book.Rating),
                 new SqlParameter("inReadingList", book.InReadingList),
                 new SqlParameter("inFav", book.InFavouriteList),
                 new SqlParameter("fileLink", book.FileLink),
-                new SqlParameter("coverLink", book.CoverImageLink)
+                new SqlParameter("coverImageLink", book.CoverImageLink)
             };
 
             Helper.Execute(UpdateBookSP, paramList);

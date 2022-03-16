@@ -30,5 +30,5 @@
 </div>
 
 <app-modal (closeModal)="uploadbookModal = false" *ngIf="uploadbookModal">
-    <app-upload-book></app-upload-book>
+    <app-upload-book (uploadCompleted)="closeUploadModal()"></app-upload-book>
 </app-modal>

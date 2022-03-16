@@ -1,6 +1,6 @@
 <div class="book">
-    <div class="img-container">
-        <img class="img" src="assets/images/book/book.png" alt="book-image" srcset="">
+    <div [class.book-img-container]="book.coverImageLink" class="img-container">
+        <img [id]="'img' + book.bookId" class="img" src="assets/images/book/book.png" alt="book-image" srcset="">
     </div>
     <p [routerLink]="['/library/book', book.bookId]" class="title">{{book.title}}</p>
     <p class="author">{{authors}}</p>

@@ -33,7 +33,9 @@ export class RegisterFormComponent {
         this.loading = true
         try {
             const response = await this.userService.createUser(this.getUser(formInput))
+            console.log(response)
             if(response.status !== 201){
+                console.log(response)
                 throw response
             }
             
