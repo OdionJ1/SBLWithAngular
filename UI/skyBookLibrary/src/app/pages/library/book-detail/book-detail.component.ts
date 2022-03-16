@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { BookService } from "src/app/components/book/book.service";
 import { downloadFileFromFirebase } from "src/app/components/book/firebase.util";
 import { Book } from "src/app/data/models/book";
-import { Page } from 'src/app/data/models/page';
 
 
 @Component({
@@ -76,5 +75,10 @@ export class BookDetailComponent implements OnInit {
         await this.bookService.updateBook(this.book)
         this.isRatingModalOpen = false
         await this.ngOnInit()
+    }
+
+    public async readBook(){
+        const url: string = await downloadFileFromFirebase(this.book.fileLink)
+        window.open(url, '_blank')
     }
 }

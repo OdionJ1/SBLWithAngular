@@ -10,7 +10,7 @@
     <main *ngIf="book">
         <div class="img-read-button">
             <img class="image" src="assets/images/book/book2.jpg" [id]="'detailImg'+book.bookId" alt="Book-image" [title]="book.title">
-            <button class="read-button">Read</button>
+            <button class="read-button" (click)="readBook()">Read</button>
         </div>
 
         <div class="details">
