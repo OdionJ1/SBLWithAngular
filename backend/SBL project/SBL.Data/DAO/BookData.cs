@@ -24,6 +24,7 @@ namespace SBL.Data.DAO
         private string TitleExistsSP = "TitleExists";
         private string GetFavouriteBooksSP = "GetFavouriteBooks";
         private string GetReadingListSP = "GetReadingList";
+        private string DeleteBookSP = "DeleteBook";
 
         public FullBook UploadBook(FullBook book, string userId)
         {
@@ -164,6 +165,16 @@ namespace SBL.Data.DAO
                 return true;
             }
             return false;
+        }
+
+        public void DeleteBook(int bookId)
+        {
+            IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
+            {
+                new SqlParameter("bookId", bookId)
+            };
+
+            Helper.Execute(DeleteBookSP, paramList);
         }
         
         private IEnumerable<Author> GetAuthorsForBook(int bookId)

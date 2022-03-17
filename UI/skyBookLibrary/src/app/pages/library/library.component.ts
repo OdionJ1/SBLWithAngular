@@ -27,6 +27,10 @@ export class LibraryComponent implements OnInit {
             }
 
             this.user = User.create(response.body)
+            
+            if(currentUser.firstName !== this.user.firstName || currentUser.lastName !== this.user.lastName || currentUser.email !== this.user.email){
+                throw new Error
+            }
 
         } catch (err: any){
             this.userService.logout()

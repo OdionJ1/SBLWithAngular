@@ -17,7 +17,7 @@
             <h1 class="title">{{book.title}} <i tabindex="0" class="fa fa-edit edit-icon" title="edit"></i></h1>
             <p class="authors">by: {{authors}}</p>
             <p class="categories">{{categories}}</p>
-            <app-stars title="Edit Rating" (click)="isRatingModalOpen = true" class="rating" [rating]='book.rating'></app-stars>
+            <app-stars title="Edit Rating" (click)="ratingModalOpen = true" class="rating" [rating]='book.rating'></app-stars>
 
             <div class="actions">
                 <button (click)="addToReadingList()" [disabled]="inReadList" class="read">
@@ -30,7 +30,7 @@
                     {{inFavList? 'Added' : 'Add'}} to favourite list
                 </button>
     
-                <button class="delete">
+                <button (click)="deleteModalOpen = true" class="delete">
                     <i class="fa fa-trash"></i> 
                     Delete book
                 </button>
@@ -41,6 +41,10 @@
 </div>
 
 
-<app-modal (closeModal)="isRatingModalOpen = false" *ngIf="isRatingModalOpen">
+<app-modal (closeModal)="ratingModalOpen = false" *ngIf="ratingModalOpen">
     <app-edit-rating (rate)="rateBook($event)" [bookTitle]="book.title" [rating]='book.rating'></app-edit-rating>
+</app-modal>
+
+<app-modal [closeOnClickOutside]="true" (closeModal)="deleteModalOpen = false" *ngIf="deleteModalOpen">
+    <app-delete-book [book]="book"></app-delete-book>
 </app-modal>

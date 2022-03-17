@@ -17,7 +17,8 @@ export class BookDetailComponent implements OnInit {
     public categories: string
     public inFavList: boolean
     public inReadList: boolean
-    public isRatingModalOpen: boolean = false
+    public ratingModalOpen: boolean = false
+    public deleteModalOpen: boolean = false
 
     constructor(private bookService: BookService, private route: ActivatedRoute){}
 
@@ -73,7 +74,7 @@ export class BookDetailComponent implements OnInit {
     public async rateBook(rating: number){
         this.book.rating = rating
         await this.bookService.updateBook(this.book)
-        this.isRatingModalOpen = false
+        this.ratingModalOpen = false
         await this.ngOnInit()
     }
 

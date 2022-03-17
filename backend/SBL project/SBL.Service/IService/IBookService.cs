@@ -17,5 +17,6 @@ namespace SBL.Service.IService
         void RemoveFromFavourites(int bookId);
         void RemoveFromReadingList(int bookId);
         RequestResult<FullBook> UploadBook(FullBook book, string userId);
+        RequestResult<bool> DeleteBook(int bookId);
     }
 }

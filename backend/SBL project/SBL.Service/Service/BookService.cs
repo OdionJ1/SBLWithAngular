@@ -57,6 +57,12 @@ namespace SBL.Service.Service
             return new RequestResult<bool>(HttpStatusCode.OK, true);
         }
 
+        public RequestResult<bool> DeleteBook(int bookId)
+        {
+            bookData.DeleteBook(bookId);
+            return new RequestResult<bool>(HttpStatusCode.OK, true);
+        }
+
         public IEnumerable<Book> GetFavouriteBooks(string userId)
         {
             return bookData.GetFavouriteBooks(userId);

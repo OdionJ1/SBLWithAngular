@@ -42,7 +42,7 @@ export class BookService {
 
     public async updateBook(book: Book): Promise<any> {
         const user: User = this.userService.getCurrentUser()
-        const path: string = this.configService.getPath(`library/book/update/${user.userId}`)
+        const path: string = this.configService.getPath(`library/updatebook/${user.userId}`)
 
         const data = await this.http.put(path, book, {
             observe: 'response'

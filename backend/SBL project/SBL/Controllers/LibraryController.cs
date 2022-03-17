@@ -70,6 +70,28 @@ namespace SBL.Controllers
             }
         }
 
+        [HttpDelete]
+        [Route("deletebook/{bookId}")]
+        public HttpResponseMessage DeleteBook(int bookId)
+        {
+            if (bookId > 0)
+            {
+                try
+                {
+                    RequestResult<bool> result = bookService.DeleteBook(bookId);
+                    return Request.CreateResponse(result.StatusCode, result.Data);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
+
         [HttpGet]
         [Route("book/{bookId}")]
         public HttpResponseMessage GetBook(int bookId)
@@ -93,7 +115,7 @@ namespace SBL.Controllers
         }
 
         [HttpPut]
-        [Route("book/update/{userId}")]
+        [Route("updatebook/{userId}")]
         public HttpResponseMessage UpdateBook([FromBody] FullBook book, string userId)
         {
             if (book != null && userId != null)

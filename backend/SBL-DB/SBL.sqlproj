@@ -91,5 +91,6 @@
     <Build Include="dbo\Stored Procedures\category\GetCategories.sql" />
     <Build Include="dbo\Stored Procedures\users\CreateUser.sql" />
     <Build Include="dbo\Stored Procedures\users\GetUser.sql" />
+    <Build Include="dbo\Stored Procedures\books\DeleteBook.sql" />
   </ItemGroup>
 </Project>

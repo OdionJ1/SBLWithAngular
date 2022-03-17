@@ -19,6 +19,7 @@ import { CategoryPopoverComponent } from "src/app/components/book/upload-book/ca
 import { CategoryService } from "src/app/components/book/upload-book/categories-popover/category.service";
 import { AuthorPopoverComponent } from "src/app/components/book/upload-book/authors-popover/authors-popover.component";
 import { AuthorService } from "src/app/components/book/upload-book/authors-popover/author.service";
+import { DeleteBookComponent } from "src/app/components/book/delete-book/delete-book.component";
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { AuthorService } from "src/app/components/book/upload-book/authors-popov
         BookComponent,
         BooksContainerComponent,
         BookDetailComponent,
-        EditRatingComponent
+        EditRatingComponent,
+        DeleteBookComponent
     ],
     imports: [
         SharedModule,

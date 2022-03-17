@@ -18,5 +18,6 @@ namespace SBL.Data.IDAO
         FullBook UploadBook(FullBook book, string userId);
         void CreateBookCategory(int bookId, int categoryId);
         void CreateBookAuthor(int bookId, int authorId);
+        void DeleteBook(int bookId);
     }
 }
