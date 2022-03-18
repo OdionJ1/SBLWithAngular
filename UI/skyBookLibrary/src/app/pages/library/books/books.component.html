@@ -20,12 +20,12 @@
                 <label for="author">Author</label>
             </div>
             
-            <input class="searchInput" placeholder="Search..." type="text" (ngModel)='searchValue'>
+            <input class="searchInput" placeholder="Search..." type="text" [(ngModel)]='searchValue'>
         </div>
 
         <hr />
 
-        <app-books-container [books]="books" ></app-books-container>
+        <app-books-container [books]="searchedBooks" ></app-books-container>
     </main>
 </div>
 
