@@ -3,3 +3,58 @@
 hr {
     margin: 0.5rem 0;
 }
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+
+    button{
+        padding: 0.4rem 0.7rem;
+        border: 1px solid transparent;
+        color: #ffffff;
+
+        &.no-btn {
+            background-color: #b4b2ad;
+            border-radius: 4px;
+    
+            &:hover {
+                cursor: pointer;
+                background-color: #7c7b77;
+            }
+    
+            &:active {
+                background-color: #b1aca0;
+            }
+    
+            &:focus {
+                outline: 5px auto -webkit-focus-ring-color;
+                outline-offset: -2px;
+            }
+        }
+        
+        &.yes-btn{
+            background-color: #df4444;
+            border-radius: 4px;
+
+            i{
+                font-size: 1rem;
+            }
+    
+            &:hover {
+                cursor: pointer;
+                background-color: #be6666;
+            }
+    
+            &:active {
+                background-color: #a86c6c;
+            }
+    
+            &:focus {
+                outline: 5px auto -webkit-focus-ring-color;
+                outline-offset: -2px;
+            }
+        }
+    }
+}

@@ -12,7 +12,7 @@ export class UserService {
     constructor(
         private configService: ConfigService,
         private http: HttpClient,
-        private route: Router){}
+        private router: Router){}
 
     public async createUser(user: User): Promise<any> {
         const path: string = this.configService.getPath("account/register")
@@ -37,7 +37,7 @@ export class UserService {
 
     public logout(): void {
         localStorage.removeItem("currentUser")
-        this.route.navigate(['/home/login'])
+        this.router.navigate(['/home/login'])
     }
 
     public async login(email: string, password: string): Promise<any> {

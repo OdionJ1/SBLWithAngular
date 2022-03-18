@@ -53,7 +53,6 @@ export class BookDetailComponent implements OnInit {
                 img.setAttribute('src', url)
             }
 
-
         } catch (error) {
             this.invalidId = true
         }

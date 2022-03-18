@@ -9,11 +9,11 @@ import { UserService } from "../../components/user/user.service";
 })
 export class HomePageGuard implements CanActivate {
 
-    constructor(private route: Router, private userService: UserService){}
+    constructor(private router: Router, private userService: UserService){}
     
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
         if(!!this.userService.getCurrentUser()){
-            this.route.navigate(["/welcome"])
+            this.router.navigate(["/welcome"])
             return false
         }
         return true

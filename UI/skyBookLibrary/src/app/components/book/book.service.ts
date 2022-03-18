@@ -5,7 +5,7 @@ import { ConfigService } from "src/app/common/api/config.service";
 import { Book, IBook } from "src/app/data/models/book";
 import { User } from "src/app/data/models/user";
 import { UserService } from "../user/user.service";
-import { downloadFileFromFirebase, uploadFileToFirebase } from "./firebase.util";
+import { deleteFileFromFireBase, downloadFileFromFirebase, uploadFileToFirebase } from "./firebase.util";
 
 
 @Injectable()
@@ -89,6 +89,17 @@ export class BookService {
         await this.http.put(path, null)
         .toPromise()
         .then(res => console.log(res))
+    }
+
+    public async deleteBook(book: Book): Promise<void>{
+        await deleteFileFromFireBase(book.fileLink)
+        if(book.coverImageLink){
+            await deleteFileFromFireBase(book.coverImageLink)
+        }
+        const path: string = this.configService.getPath(`library/deletebook/${book.bookId}`)
+        await this.http.delete(path)
+        .toPromise()
+        .catch((err: Error) => console.log(err))
     }
 
     public async uploadBook(bookFile: FileList, coverImage: FileList, book: Book): Promise<any> {

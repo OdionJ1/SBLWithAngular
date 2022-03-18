@@ -46,5 +46,5 @@
 </app-modal>
 
 <app-modal [closeOnClickOutside]="true" (closeModal)="deleteModalOpen = false" *ngIf="deleteModalOpen">
-    <app-delete-book [book]="book"></app-delete-book>
+    <app-delete-book (closeModal)="deleteModalOpen = false" [book]="book"></app-delete-book>
 </app-modal>

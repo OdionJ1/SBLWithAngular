@@ -1,5 +1,5 @@
 import firebase from 'firebase/compat/app';
-import { getStorage, ref, uploadBytes, getDownloadURL, UploadResult } from 'firebase/storage';
+import { getStorage, ref, uploadBytes, getDownloadURL, UploadResult, deleteObject } from 'firebase/storage';
 import { Book } from 'src/app/data/models/book';
 
 const config = {
@@ -34,4 +34,8 @@ export const downloadFileFromFirebase = async (path: string) => {
     })
 
     return url
+}
+
+export const deleteFileFromFireBase = async (path: string): Promise<void> => {
+    await deleteObject(ref(storage, path))
 }
