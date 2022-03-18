@@ -8,7 +8,7 @@
 
     <div class="actions">
         <button (click)="closeModal.emit()" class="no-btn">No</button>
-        <button (click)="deleteBook()" class="yes-btn">Yes&nbsp;<i class="fa fa-trash"></i></button>
+        <button [disabled]="loading" (click)="deleteBook()" class="yes-btn">Yes&nbsp;<i [ngClass]="loading? 'fa fa-spinner fa-pulse' : 'fa fa-trash'"></i></button>
     </div>
 
 </ng-container>

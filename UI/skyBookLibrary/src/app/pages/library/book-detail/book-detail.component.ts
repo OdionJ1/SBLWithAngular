@@ -19,6 +19,7 @@ export class BookDetailComponent implements OnInit {
     public inReadList: boolean
     public ratingModalOpen: boolean = false
     public deleteModalOpen: boolean = false
+    public editModalOpen: boolean = false
 
     constructor(private bookService: BookService, private route: ActivatedRoute){}
 
@@ -80,5 +81,10 @@ export class BookDetailComponent implements OnInit {
     public async readBook(){
         const url: string = await downloadFileFromFirebase(this.book.fileLink)
         window.open(url, '_blank')
+    }
+
+    public async closeUpdateModal(): Promise<void>{
+        this.editModalOpen = false
+        await this.ngOnInit()
     }
 }

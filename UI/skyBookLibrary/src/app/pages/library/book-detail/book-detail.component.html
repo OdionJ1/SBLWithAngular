@@ -14,7 +14,7 @@
         </div>
 
         <div class="details">
-            <h1 class="title">{{book.title}} <i tabindex="0" class="fa fa-edit edit-icon" title="edit"></i></h1>
+            <h1 class="title">{{book.title}} <i tabindex="0" (click)="editModalOpen = true" class="fa fa-edit edit-icon" title="edit"></i></h1>
             <p class="authors">by: {{authors}}</p>
             <p class="categories">{{categories}}</p>
             <app-stars title="Edit Rating" (click)="ratingModalOpen = true" class="rating" [rating]='book.rating'></app-stars>
@@ -47,4 +47,8 @@
 
 <app-modal [closeOnClickOutside]="true" (closeModal)="deleteModalOpen = false" *ngIf="deleteModalOpen">
     <app-delete-book (closeModal)="deleteModalOpen = false" [book]="book"></app-delete-book>
+</app-modal>
+
+<app-modal (closeModal)="editModalOpen = false" *ngIf="editModalOpen">
+    <app-upload-book (updatedCompleted)="closeUpdateModal()" [bookToEdit]="book"></app-upload-book>
 </app-modal>

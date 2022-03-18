@@ -1,18 +1,21 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FileValidator } from "src/app/common/fileValidator";
 import { BookService } from "src/app/components/book/book.service";
 import { Author } from "src/app/data/models/author";
-import { Book } from "src/app/data/models/book";
+import { Book, IBook } from "src/app/data/models/book";
 import { Category } from "src/app/data/models/category";
-import { downloadFileFromFirebase } from "../firebase.util";
+import { UserService } from "../../user/user.service";
+import { deleteFileFromFireBase, downloadFileFromFirebase, uploadFileToFirebase } from "../firebase.util";
 
 @Component({
     selector: 'app-upload-book',
     templateUrl: './upload-book.component.html',
     styleUrls: ['./upload-book.component.scss']
 })
-export class UploadBookComponent{
+export class UploadBookComponent implements OnInit{
     @Output() uploadCompleted: EventEmitter<any> = new EventEmitter()
+    @Output() updatedCompleted: EventEmitter<any> = new EventEmitter()
+    @Input() bookToEdit: Book;
     public openAuthorPopover: boolean = false
     public openCategoryPopover: boolean = false
     public selectedCategories: Category[] = []
@@ -27,7 +30,13 @@ export class UploadBookComponent{
     public fileInvalid: boolean
     public coverImageInvalid: boolean
 
-    constructor(private bookService: BookService){}
+    constructor(private bookService: BookService, private userService: UserService){}
+
+    public ngOnInit(): void {
+        if(this.bookToEdit){
+            this.setValuesToUpdate(this.bookToEdit)
+        }
+    }
 
     selectedFile(event: any) {
         this.fileInvalid = false
@@ -41,18 +50,30 @@ export class UploadBookComponent{
 
     public async submit(event: Event): Promise<void>{
         event.preventDefault()
-
         try {
             this.loading = true
             this.titleExists = false
-
-            const response = await this.bookService.uploadBook(this.bookFile, this.coverImage, this.getBook())
             
-            if(response.status !== 200){
-                throw response
+            if(this.bookToEdit){
+                const updatedBook: Book = await this.setUpdatedValues()
+                const response = await this.bookService.updateBook(updatedBook)
+
+                if(response.status !== 200){
+                    throw response
+                }
+
+                this.loading = false
+                this.updatedCompleted.emit()
+
+            } else {
+               const response = await this.bookService.uploadBook(this.bookFile, this.coverImage, this.getBook())
+               if(response.status !== 200){
+                   throw response
+               }
+               this.loading = false
+               this.uploadCompleted.emit()
             }
-            this.loading = false
-            this.uploadCompleted.emit()
+            
             
         } catch (error: any) {
             this.loading = false
@@ -85,8 +106,12 @@ export class UploadBookComponent{
         this.selectedAuthorsStr = this.selectedAuthors.map(author => author.authorName).join(', ')
     }
 
-    public formInvalid(): boolean{
-        return !this.title || !this.selectedAuthors.length || !this.selectedCategories.length || !this.bookFile || this.fileInvalid || this.coverImageInvalid
+    public formInvalid(): boolean {
+        if(this.bookToEdit){
+            return !this.title || !this.selectedAuthors.length || !this.selectedCategories.length || this.fileInvalid || this.coverImageInvalid
+        } else {
+            return !this.title || !this.selectedAuthors.length || !this.selectedCategories.length || !this.bookFile || this.fileInvalid || this.coverImageInvalid
+        }
     }
 
     preventKeyDown(event: any){
@@ -98,10 +123,39 @@ export class UploadBookComponent{
     }
 
     getBook(): Book {
-        let book = new Book;
+        let book = new Book();
         book.title = this.title
         book.authors = this.selectedAuthors
         book.categories = this.selectedCategories
+        return book
+    }
+
+    private setValuesToUpdate(book: Book){
+        this.title = book.title
+        this.selectedAuthors = book.authors
+        this.selectedAuthorsStr = book.authors.map(author => author.authorName).join(', ')
+        this.selectedCategories = book.categories
+        this.selectedCategoriesStr = book.categories.map(cat => cat.categoryName).join(', ')
+    }
+
+    private async setUpdatedValues(): Promise<Book>{
+        const book: Book = <IBook>{...this.bookToEdit}
+        book.title = this.title
+        book.authors = this.selectedAuthors
+        book.categories = this.selectedCategories
+
+        if(this.bookFile){
+            const userId: string = <string>this.userService.getCurrentUser().userId
+            await deleteFileFromFireBase(book.fileLink)
+            book.fileLink = await uploadFileToFirebase(this.bookFile, userId, book.bookId)
+        }
+
+        if(this.coverImage){
+            const userId: string = <string>this.userService.getCurrentUser().userId
+            await deleteFileFromFireBase(book.coverImageLink)
+            book.coverImageLink = await uploadFileToFirebase(this.coverImage, userId, book.bookId)
+        }
+
         return book
     }
 }

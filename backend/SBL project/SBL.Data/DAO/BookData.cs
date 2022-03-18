@@ -17,6 +17,7 @@ namespace SBL.Data.DAO
         private string CreateBookSP = "CreateBook";
         private string CreateBook_Author = "CreateBook_Author";
         private string CreateBook_Category = "CreateBook_Category";
+        private string DeleteBook_Authors_n_CategoriesSP = "DeleteBook_Authors_n_Categories";
         private string GetBooksAuthorsSP = "GetBooks_Authors";
         private string GetBooksCategoriesSP = "GetBooks_Categories";
         private string GetBookSP = "GetBookFull";
@@ -136,6 +137,18 @@ namespace SBL.Data.DAO
 
         public void UpdateBook(FullBook book)
         {
+            DeleteBookAuthorsAndCategories(book.BookId);
+
+            foreach (Category category in book.Categories)
+            {
+                CreateBookCategory(book.BookId, (int)category.CategoryId);
+            }
+
+            foreach (Author author in book.Authors)
+            {
+                CreateBookAuthor(book.BookId, (int)author.AuthorId);
+            }
+
             IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
             {
                 new SqlParameter("bookId", book.BookId),
@@ -177,6 +190,16 @@ namespace SBL.Data.DAO
             Helper.Execute(DeleteBookSP, paramList);
         }
         
+        private void DeleteBookAuthorsAndCategories(int bookId)
+        {
+            IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
+            {
+                new SqlParameter("bookId", bookId)
+            };
+
+            Helper.Execute(DeleteBook_Authors_n_CategoriesSP, paramList);
+        }
+
         private IEnumerable<Author> GetAuthorsForBook(int bookId)
         {
             IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
