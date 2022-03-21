@@ -1,0 +1,8 @@
+@import '../../../common/styles/text/header';
+
+.categories-page{
+
+    h1{
+        @include h1Styles;
+    }
+}

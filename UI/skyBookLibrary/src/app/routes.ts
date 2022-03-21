@@ -13,6 +13,7 @@ import { PageNotFoundComponent } from "./pages/pageNotFound/page-not-found.compo
 import { WelcomeComponent } from "./pages/welcome/welcome.component";
 import { WelcomePageGuard } from "./pages/welcome/welcome.guard";
 import { UploadBookComponent } from "./components/book/upload-book/upload-book.component";
+import { CategoriesComponent } from "./pages/library/categories/categories.component";
 
 
 //Home page child routes:
@@ -27,7 +28,8 @@ const libraryRoutes: Routes = [
     { path: '', component: BookListComponent},
     { path: 'book/:id', component: BookDetailComponent },
     { path: 'favourites', component: FavouritesComponent},
-    { path: 'readinglist', component: ReadingListComponent}
+    { path: 'readinglist', component: ReadingListComponent},
+    { path: 'categories', component: CategoriesComponent}
 ]
 //
 

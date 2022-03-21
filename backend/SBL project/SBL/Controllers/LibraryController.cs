@@ -248,6 +248,72 @@ namespace SBL.Controllers
         }
 
         [HttpGet]
+        [Route("booksincategory/{categoryId}")]
+        public IHttpActionResult GetBooksInCategory(int categoryId)
+        {
+            if (categoryId > 0)
+            {
+                try
+                {
+                    IEnumerable<Book> books = categoryService.GetBooksInCategory(categoryId);
+                    return Ok(books);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                return StatusCode(HttpStatusCode.BadRequest);
+            }
+        }
+
+        [HttpDelete]
+        [Route("deletecategory/{categoryId}")]
+        public HttpResponseMessage DeleteCategory(int categoryId)
+        {
+            if (categoryId > 0)
+            {
+                try
+                {
+                    RequestResult<bool> result = categoryService.DeleteCategory(categoryId);
+                    return Request.CreateResponse(result.StatusCode, result.Data);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
+
+        [HttpPut]
+        [Route("updatecategory/{userId}")]
+        public HttpResponseMessage UpdateCategory([FromBody]Category category, string userId)
+        {
+            if (category.CategoryId != null && category.CategoryName != null && userId != null )
+            {
+                try
+                {
+                    RequestResult<bool> result = categoryService.UpdateCategory(category, userId);
+                    return Request.CreateResponse(result.StatusCode, result.Data);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
+
+        [HttpGet]
         [Route("getcategories/{userId}")]
         public IHttpActionResult GetCategories(string userId)
         {
@@ -292,6 +358,72 @@ namespace SBL.Controllers
             else
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
+
+        [HttpPut]
+        [Route("updateauthor/{userId}")]
+        public HttpResponseMessage UpdateAuthor([FromBody]Author author, string userId)
+        {
+            if (author.AuthorId != null && author.AuthorName != null && userId != null)
+            {
+                try
+                {
+                    RequestResult<bool> result = authorService.UpdateAuthor(author, userId);
+                    return Request.CreateResponse(result.StatusCode, result.Data);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
+
+        [HttpDelete]
+        [Route("deleteauthor/{authorId}")]
+        public HttpResponseMessage DeleteAuthor(int authorId)
+        {
+            if (authorId > 0)
+            {
+                try
+                {
+                    RequestResult<bool> result = authorService.DeleteAuthor(authorId);
+                    return Request.CreateResponse(result.StatusCode, result.Data);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
+
+        [HttpGet]
+        [Route("booksforauthor/{authorId}")]
+        public IHttpActionResult GetBooksForAuthor(int authorId)
+        {
+            if (authorId > 0)
+            {
+                try
+                {
+                    IEnumerable<Book> books = authorService.GetBooksForAuthor(authorId);
+                    return Ok(books);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                return StatusCode(HttpStatusCode.BadRequest);
             }
         }
 

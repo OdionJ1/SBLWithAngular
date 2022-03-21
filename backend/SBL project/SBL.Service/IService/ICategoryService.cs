@@ -11,5 +11,8 @@ namespace SBL.Service.IService
     {
         RequestResult<bool> CreateCategory(Category category, string userId);
         IEnumerable<Category> GetCategories(string userId);
+        RequestResult<bool> UpdateCategory(Category category, string userId);
+        RequestResult<bool> DeleteCategory(int categoryId);
+        IEnumerable<Book> GetBooksInCategory(int categoryId);
     }
 }

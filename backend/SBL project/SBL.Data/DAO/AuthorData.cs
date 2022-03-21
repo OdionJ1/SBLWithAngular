@@ -15,7 +15,9 @@ namespace SBL.Data.IDAO
     {
         private string GetAuthorsSP = "GetAuthors";
         private string CreateAuthorSP = "CreateAuthor";
-        private string AuthorNameExists = "AuthorNameExists";
+        private string AuthorNameExistsSP = "AuthorNameExists";
+        private string DeleteAuthorSP = "DeleteAuthor";
+        private string UpdateAuthorSP = "UpdateAuthor";
 
 
         public void CreateAuthor(Author author, string userId)
@@ -27,6 +29,27 @@ namespace SBL.Data.IDAO
             };
 
             Helper.Execute(CreateAuthorSP, paramList);
+        }
+
+        public void UpdateAuthor(Author author)
+        {
+            IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
+            {
+                new SqlParameter("authorId", author.AuthorId),
+                new SqlParameter("authorName", author.AuthorName),
+            };
+
+            Helper.Execute(UpdateAuthorSP, paramList);
+        }
+
+        public void DeleteAuthor(int authorId)
+        {
+            IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
+            {
+                new SqlParameter("authorId", authorId)
+            };
+
+            Helper.Execute(DeleteAuthorSP, paramList);
         }
 
         public IEnumerable<Author> GetAuthors(string userId)
@@ -56,16 +79,12 @@ namespace SBL.Data.IDAO
         {
             IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
             {
+                new SqlParameter("authorId", author.AuthorId),
                 new SqlParameter("authorName", author.AuthorName),
                 new SqlParameter("userId", userId)
             };
 
-            if (author.AuthorId != null)
-            {
-                paramList.ToList().Add(new SqlParameter("authorId", author.AuthorId));
-            }
-
-            DataTable data = Helper.Execute(AuthorNameExists, paramList);
+            DataTable data = Helper.Execute(AuthorNameExistsSP, paramList);
 
             if (data.Rows.Count > 0)
             {

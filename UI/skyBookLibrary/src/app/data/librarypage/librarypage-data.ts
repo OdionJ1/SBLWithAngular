@@ -3,7 +3,7 @@ export const libraryNavArr: ILibraryNavLink[] = [
     { value: "Favourites", route: '/library/favourites' },
     { value: "Reading List", route: '/library/readinglist' },
     { value: "Authors", route: '' },
-    { value: "Categories", route: '' },
+    { value: "Categories", route: '/library/categories' },
     { value: "Search Google Books", route: ''}
 ]
 

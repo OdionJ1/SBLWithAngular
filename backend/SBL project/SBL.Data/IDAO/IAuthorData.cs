@@ -12,5 +12,7 @@ namespace SBL.Data.DAO
         IEnumerable<Author> GetAuthors(string userId);
         void CreateAuthor(Author author, string userId);
         bool NameExists(Author author, string userId);
+        void UpdateAuthor(Author author);
+        void DeleteAuthor(int authorId);
     }
 }

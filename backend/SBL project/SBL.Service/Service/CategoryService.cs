@@ -14,9 +14,11 @@ namespace SBL.Service.Service
     public class CategoryService : ICategoryService
     {
         private ICategoryData categoryData;
+        private IBookData bookData;
 
         public CategoryService()
         {
+            bookData = new BookData();
             categoryData = new CategoryData();
         }
 
@@ -33,6 +35,31 @@ namespace SBL.Service.Service
             }
             categoryData.CreateCategory(category, userId);
             return new RequestResult<bool>(HttpStatusCode.OK, true);
+        }
+
+        public RequestResult<bool> UpdateCategory(Category category, string userId)
+        {
+            if (categoryData.NameExists(category, userId))
+            {
+                return new RequestResult<bool>(HttpStatusCode.Conflict, false);
+            }
+            categoryData.UpdateCategory(category);
+            return new RequestResult<bool>(HttpStatusCode.OK, true);
+        }
+
+        public RequestResult<bool> DeleteCategory(int categoryId)
+        {
+            if (GetBooksInCategory(categoryId).Count() > 0)
+            {
+                return new RequestResult<bool>(HttpStatusCode.Conflict, false);
+            }
+            categoryData.DeleteCategory(categoryId);
+            return new RequestResult<bool>(HttpStatusCode.OK, true);
+        }
+
+        public IEnumerable<Book> GetBooksInCategory(int categoryId)
+        {
+            return bookData.GetBooksInCategory(categoryId);
         }
     }
 }

@@ -19,5 +19,7 @@ namespace SBL.Data.IDAO
         void CreateBookCategory(int bookId, int categoryId);
         void CreateBookAuthor(int bookId, int authorId);
         void DeleteBook(int bookId);
+        IEnumerable<Book> GetBooksInCategory(int categoryId);
+        IEnumerable<Book> GetBooksForAuthor(int authorId);
     }
 }

@@ -16,6 +16,8 @@ namespace SBL.Data.DAO
         private string CreateCategorySP = "CreateCategory";
         private string GetCategorySP = "GetCategories";
         private string CategoryNameExistsSP = "CategoryNameExists";
+        private string UpdateCategorySP = "UpdateCategory";
+        private string DeleteCategorySP = "DeleteCategory";
 
         public void CreateCategory(Category category, string userId)
         {
@@ -26,6 +28,16 @@ namespace SBL.Data.DAO
             };
 
             Helper.Execute(CreateCategorySP, paramList);
+        }
+
+        public void DeleteCategory(int categoryId)
+        {
+            IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
+            {
+                new SqlParameter("categoryId", categoryId)
+            };
+
+            Helper.Execute(DeleteCategorySP, paramList);
         }
 
         public IEnumerable<Category> GetCategories(string userId)
@@ -57,14 +69,10 @@ namespace SBL.Data.DAO
         {
             IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
             {
+                new SqlParameter("categoryId", category.CategoryId),
                 new SqlParameter("categoryName", category.CategoryName),
                 new SqlParameter("userId", userId)
             };
-
-            if (category.CategoryId != null)
-            {
-                paramList.ToList().Add(new SqlParameter("categoryId", category.CategoryId));
-            }
 
             DataTable data = Helper.Execute(CategoryNameExistsSP, paramList);
 
@@ -74,6 +82,17 @@ namespace SBL.Data.DAO
             }
 
             return false;
+        }
+
+        public void UpdateCategory(Category category)
+        {
+            IEnumerable<SqlParameter> paramlist = new List<SqlParameter>()
+            {
+                new SqlParameter("categoryId", category.CategoryId),
+                new SqlParameter("categoryName", category.CategoryName)
+            };
+
+            Helper.Execute(UpdateCategorySP, paramlist);
         }
 
     }
