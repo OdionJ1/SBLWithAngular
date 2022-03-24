@@ -14,10 +14,11 @@ namespace SBL.Data.DAO
     public class CategoryData : ICategoryData
     {
         private string CreateCategorySP = "CreateCategory";
-        private string GetCategorySP = "GetCategories";
+        private string GetCategoriesSP = "GetCategories";
         private string CategoryNameExistsSP = "CategoryNameExists";
         private string UpdateCategorySP = "UpdateCategory";
         private string DeleteCategorySP = "DeleteCategory";
+        private string GetCategorySP = "GetCategory";
 
         public void CreateCategory(Category category, string userId)
         {
@@ -47,7 +48,7 @@ namespace SBL.Data.DAO
                 new SqlParameter("userId", userId)
             };
 
-            DataTable data = Helper.Execute(GetCategorySP, paramList);
+            DataTable data = Helper.Execute(GetCategoriesSP, paramList);
 
             IList<Category> categories = new List<Category>();
 
@@ -63,6 +64,26 @@ namespace SBL.Data.DAO
             }
 
             return categories;
+        }
+
+        public Category GetCategory(int categoryId)
+        {
+            IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
+            {
+                new SqlParameter("categoryId", categoryId)
+            };
+
+            DataTable data = Helper.Execute(GetCategorySP, paramList);
+
+            DataRow row = data.Rows[0];
+
+            Category category = new Category()
+            {
+                CategoryId = (int)row["categoryId"],
+                CategoryName = (string)row["categoryName"]
+            };
+
+            return category;
         }
 
         public bool NameExists(Category category, string userId)

@@ -11,6 +11,7 @@ namespace SBL.Data.IDAO
     {
         void CreateCategory(Category category, string userId);
         IEnumerable<Category> GetCategories(string userId);
+        Category GetCategory(int categoryId);
         bool NameExists(Category category, string userId);
         void UpdateCategory(Category category);
         void DeleteCategory(int categoryId);

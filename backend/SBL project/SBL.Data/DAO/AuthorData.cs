@@ -14,6 +14,7 @@ namespace SBL.Data.IDAO
     public class AuthorData : IAuthorData
     {
         private string GetAuthorsSP = "GetAuthors";
+        private string GetAuthorSP = "GetAuthor";
         private string CreateAuthorSP = "CreateAuthor";
         private string AuthorNameExistsSP = "AuthorNameExists";
         private string DeleteAuthorSP = "DeleteAuthor";
@@ -73,6 +74,26 @@ namespace SBL.Data.IDAO
             }
 
             return authors;
+        }
+
+        public Author GetAuthor(int authorId)
+        {
+            IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
+            {
+                new SqlParameter("authorId", authorId)
+            };
+
+            DataTable data = Helper.Execute(GetAuthorSP, paramList);
+
+            DataRow row = data.Rows[0];
+
+            Author author = new Author()
+            {
+                AuthorId = (int)row["authorId"],
+                AuthorName = (string)row["authorName"]
+            };
+
+            return author;
         }
 
         public bool NameExists(Author author, string userId)

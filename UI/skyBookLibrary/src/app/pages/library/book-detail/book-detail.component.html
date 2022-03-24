@@ -42,7 +42,7 @@
 
 
 <app-modal (closeModal)="ratingModalOpen = false" *ngIf="ratingModalOpen">
-    <app-edit-rating (rate)="rateBook($event)" [bookTitle]="book.title" [rating]='book.rating'></app-edit-rating>
+    <app-update-rating (rate)="rateBook($event)" [bookTitle]="book.title" [rating]='book.rating'></app-update-rating>
 </app-modal>
 
 <app-modal [closeOnClickOutside]="true" (closeModal)="deleteModalOpen = false" *ngIf="deleteModalOpen">

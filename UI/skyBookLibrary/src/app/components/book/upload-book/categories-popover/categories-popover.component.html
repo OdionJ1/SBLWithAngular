@@ -6,7 +6,7 @@
                 <input [(ngModel)]="categoryName" name="categoryName" type="text" [required]="true">
                 <p *ngIf="hasError" class="error-message">Category already exists</p>
             </div>
-            <button type="submit" [disabled]="createCategoryForm.invalid || loading">Add <i *ngIf="loading" class="fa fa-spinner fa-pulse"></i></button>
+            <button type="submit" [disabled]="createCategoryForm.invalid || loading">Add New <i *ngIf="loading" class="fa fa-spinner fa-pulse"></i></button>
         </form>
     </div>
     

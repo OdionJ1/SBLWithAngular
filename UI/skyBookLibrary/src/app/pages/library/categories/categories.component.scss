@@ -1,8 +1,56 @@
 @import '../../../common/styles/text/header';
+@import '../../../common/styles/styles';
 
 .categories-page{
 
     h1{
         @include h1Styles;
     }
+
+    .hr{
+        @include lineStyles
+    }
+
+    .main{
+        margin-top: 2rem;
+
+        .category{
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+            justify-content: space-between;
+            width: 60%;
+
+            .actions{
+                display: flex;
+                
+                p{
+                    color: #337ab7;
+                    margin: 0 0.5rem;
+                    // font-weight: bold;
+                    font-family: cursive;
+                    cursor: pointer;
+
+                    &.delete{
+                        color: #dd3333;
+                    }
+
+                    &:hover {
+                        text-decoration: underline;
+                        font-style: italic;
+                    }
+
+                    &:active {
+                        color: #204d74;
+                    }
+
+                    &:focus {
+                        text-decoration: underline;
+                        outline: none;
+                    }
+                }
+            }
+        }
+    }
+
 }

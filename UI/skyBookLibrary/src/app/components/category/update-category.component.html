@@ -1,0 +1,32 @@
+<ng-container>
+    <h1 class="modal-header">{{'Rename: ' + categoryToUpdate.categoryName}}</h1>
+    <hr />
+
+    <div class="body">
+        <form #editCategoryForm="ngForm" (ngSubmit)="rename(editCategoryForm.value, $event)">
+            <div class="form-group">
+                <app-custom-input
+                inputId='rename'
+                label="Rename"
+                inputType='text'
+                name='categoryName'
+                inputName='categoryName'
+                [(ngModel)]="categoryName"
+                [required]="true"
+                [hasError]="hasNameError"
+                [errorMessage]="errorMessage"
+                >
+                </app-custom-input>
+            </div>
+
+            <app-custom-button
+            class="button"
+            buttonText="Rename"
+            [hasSpinner]="loading"
+            buttonType="submit" 
+            [isDisabled]='!!editCategoryForm.invalid'
+            >
+            </app-custom-button>
+        </form>
+    </div>
+</ng-container>

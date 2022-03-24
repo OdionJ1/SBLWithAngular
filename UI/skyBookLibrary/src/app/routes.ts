@@ -12,7 +12,6 @@ import { LibraryPageGuard } from "./pages/library/library.guard";
 import { PageNotFoundComponent } from "./pages/pageNotFound/page-not-found.component";
 import { WelcomeComponent } from "./pages/welcome/welcome.component";
 import { WelcomePageGuard } from "./pages/welcome/welcome.guard";
-import { UploadBookComponent } from "./components/book/upload-book/upload-book.component";
 import { CategoriesComponent } from "./pages/library/categories/categories.component";
 
 

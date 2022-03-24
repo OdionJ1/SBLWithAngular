@@ -7,7 +7,7 @@ import { SharedModule } from "src/app/common/shared.module";
 import { BookComponent } from "src/app/components/book/book.component";
 import { BookService } from "src/app/components/book/book.service";
 import { FavouritesComponent } from "src/app/pages/library/favourites/favourites.component";
-import { EditRatingComponent } from "src/app/components/book/rating/edit-rating.component";
+import { UpdateRatingComponent } from "src/app/components/book/rating/update-rating.component";
 import { ReadingListComponent } from "src/app/pages/library/reading-list/reading-list.component";
 import { BooksContainerComponent } from "src/app/components/book/books-container/books-container.component";
 import { WelcomeComponent } from "../welcome/welcome.component";
@@ -21,6 +21,7 @@ import { AuthorPopoverComponent } from "src/app/components/book/upload-book/auth
 import { AuthorService } from "src/app/components/book/upload-book/authors-popover/author.service";
 import { DeleteBookComponent } from "src/app/components/book/delete-book/delete-book.component";
 import { CategoriesComponent } from "./categories/categories.component";
+import { UpdateCategoryComponent } from "src/app/components/category/update-category.component";
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { CategoriesComponent } from "./categories/categories.component";
         BookComponent,
         BooksContainerComponent,
         BookDetailComponent,
-        EditRatingComponent,
+        UpdateRatingComponent,
+        UpdateCategoryComponent,
         DeleteBookComponent,
         CategoriesComponent,
     ],

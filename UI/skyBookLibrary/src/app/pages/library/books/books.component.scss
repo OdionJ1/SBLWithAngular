@@ -17,6 +17,7 @@ $border: 1px solid rgb(102, 101, 101);
         .upload {
             color: #337ab7;
             font-weight: bold;
+            float: right;
             font-family: cursive;
             cursor: pointer;
 
@@ -38,10 +39,6 @@ $border: 1px solid rgb(102, 101, 101);
         h1 {
             @include h1Styles
         }
-    }
-
-    .upload{
-        float: right;
     }
 
     .main {

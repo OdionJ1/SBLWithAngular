@@ -3,7 +3,31 @@
         Categories
     </h1>
 
+    <hr class="hr" />
+
     <div class="main">
-        
+        <div *ngFor="let category of categories" class="category">
+            <div class="category-name-container">
+                <p>{{category.categoryName}}</p>
+            </div>
+            <div *ngIf="category.categoryName === 'Default Category'" class="actions">
+                <p>View books</p>
+            </div>
+            <div *ngIf="category.categoryName !== 'Default Category'" class="actions">
+                <p (click)="openRenameModal(category)">Rename</p>
+                <hr />
+
+                <p>View books</p>
+                <hr />
+
+                <p class="delete">Delete</p>
+            </div>
+        </div>
     </div>
 </div>
+
+
+<app-modal [closeOnClickOutside]="true" *ngIf="renameModalOpen" (closeModal)="renameModalOpen = false">
+    <app-update-category [categoryToUpdate]="categoryToUpdate" (renameCompleted)="closeRenameModal()"></app-update-category>
+</app-modal>
+

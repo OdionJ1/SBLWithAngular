@@ -39,10 +39,17 @@ namespace SBL.Service.Service
 
         public RequestResult<bool> UpdateCategory(Category category, string userId)
         {
+            string categoryName = categoryData.GetCategory((int)category.CategoryId).CategoryName;
+            if (categoryName == "Default Category")
+            {
+                return new RequestResult<bool>(HttpStatusCode.Forbidden, false);
+            }
+
             if (categoryData.NameExists(category, userId))
             {
                 return new RequestResult<bool>(HttpStatusCode.Conflict, false);
             }
+
             categoryData.UpdateCategory(category);
             return new RequestResult<bool>(HttpStatusCode.OK, true);
         }

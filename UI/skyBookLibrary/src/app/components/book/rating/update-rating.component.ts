@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
 @Component({
-    selector: 'app-edit-rating',
-    templateUrl: './edit-rating.component.html',
-    styleUrls: ['./edit-rating.component.scss']
+    selector: 'app-update-rating',
+    templateUrl: './update-rating.component.html',
+    styleUrls: ['./update-rating.component.scss']
 })
-export class EditRatingComponent implements OnInit {
+export class UpdateRatingComponent implements OnInit {
     @Input() bookTitle: string
     @Input() rating: number
     @Output() rate: EventEmitter<number> = new EventEmitter()

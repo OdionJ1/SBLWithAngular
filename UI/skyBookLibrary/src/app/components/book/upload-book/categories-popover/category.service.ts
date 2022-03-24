@@ -39,4 +39,17 @@ export class CategoryService {
 
         return data
     }
+
+    public async updateCategory(category: Category): Promise<any> {
+        const user: User = this.userService.getCurrentUser()
+        const path: string = this.configService.getPath(`/library/updatecategory/${user.userId}`)
+
+        const data = await this.http.put(path, category, {
+            observe: 'response'
+        })
+        .toPromise()
+        .catch((err: Error) => err)
+
+        return data
+    }
 }

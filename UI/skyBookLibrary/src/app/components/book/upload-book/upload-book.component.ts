@@ -22,8 +22,8 @@ export class UploadBookComponent implements OnInit{
     public selectedCategoriesStr: string
     public selectedAuthors: Author[] = []
     public selectedAuthorsStr: string
-    public bookFile: FileList
-    public coverImage: FileList
+    public bookFile: FileList | undefined
+    public coverImage: FileList | undefined
     public loading: boolean = false
     public title: string = ''
     public titleExists: boolean = false
@@ -38,16 +38,7 @@ export class UploadBookComponent implements OnInit{
         }
     }
 
-    selectedFile(event: any) {
-        this.fileInvalid = false
-
-        if(FileValidator.isValidEbook(event.target.files)){
-            this.bookFile = event.target.files
-        } else {
-            this.fileInvalid = true
-        }
-    }
-
+    
     public async submit(event: Event): Promise<void>{
         event.preventDefault()
         try {
@@ -66,7 +57,7 @@ export class UploadBookComponent implements OnInit{
                 this.updatedCompleted.emit()
 
             } else {
-               const response = await this.bookService.uploadBook(this.bookFile, this.coverImage, this.getBook())
+               const response = await this.bookService.uploadBook(<FileList>this.bookFile, <FileList>this.coverImage, this.getBook())
                if(response.status !== 200){
                    throw response
                }
@@ -86,8 +77,27 @@ export class UploadBookComponent implements OnInit{
         
     }
 
+    selectedFile(event: any) {
+        this.fileInvalid = false
+        if(event.target.files.length === 0){
+            this.bookFile = undefined
+            return
+        }
+
+        if(event.target.files.length && FileValidator.isValidEbook(event.target.files)){
+            this.bookFile = event.target.files
+        } else {
+            this.fileInvalid = true
+        }
+    }
+
     selectedCoverImage(event: any){
         this.coverImageInvalid = false
+
+        if(event.target.files.length === 0){
+            this.coverImage = undefined
+            return
+        }
 
         if(FileValidator.isValidImage(event.target.files)){
             this.coverImage = event.target.files

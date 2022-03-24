@@ -10,6 +10,7 @@ namespace SBL.Data.DAO
     public interface IAuthorData
     {
         IEnumerable<Author> GetAuthors(string userId);
+        Author GetAuthor(int authorId);
         void CreateAuthor(Author author, string userId);
         bool NameExists(Author author, string userId);
         void UpdateAuthor(Author author);

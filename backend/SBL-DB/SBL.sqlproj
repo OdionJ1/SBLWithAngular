@@ -92,5 +92,12 @@
     <Build Include="dbo\Stored Procedures\users\CreateUser.sql" />
     <Build Include="dbo\Stored Procedures\users\GetUser.sql" />
     <Build Include="dbo\Stored Procedures\books\DeleteBook.sql" />
+    <Build Include="dbo\Stored Procedures\books\deleteBook_Authors_n_Categories.sql" />
+    <Build Include="dbo\Stored Procedures\category\UpdateCategory.sql" />
+    <Build Include="dbo\Stored Procedures\category\DeleteCategory.sql" />
+    <Build Include="dbo\Stored Procedures\author\UpdateAuthor.sql" />
+    <Build Include="dbo\Stored Procedures\author\DeleteAuthor.sql" />
+    <Build Include="dbo\Stored Procedures\category\GetCategory.sql" />
+    <Build Include="dbo\Stored Procedures\author\GetAuthor.sql" />
   </ItemGroup>
 </Project>
