@@ -11,23 +11,27 @@
                 <p>{{category.categoryName}}</p>
             </div>
             <div *ngIf="category.categoryName === 'Default Category'" class="actions">
-                <p>View books</p>
+                <p (click)="openGetBooksModal(category)">View books</p>
             </div>
             <div *ngIf="category.categoryName !== 'Default Category'" class="actions">
                 <p (click)="openRenameModal(category)">Rename</p>
                 <hr />
 
-                <p>View books</p>
+                <p (click)="openGetBooksModal(category)">View books</p>
                 <hr />
 
-                <p class="delete">Delete</p>
+                <p (click)="openDeleteCategory(category)" class="delete">Delete</p>
             </div>
         </div>
     </div>
 </div>
 
 
-<app-modal [closeOnClickOutside]="true" *ngIf="renameModalOpen" (closeModal)="renameModalOpen = false">
-    <app-update-category [categoryToUpdate]="categoryToUpdate" (renameCompleted)="closeRenameModal()"></app-update-category>
+<app-modal [closeOnClickOutside]="true" *ngIf="modalOpen" (closeModal)="modalOpen = false">
+    <ng-container [ngSwitch]="modalId">
+        <app-update-category *ngSwitchCase="0" [categoryToUpdate]="selectedCategory" (renameCompleted)="closeModal()"></app-update-category>
+        <app-books-in-category *ngSwitchCase="1" [selectedCategory]="selectedCategory"></app-books-in-category>
+        <app-delete-category *ngSwitchCase="2" [categoryToDelete]="selectedCategory" (closeModal)="closeModal()"></app-delete-category>
+    </ng-container>
 </app-modal>
 

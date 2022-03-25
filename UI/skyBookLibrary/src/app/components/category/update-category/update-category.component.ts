@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { Category } from "src/app/data/models/category";
-import { CategoryService } from "../book/upload-book/categories-popover/category.service";
+import { CategoryService } from "../category.service";
 
 @Component({
     selector: 'app-update-category',

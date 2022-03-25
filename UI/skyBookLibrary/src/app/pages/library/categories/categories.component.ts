@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { CategoryService } from "src/app/components/book/upload-book/categories-popover/category.service";
+import { CategoryService } from "src/app/components/category/category.service";
 import { Category } from "src/app/data/models/category";
 
 
@@ -10,22 +10,38 @@ import { Category } from "src/app/data/models/category";
 })
 export class CategoriesComponent implements OnInit{
     public categories: Category[]
-    public categoryToUpdate: Category
-    public renameModalOpen: boolean = false
+    public selectedCategory: Category
+    public modalOpen: boolean = false
+    public modalId: number = 0
 
     constructor(private categoryService: CategoryService){}
 
     async ngOnInit(): Promise<void>{
         this.categories = await this.categoryService.getCategories()
     }
-
+    
+    async closeModal(): Promise<void> {
+        this.modalOpen = false
+        this.modalId = 0
+        await this.ngOnInit()
+    }
+    
     openRenameModal(category: Category){
-        this.categoryToUpdate = category
-        this.renameModalOpen = true
+        this.selectedCategory = category
+        this.modalId = 0
+        this.modalOpen = true
     }
 
-    async closeRenameModal(): Promise<void> {
-        this.renameModalOpen = false
-        await this.ngOnInit()
+
+    openGetBooksModal(category: Category){
+        this.selectedCategory = category
+        this.modalOpen = true
+        this.modalId = 1
+    }
+
+    openDeleteCategory(category: Category){
+        this.selectedCategory = category
+        this.modalOpen = true
+        this.modalId = 2
     }
 }

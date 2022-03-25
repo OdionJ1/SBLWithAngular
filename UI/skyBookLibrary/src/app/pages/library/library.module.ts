@@ -16,12 +16,14 @@ import { BookListComponent } from "./books/books.component";
 import { LibraryComponent } from "./library.component";
 import { UploadBookComponent } from "../../components/book/upload-book/upload-book.component";
 import { CategoryPopoverComponent } from "src/app/components/book/upload-book/categories-popover/categories-popover.component";
-import { CategoryService } from "src/app/components/book/upload-book/categories-popover/category.service";
+import { CategoryService } from "src/app/components/category/category.service";
 import { AuthorPopoverComponent } from "src/app/components/book/upload-book/authors-popover/authors-popover.component";
-import { AuthorService } from "src/app/components/book/upload-book/authors-popover/author.service";
+import { AuthorService } from "src/app/components/author/author.service";
 import { DeleteBookComponent } from "src/app/components/book/delete-book/delete-book.component";
 import { CategoriesComponent } from "./categories/categories.component";
-import { UpdateCategoryComponent } from "src/app/components/category/update-category.component";
+import { UpdateCategoryComponent } from "src/app/components/category/update-category/update-category.component";
+import { BooksInCategoryComponent } from "src/app/components/category/books-in-category/books-in-category.component";
+import { DeleteCategoryComponent } from "src/app/components/category/delete-category/delete-category.component";
 
 
 @NgModule({
@@ -39,6 +41,8 @@ import { UpdateCategoryComponent } from "src/app/components/category/update-cate
         BookDetailComponent,
         UpdateRatingComponent,
         UpdateCategoryComponent,
+        DeleteCategoryComponent,
+        BooksInCategoryComponent,
         DeleteBookComponent,
         CategoriesComponent,
     ],

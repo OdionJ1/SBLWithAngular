@@ -56,6 +56,11 @@ namespace SBL.Service.Service
 
         public RequestResult<bool> DeleteCategory(int categoryId)
         {
+            string categoryName = categoryData.GetCategory(categoryId).CategoryName;
+            if (categoryName == "Default Category")
+            {
+                return new RequestResult<bool>(HttpStatusCode.Forbidden, false);
+            }
             if (GetBooksInCategory(categoryId).Count() > 0)
             {
                 return new RequestResult<bool>(HttpStatusCode.Conflict, false);

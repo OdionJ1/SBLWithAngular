@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, Input } from "@angular/core";
 import { Category } from "src/app/data/models/category";
-import { CategoryService } from "./category.service";
+import { CategoryService } from "../../../category/category.service";
 
 
 class CategoryWithChecked extends Category {

@@ -1,0 +1,10 @@
+@import '../../../common/styles/text/header';
+@import '../../../common/styles/styles';
+
+hr{
+    @include lineStyles;
+}
+
+.noBooks{
+    font-size: small;
+}

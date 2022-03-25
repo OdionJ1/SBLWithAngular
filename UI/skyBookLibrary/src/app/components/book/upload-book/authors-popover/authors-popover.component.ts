@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { Author } from "src/app/data/models/author";
-import { AuthorService } from "./author.service";
+import { AuthorService } from "../../../author/author.service";
 
 class AuthorWithChecked extends Author {
     public checked: boolean

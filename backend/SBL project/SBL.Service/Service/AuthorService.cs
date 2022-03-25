@@ -39,6 +39,11 @@ namespace SBL.Service.Service
 
         public RequestResult<bool> UpdateAuthor(Author author, string userId)
         {
+            string authorName = authorData.GetAuthor((int)author.AuthorId).AuthorName;
+            if (authorName == "Default Author")
+            {
+                return new RequestResult<bool>(HttpStatusCode.Forbidden, false);
+            }
             if (authorData.NameExists(author, userId))
             {
                 return new RequestResult<bool>(HttpStatusCode.Conflict, false);
@@ -49,6 +54,11 @@ namespace SBL.Service.Service
 
         public RequestResult<bool> DeleteAuthor(int authorId)
         {
+            string authorName = authorData.GetAuthor(authorId).AuthorName;
+            if (authorName == "Default Author")
+            {
+                return new RequestResult<bool>(HttpStatusCode.Forbidden, false);
+            }
             if (GetBooksForAuthor(authorId).Count() > 0)
             {
                 return new RequestResult<bool>(HttpStatusCode.Conflict, false);

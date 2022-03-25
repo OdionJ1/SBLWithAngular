@@ -1,0 +1,9 @@
+<ng-container>
+    <h1 class="modal-header">{{ selectedCategory.categoryName }} Books</h1>
+
+    <hr />
+    <app-books-container [books]="books" ></app-books-container>
+    <div class="noBooks" *ngIf="noBooks">
+        No books in this category
+    </div>
+</ng-container>
