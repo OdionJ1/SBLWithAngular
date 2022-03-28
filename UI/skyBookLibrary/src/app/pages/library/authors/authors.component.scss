@@ -1,7 +1,7 @@
 @import '../../../common/styles/text/header';
 @import '../../../common/styles/styles';
 
-.categories-page{
+.authors-page{
 
     h1{
         @include h1Styles;
@@ -14,13 +14,12 @@
     .main{
         margin-top: 2rem;
 
-        .category{
+        .author{
             display: flex;
-            width: 60%;
-            min-width: 22rem;
             gap: 1rem;
             margin-bottom: 0.5rem;
             justify-content: space-between;
+            width: 60%;
 
             .actions{
                 display: flex;
@@ -55,12 +54,13 @@
     }
 }
 
+
 @media screen and (max-width: 25rem){
-    .categories-page{
+    .authors-page{
 
         .main {
 
-            .category {
+            .author {
                 display: block;
                 min-width: 18rem;
             }

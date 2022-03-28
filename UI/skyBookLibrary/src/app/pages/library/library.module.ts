@@ -24,6 +24,10 @@ import { CategoriesComponent } from "./categories/categories.component";
 import { UpdateCategoryComponent } from "src/app/components/category/update-category/update-category.component";
 import { BooksInCategoryComponent } from "src/app/components/category/books-in-category/books-in-category.component";
 import { DeleteCategoryComponent } from "src/app/components/category/delete-category/delete-category.component";
+import { AuthorsComponent } from "./authors/authors.component";
+import { UpdateAuthorComponent } from "src/app/components/author/update-author/update-author.component";
+import { BooksForAuthorComponent } from "src/app/components/author/books-for-author/books-for-author.component";
+import { DeleteAuthorComponent } from "src/app/components/author/delete-author/delete-author.component";
 
 
 @NgModule({
@@ -45,6 +49,10 @@ import { DeleteCategoryComponent } from "src/app/components/category/delete-cate
         BooksInCategoryComponent,
         DeleteBookComponent,
         CategoriesComponent,
+        AuthorsComponent,
+        UpdateAuthorComponent,
+        BooksForAuthorComponent,
+        DeleteAuthorComponent
     ],
     imports: [
         SharedModule,

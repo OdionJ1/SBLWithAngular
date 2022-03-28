@@ -1,0 +1,36 @@
+<div class="authors-page">
+    <h1>
+        Authors
+    </h1>
+
+    <hr class="hr" />
+
+    <div class="main">
+        <div *ngFor="let author of authors" class="author">
+            <div>
+                <p>{{author.authorName}}</p>
+            </div>
+            <div *ngIf="author.authorName === 'Default Author'" class="actions">
+                <p (click)="openGetBooksModal(author)">View books</p>
+            </div>
+            <div *ngIf="author.authorName !== 'Default Author'" class="actions">
+                <p (click)="openRenameModal(author)">Rename</p>
+                <hr />
+
+                <p (click)="openGetBooksModal(author)">View books</p>
+                <hr />
+
+                <p (click)="openDeleteAuthor(author)" class="delete">Delete</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<app-modal *ngIf="modalOpen" (closeModal)="modalOpen = false" [closeOnClickOutside]="true" >
+    <ng-container [ngSwitch]="modalId">
+        <app-update-author *ngSwitchCase="0" [authorToUpdate]="selectedAuthor" (renameCompleted)="closeModal()"></app-update-author>
+        <app-books-for-author *ngSwitchCase="1" [selectedAuthor]="selectedAuthor" ></app-books-for-author>
+        <app-delete-author *ngSwitchCase="2" [authorToDelete]="selectedAuthor" (closeModal)="closeModal()"></app-delete-author>
+    </ng-container>
+</app-modal>

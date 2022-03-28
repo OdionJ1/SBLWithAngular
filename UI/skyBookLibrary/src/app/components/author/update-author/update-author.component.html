@@ -1,17 +1,17 @@
 <ng-container>
-    <h1 class="modal-header">{{'Rename: ' + categoryToUpdate.categoryName}}</h1>
+    <h1 class="modal-header">{{'Rename: ' + authorToUpdate.authorName}}</h1>
     <hr />
 
     <div class="body">
-        <form #renameCategoryForm="ngForm" (ngSubmit)="rename(renameCategoryForm.value, $event)">
+        <form #renameAuthorForm="ngForm" (ngSubmit)="rename(renameAuthorForm.value, $event)">
             <div class="form-group">
                 <app-custom-input
                 inputId='rename'
                 label="Rename"
                 inputType='text'
-                name='categoryName'
-                inputName='categoryName'
-                [(ngModel)]="categoryName"
+                name='authorName'
+                inputName='authorName'
+                [(ngModel)]="authorName"
                 [required]="true"
                 [hasError]="hasNameError"
                 [errorMessage]="errorMessage"
@@ -24,7 +24,7 @@
             buttonText="Rename"
             [hasSpinner]="loading"
             buttonType="submit" 
-            [isDisabled]='!!renameCategoryForm.invalid'
+            [isDisabled]='!!renameAuthorForm.invalid'
             >
             </app-custom-button>
         </form>

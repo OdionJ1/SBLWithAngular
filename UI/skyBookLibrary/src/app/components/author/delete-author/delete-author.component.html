@@ -1,0 +1,17 @@
+<ng-container>
+    <h1 class="modal-header">Delete Author</h1>
+    <hr />
+
+    <div>
+        <p>Are you sure you want to delete <strong><em>{{authorToDelete.authorName}}</em></strong>?</p>
+    </div>
+
+    <div class="error-text">
+        {{errorMessage}}
+    </div>
+
+    <div class="actions">
+        <button (click)="closeModal.emit()" class="no-btn">No</button>
+        <button [disabled]="loading" (click)="deleteAuthor()" class="yes-btn">Yes&nbsp;<i [ngClass]="loading? 'fa fa-spinner fa-pulse' : 'fa fa-trash'"></i></button>
+    </div>
+</ng-container>

@@ -17,3 +17,5 @@ Books image: https://www.google.com/search?q=book+icon&tbm=isch&ved=2ahUKEwjGmr3
 Restarting local server: https://docs.microsoft.com/en-us/answers/questions/465081/i-tried-to-connect-to-localdb-with-vs-2019-and-i-c.html
 
 file input validation: https://www.geeksforgeeks.org/file-type-validation-while-uploading-it-using-javascript/#:~:text=Using%20JavaScript%2C%20you%20can%20easily,complete%20file%20type%20validation%20code.
+
+Promise.all: https://rapidapi.com/guides/parallel-api-requests

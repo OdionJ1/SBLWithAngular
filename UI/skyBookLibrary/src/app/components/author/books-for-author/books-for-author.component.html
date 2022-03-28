@@ -1,0 +1,9 @@
+<ng-container>
+    <h1 class="modal-header">{{ selectedAuthor.authorName }} Books</h1>
+
+    <hr />
+    <app-books-container [books]="books" ></app-books-container>
+    <div class="noBooks" *ngIf="noBooks">
+        No books for this author
+    </div>
+</ng-container>
