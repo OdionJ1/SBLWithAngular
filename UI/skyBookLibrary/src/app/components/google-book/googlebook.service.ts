@@ -24,8 +24,7 @@ export class GoogleBookService {
             googleBook.epubLink = book.accessInfo.epub.downloadLink
             googleBook.pdfLink = book.accessInfo.pdf.downloadLink
             googleBook.webReaderLink = book.accessInfo.webReaderLink
-            googleBook.thumbnail = book.volumeInfo.imageLinks.smallThumbnail
-
+            googleBook.thumbnail = book.volumeInfo.imageLinks.smallThumbnail.replace('http', 'https')
             googleBooks.push(googleBook)
         })
 

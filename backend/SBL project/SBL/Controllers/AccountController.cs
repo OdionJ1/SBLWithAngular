@@ -12,7 +12,7 @@ using System.Web.Http.Cors;
 namespace SBL.Controllers
 {
     [RoutePrefix("api/account")]
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:4200, https://skybooklibrary.netlify.app", headers: "*", methods: "*")]
     public class AccountController : ApiController
     {
         private IUserService userService;
