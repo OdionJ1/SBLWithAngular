@@ -1,0 +1,125 @@
+@import '../../../common/styles/text/header';
+@import '../../../common/styles/styles';
+@import '../../../common/styles/button/button';
+
+.google-books-page {
+
+    h1{
+        @include h1Styles
+    }
+
+    hr{
+        @include lineStyles
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+
+        .search {
+            color: #337ab7;
+            font-weight: bold;
+            float: right;
+            font-family: cursive;
+            cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+                font-style: italic;
+            }
+
+            &:active {
+                color: #204d74;
+            }
+
+            &:focus {
+                text-decoration: underline;
+                outline: none;
+            }
+        }
+
+        h1 {
+            @include h1Styles
+        }
+    }
+
+    .main{
+        margin-top: 2rem;
+
+        .book-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        
+            .book {
+                width: 13%;
+                min-width: 9rem;
+
+                .img-container {
+                    padding: 1rem 2rem;
+                    padding: 2.5rem 2.5rem;
+                    background-color: whitesmoke;
+                    max-height: 10rem;
+            
+                    img {
+                        width: 100%;
+                    }
+                }
+            
+                .title {
+                    margin-top: 0.5rem;
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            
+                .author {
+                    font-size: small;
+                    color: #7c7568;
+                    font-family: cursive;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            
+                .action-container{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin-top: 0.5rem;
+                    
+                    button{
+                        cursor: pointer;
+                        color: #337ab7;
+                        padding: 0.2rem 0.5rem;
+            
+                        &:hover{
+                            font-style: italic;
+                        }
+
+                        &:disabled{
+                            color: gray;
+                            cursor: default;
+
+                            &:hover{
+                                font-style: normal;
+                            }
+                        }
+                    }
+
+                    p{
+                        color: #337ab7;
+                        cursor: pointer;
+                        font-size: small;
+                        margin-top: 0.5rem;
+
+                        &:hover{
+                            text-decoration: underline
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

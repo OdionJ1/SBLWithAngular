@@ -36,6 +36,7 @@ export class UserService {
     }
 
     public logout(): void {
+        localStorage.removeItem("searchValue")
         localStorage.removeItem("currentUser")
         this.router.navigate(['/home/login'])
     }

@@ -1,0 +1,35 @@
+<div class="google-books-page">
+    <div class="header">
+        <h1>
+            Google Books
+        </h1>
+        
+        <p (click)="searchModalOpen = true" tabindex="0" class="search">
+            Search
+        </p>
+    </div>
+
+    <hr />
+
+    <div class="main">
+        <div class="book-list">
+            <div class='book' *ngFor="let googleBook of googleBooks">
+                <div class="img-container">
+                    <img [src]="googleBook.thumbnail" [id]="'img' + googleBook.id" src="assets/images/book/book.png" alt="book-image" srcset="">
+                </div>
+                <p class="title">{{googleBook.title}}</p>
+                <p class="author">{{googleBook.authors?.join(', ')}}</p>
+                <div class="action-container">
+                    <button [disabled]="bookExists(googleBook)">{{ bookExists(googleBook)? 'Added' : 'Add'}} to booklist</button>
+                    <p>More info</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<app-modal *ngIf="searchModalOpen" (closeModal)="searchModalOpen = false">
+    <app-google-book-search (search)="search($event)"></app-google-book-search>
+</app-modal>

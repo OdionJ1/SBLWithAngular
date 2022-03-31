@@ -1,0 +1,30 @@
+<ng-container>
+    <h1 class="modal-header">Search for Google Books</h1>
+    <hr />
+
+    <div class="body">
+        <form #searchForm="ngForm" (ngSubmit)="searchForBooks(searchForm.value, $event)">
+            <div class="form-group">
+                <app-custom-input
+                inputId='search'
+                label="Search"
+                inputType='text'
+                name='searchValue'
+                inputName='searchValue'
+                [(ngModel)]="searchValue"
+                [required]="true"
+                >
+                </app-custom-input>
+            </div>
+
+            <app-custom-button
+            class="button"
+            buttonText="Search"
+            [hasSpinner]="loading"
+            buttonType="submit" 
+            [isDisabled]='!!searchForm.invalid'
+            >
+            </app-custom-button>
+        </form>
+    </div>
+</ng-container>

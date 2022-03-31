@@ -2,7 +2,10 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { ConfigService } from "src/app/common/api/config.service";
+import { Author } from "src/app/data/models/author";
 import { Book, IBook } from "src/app/data/models/book";
+import { Category } from "src/app/data/models/category";
+import { IGoogleBooks } from "src/app/data/models/google-books";
 import { User } from "src/app/data/models/user";
 import { UserService } from "../user/user.service";
 import { deleteFileFromFireBase, downloadFileFromFirebase, uploadFileToFirebase } from "./firebase.util";
@@ -80,7 +83,6 @@ export class BookService {
         
         await this.http.put(path, null)
         .toPromise()
-        .then(res => console.log(res))
     }
 
     public async removeFromFavourites(bookId: number): Promise<void>{
@@ -88,12 +90,16 @@ export class BookService {
         
         await this.http.put(path, null)
         .toPromise()
-        .then(res => console.log(res))
     }
 
     public async deleteBook(book: Book): Promise<void>{
-        await deleteFileFromFireBase(book.fileLink)
-        if(book.coverImageLink){
+        const userId: string = <string>this.userService.getCurrentUser().userId
+
+        if(book.fileLink.includes(userId)){
+            await deleteFileFromFireBase(book.fileLink)
+        }
+
+        if(book.coverImageLink && book.coverImageLink.includes(userId)){
             await deleteFileFromFireBase(book.coverImageLink)
         }
         const path: string = this.configService.getPath(`library/deletebook/${book.bookId}`)

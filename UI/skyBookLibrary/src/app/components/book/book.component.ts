@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { Book } from "src/app/data/models/book";
 import { Page } from "src/app/data/models/page";
+import { User } from "src/app/data/models/user";
+import { UserService } from "../user/user.service";
 import { downloadFileFromFirebase } from "./firebase.util";
 
 @Component({
@@ -16,6 +18,8 @@ export class BookComponent implements OnInit, AfterViewInit {
     public showRemoveButton: boolean = false
     public authors: string
 
+    constructor(private userService: UserService){}
+
     ngOnInit(): void {
         const bookAuthors = this.book.authors.map(author => author.authorName)
         this.authors = bookAuthors.join(', ')
@@ -30,10 +34,15 @@ export class BookComponent implements OnInit, AfterViewInit {
     }
     
     async ngAfterViewInit(): Promise<void> {
+        const user: User = this.userService.getCurrentUser()
+        let img = <HTMLElement>document.getElementById(`img${this.book.bookId}`)
         if(this.book.coverImageLink){
-            const url = await downloadFileFromFirebase(this.book.coverImageLink)
-            let img = <HTMLElement>document.getElementById(`img${this.book.bookId}`)
-            img.setAttribute('src', url)
-        } 
+            if(this.book.coverImageLink.includes(<string>user.userId)){
+                const url = await downloadFileFromFirebase(this.book.coverImageLink)
+                img.setAttribute('src', url)
+            } else {
+                img.setAttribute('src', this.book.coverImageLink)
+            }
+        }
     }
 }

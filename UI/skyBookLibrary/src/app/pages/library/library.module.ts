@@ -28,6 +28,9 @@ import { AuthorsComponent } from "./authors/authors.component";
 import { UpdateAuthorComponent } from "src/app/components/author/update-author/update-author.component";
 import { BooksForAuthorComponent } from "src/app/components/author/books-for-author/books-for-author.component";
 import { DeleteAuthorComponent } from "src/app/components/author/delete-author/delete-author.component";
+import { GoogleBooksComponent } from "./google-books/google-books.component";
+import { GoogleBookSearch } from "src/app/components/google-book/search-for-books/google-book-search.component";
+import { GoogleBookService } from "src/app/components/google-book/googlebook.service";
 
 
 @NgModule({
@@ -52,7 +55,9 @@ import { DeleteAuthorComponent } from "src/app/components/author/delete-author/d
         AuthorsComponent,
         UpdateAuthorComponent,
         BooksForAuthorComponent,
-        DeleteAuthorComponent
+        DeleteAuthorComponent,
+        GoogleBooksComponent,
+        GoogleBookSearch
     ],
     imports: [
         SharedModule,
@@ -63,7 +68,7 @@ import { DeleteAuthorComponent } from "src/app/components/author/delete-author/d
     exports: [
         
     ],
-    providers: [BookService, CategoryService, AuthorService],
+    providers: [BookService, CategoryService, AuthorService, GoogleBookService],
     bootstrap: [AppComponent]
 })
 export class LibraryModule {}

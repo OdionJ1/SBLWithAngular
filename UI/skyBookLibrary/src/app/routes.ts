@@ -14,6 +14,7 @@ import { WelcomeComponent } from "./pages/welcome/welcome.component";
 import { WelcomePageGuard } from "./pages/welcome/welcome.guard";
 import { CategoriesComponent } from "./pages/library/categories/categories.component";
 import { AuthorsComponent } from "./pages/library/authors/authors.component";
+import { GoogleBooksComponent } from "./pages/library/google-books/google-books.component";
 
 
 //Home page child routes:
@@ -30,7 +31,8 @@ const libraryRoutes: Routes = [
     { path: 'favourites', component: FavouritesComponent},
     { path: 'readinglist', component: ReadingListComponent},
     { path: 'categories', component: CategoriesComponent},
-    { path: 'authors', component: AuthorsComponent}
+    { path: 'authors', component: AuthorsComponent},
+    { path: 'googlebooks', component: GoogleBooksComponent}
 ]
 //
 

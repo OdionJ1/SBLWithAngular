@@ -4,7 +4,7 @@ export const libraryNavArr: ILibraryNavLink[] = [
     { value: "Reading List", route: '/library/readinglist' },
     { value: "Authors", route: '/library/authors' },
     { value: "Categories", route: '/library/categories' },
-    { value: "Search Google Books", route: ''}
+    { value: "Search Google Books", route: '/library/googlebooks'}
 ]
 
 

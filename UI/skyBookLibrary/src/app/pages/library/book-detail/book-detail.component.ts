@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { BookService } from "src/app/components/book/book.service";
 import { downloadFileFromFirebase } from "src/app/components/book/firebase.util";
+import { UserService } from "src/app/components/user/user.service";
 import { Book } from "src/app/data/models/book";
 
 
@@ -10,9 +11,10 @@ import { Book } from "src/app/data/models/book";
     styleUrls: ['./book-detail.component.scss']
 })
 export class BookDetailComponent implements OnInit {
+    @Input() me: string
     public book: Book
     public parameter: string
-    public invalidId: boolean
+    public invalidId: boolean = false
     public authors: string
     public categories: string
     public inFavList: boolean
@@ -21,9 +23,10 @@ export class BookDetailComponent implements OnInit {
     public deleteModalOpen: boolean = false
     public editModalOpen: boolean = false
 
-    constructor(private bookService: BookService, private route: ActivatedRoute){}
+    constructor(private bookService: BookService, private route: ActivatedRoute, private userService: UserService){}
 
-    async ngOnInit() {
+    async ngOnInit(): Promise<void> {
+        
         let { snapshot : { paramMap } } = this.route
         this.parameter = <string>paramMap.get('id')
         const id = Number(paramMap.get('id'))
@@ -32,7 +35,7 @@ export class BookDetailComponent implements OnInit {
             this.invalidId = true
             return
         }
-
+        
         try {
             const response = await this.bookService.getBook(id)
             
@@ -43,16 +46,23 @@ export class BookDetailComponent implements OnInit {
             this.book = Book.createFullBook(response.body)
             this.authors = this.book.authors.map(author => author.authorName).join(', ')
             this.categories = this.book.categories.map(category => category.categoryName).join(', ')
-
+            
             this.inFavList = this.book.inFavouriteList;
             this.inReadList = this.book.inReadingList;
 
-            if(this.book.coverImageLink){
-                const url: string = await downloadFileFromFirebase(this.book.coverImageLink)
+            setTimeout(async () => {
+                const userId: string = <string>this.userService.getCurrentUser().userId
                 const img = <HTMLElement>document.getElementById(`detailImg${this.book.bookId}`)
-
-                img.setAttribute('src', url)
-            }
+        
+                if(this.book.coverImageLink){
+                    if(this.book.coverImageLink.includes(userId)){
+                        const url: string = await downloadFileFromFirebase(this.book.coverImageLink)
+                        img.setAttribute('src', url)
+                    } else {
+                        img.setAttribute('src', this.book.coverImageLink)
+                    }
+                }
+            }, 1000)
 
         } catch (error) {
             this.invalidId = true
@@ -79,8 +89,13 @@ export class BookDetailComponent implements OnInit {
     }
 
     public async readBook(){
-        const url: string = await downloadFileFromFirebase(this.book.fileLink)
-        window.open(url, '_blank')
+        const userId: string = <string>this.userService.getCurrentUser().userId
+        if(this.book.fileLink.includes(userId)){
+            const url: string = await downloadFileFromFirebase(this.book.fileLink)
+            window.open(url, '_blank')
+        } else {
+            window.open(this.book.fileLink, '_blank')
+        }
     }
 
     public async closeUpdateModal(): Promise<void>{

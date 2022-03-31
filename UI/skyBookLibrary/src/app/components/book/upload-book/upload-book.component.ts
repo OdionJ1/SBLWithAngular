@@ -156,13 +156,21 @@ export class UploadBookComponent implements OnInit{
 
         if(this.bookFile){
             const userId: string = <string>this.userService.getCurrentUser().userId
-            await deleteFileFromFireBase(book.fileLink)
+
+            if(this.bookToEdit.fileLink.includes(userId)){
+                await deleteFileFromFireBase(book.fileLink)
+            }
+            
             book.fileLink = await uploadFileToFirebase(this.bookFile, userId, book.bookId)
         }
 
         if(this.coverImage){
             const userId: string = <string>this.userService.getCurrentUser().userId
-            await deleteFileFromFireBase(book.coverImageLink)
+
+            if(this.bookToEdit.coverImageLink && this.bookToEdit.coverImageLink.includes(userId)){
+                await deleteFileFromFireBase(book.coverImageLink)
+            }
+
             book.coverImageLink = await uploadFileToFirebase(this.coverImage, userId, book.bookId)
         }
 
