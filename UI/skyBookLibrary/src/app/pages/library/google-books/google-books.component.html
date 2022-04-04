@@ -20,8 +20,8 @@
                 <p class="title">{{googleBook.title}}</p>
                 <p class="author">{{googleBook.authors?.join(', ')}}</p>
                 <div class="action-container">
-                    <button [disabled]="bookExists(googleBook)">{{ bookExists(googleBook)? 'Added' : 'Add'}} to booklist</button>
-                    <p>More info</p>
+                    <button (click)="addToBookList(googleBook)" [disabled]="bookExists(googleBook) || loading">{{ bookExists(googleBook)? 'Added' : 'Add'}} to booklist <i *ngIf='loading' class="fa fa-spinner fa-pulse"></i></button>
+                    <p (click)="openPreviewLink(googleBook)">More info</p>
                 </div>
             </div>
         </div>

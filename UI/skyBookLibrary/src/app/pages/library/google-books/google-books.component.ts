@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { AuthorService } from "src/app/components/author/author.service";
 import { BookService } from "src/app/components/book/book.service";
 import { CategoryService } from "src/app/components/category/category.service";
 import { GoogleBookService } from "src/app/components/google-book/googlebook.service";
+import { Author } from "src/app/data/models/author";
 import { Book } from "src/app/data/models/book";
 import { Category } from "src/app/data/models/category";
 import { GoogleBook } from "src/app/data/models/google-books";
@@ -14,13 +16,15 @@ import { GoogleBook } from "src/app/data/models/google-books";
 export class GoogleBooksComponent implements OnInit{
     public googleBooks: GoogleBook[] = []
     public books: Book[] = []
+    public loading: Boolean = false
     public searchModalOpen: boolean = true
 
     constructor(
         private googleBookService: GoogleBookService, 
         private bookService: BookService, 
         private authorService: AuthorService,
-        private categoryService: CategoryService){}
+        private categoryService: CategoryService,
+        private router: Router){}
 
     async ngOnInit(): Promise<void> {
         const previousSearchValue = localStorage.getItem("searchValue")
@@ -36,8 +40,8 @@ export class GoogleBooksComponent implements OnInit{
         this.searchModalOpen = false
     }
 
-
     async addToBookList(googleBook: GoogleBook): Promise<void>{
+        this.loading = true
         const book: Book = new Book()
         book.title = googleBook.title
         
@@ -50,18 +54,39 @@ export class GoogleBooksComponent implements OnInit{
         }
         
         
+        if(googleBook.authors && googleBook.authors.length){
+            await Promise.all(googleBook.authors.map(async (author) => {
+                const newAuthor: Author = new Author()
+                newAuthor.authorName = author
+                return await this.authorService.createAuthor(newAuthor)
+            }))
+            
+            const authors = await this.authorService.getAuthors()
+            book.authors = <Author[]>googleBook.authors.map(author => authors.find(au => au.authorName === author))
 
-        // await this.authorService.createAuthor()
+        } else {
+            const userAuthors = await this.authorService.getAuthors()
+            book.authors = <Author[]>[userAuthors.find(author => author.authorName === "Default Author")]
+        }
 
         const userCategories = await this.categoryService.getCategories()
         book.categories = <Category[]>[userCategories.find(category => category.categoryName === "Default Category")]
         
 
         book.coverImageLink = googleBook.thumbnail
+        
+        await this.bookService.addToBookList(book)
+
+        this.loading = false
+        this.router.navigate(['/library'])
+
     }
 
     public bookExists (googleBook: GoogleBook): boolean {
         return this.books.some((book) => book.title.toLowerCase() === googleBook.title.toLowerCase())
     }
     
+    public openPreviewLink(googleBook: GoogleBook){
+        window.open(googleBook.previewLink, '_blank')
+    }
 }

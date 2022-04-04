@@ -131,4 +131,16 @@ export class BookService {
 
         return data
     }
+
+    public async addToBookList(book: Book): Promise<any> {
+        const user: User = this.userService.getCurrentUser()
+        const path: string = this.configService.getPath(`library/uploadbook/${user.userId}`)
+        
+        const data = await this.http.post(path, book, {
+            observe: 'response'
+        }).toPromise()
+        .catch((err: Error) => err)
+
+        return data
+    }
 }

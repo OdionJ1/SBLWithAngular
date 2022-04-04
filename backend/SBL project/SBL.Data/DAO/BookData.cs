@@ -29,11 +29,21 @@ namespace SBL.Data.DAO
 
         public FullBook UploadBook(FullBook book, string userId)
         {
-            IEnumerable<SqlParameter> paramList = new List<SqlParameter>()
+            List<SqlParameter> paramList = new List<SqlParameter>()
             {
                 new SqlParameter("title", book.Title),
                 new SqlParameter("userId", userId)
             };
+
+            if (book.FileLink != null)
+            {
+                paramList.Add(new SqlParameter("fileLink", book.FileLink));
+            }
+
+            if (book.CoverImageLink != null)
+            {
+                paramList.Add(new SqlParameter("coverImageLink", book.CoverImageLink));
+            }
 
             DataRow row = Helper.Execute(CreateBookSP, paramList).Rows[0];
 
